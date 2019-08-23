@@ -1,0 +1,22 @@
+#!/bin/sh
+#Backs up and updates bmad, using notify-send for status updates
+#DIST_BASE_DIR="/home/john/bmad_dist"
+source ~/.bashrc
+[ -f ~/bmad_dist/compile.log ] && rm ~/bmad_dist/compile.log
+notify-send "Making backup..."
+rsync -r -h --info=progress2 $DIST_BASE_DIR/production $DIST_BASE_DIR/production_backup 2>>~/bmad_dist/compile.log
+notify-send "Finished backup"
+notify-send "Pulling down changes..."
+cd $DIST_BASE_DIR
+svn update * &>>~/bmad_dist/compile.log
+notify-send "Finished svn update"
+notify-send "Recompiling sim-utils"
+cd sim_utils
+mk -j 8 >/dev/null &>>~/bmad_dist/compile.log
+notify-send "Recompiling bmad"
+cd ../bmad
+mk -j 8 >/dev/null &>>~/bmad_dist/compile.log
+notify-send "Recompiling tao"
+cd ../tao
+mk -j 8 >/dev/null &>>~/bmad_dist/compile.log
+notify-send "Done!"

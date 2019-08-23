@@ -1,0 +1,155 @@
+! st settings
+st.font: Monospace-20;
+st.alpha: 0.8
+! special
+st.foreground:   #dddddd
+st.background:   #000000
+st.cursorColor:  #a6a28c
+
+! black
+st.color0:       #20201d
+st.color8:       #7d7a68
+
+! red
+st.color1:       #d73737
+st.color9:       #d73737
+
+! green
+st.color2:       #60ac39
+st.color10:      #60ac39
+
+! yellow
+st.color3:       #cfb017
+st.color11:      #cfb017
+
+! blue
+st.color4:       #6684e1
+st.color12:      #6684e1
+
+! magenta
+st.color5:       #b854d4
+st.color13:      #b854d4
+
+! cyan
+st.color6:       #1fad83
+st.color14:      #1fad83
+
+! white
+st.color7:       #a6a28c
+st.color15:      #fefbec
+! special
+!st.foreground:   #a6a28c
+!st.background:   #20201d
+!st.cursorColor:  #a6a28c
+!
+!! black
+!st.color0:       #20201d
+!st.color8:       #7d7a68
+!
+!! red
+!st.color1:       #d73737
+!st.color9:       #d73737
+!
+!! green
+!st.color2:       #60ac39
+!st.color10:      #60ac39
+!
+!! yellow
+!st.color3:       #cfb017
+!st.color11:      #cfb017
+!
+!! blue
+!st.color4:       #6684e1
+!st.color12:      #6684e1
+!
+!! magenta
+!st.color5:       #b854d4
+!st.color13:      #b854d4
+!
+!! cyan
+!st.color6:       #1fad83
+!st.color14:      #1fad83
+!
+!! white
+!st.color7:       #a6a28c
+!st.color15:      #fefbec
+! special
+!st.foreground:   #b7b8b9
+!st.background:   #0c0d0e
+!st.cursorColor:  #b7b8b9
+!
+!! black
+!st.color0:       #0c0d0e
+!st.color8:       #737475
+!
+!! red
+!st.color1:       #b31a1c
+!st.color9:       #b31a1c
+!
+!! green
+!st.color2:       #31a354
+!st.color10:      #31a354
+!
+!! yellow
+!st.color3:       #dca060
+!st.color11:      #dca060
+!
+!! blue
+!st.color4:       #3182bd
+!st.color12:      #3182bd
+!
+!! magenta
+!st.color5:       #756bb1
+!st.color13:      #756bb1
+!
+!! cyan
+!st.color6:       #80b1d3
+!st.color14:      #80b1d3
+!
+!! white
+!st.color7:       #b7b8b9
+!st.color15:      #fcfdfe
+! XTerm settings
+XTerm.termName: xterm-256color
+XTerm.vt100.metaSendsEscape: true
+XTerm.vt100.locale: true
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+XTerm.vt100.reverseVideo: true
+! special
+XTerm.foreground:   #a6a28c
+XTerm.background:   #20201d
+XTerm.cursorColor:  #a6a28c
+
+! black
+XTerm.vt100.color0:       #20201d
+XTerm.vt100.color8:       #7d7a68
+
+! red
+XTerm.vt100.color1:       #d73737
+XTerm.vt100.color9:       #d73737
+
+! green
+XTerm.vt100.color2:       #60ac39
+XTerm.vt100.color10:      #60ac39
+
+! yellow
+XTerm.vt100.color3:       #cfb017
+XTerm.vt100.color11:      #cfb017
+
+! blue
+XTerm.vt100.color4:       #6684e1
+XTerm.vt100.color12:      #6684e1
+
+! magenta
+XTerm.vt100.color5:       #b854d4
+XTerm.vt100.color13:      #b854d4
+
+! cyan
+XTerm.vt100.color6:       #1fad83
+XTerm.vt100.color14:      #1fad83
+
+! white
+XTerm.vt100.color7:       #a6a28c
+XTerm.vt100.color15:      #fefbec
+XTerm.vt100.faceName: Inconsolata Mono:size=24

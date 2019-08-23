@@ -1,0 +1,5 @@
+#!/bin/sh
+cd ~/Dropbox
+rm tao_manual.pdf
+curl -s https://www.classe.cornell.edu/bmad/basic_tao.html | grep tao-manual | awk '{print $5}' | sed 's/>.*//;s/"//;s/"//;' | xargs -I{} curl https://www.classe.cornell.edu/bmad/{} >> tao_manual.pdf
+evince tao_manual.pdf

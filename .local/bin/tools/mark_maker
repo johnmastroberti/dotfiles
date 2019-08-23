@@ -1,0 +1,43 @@
+#!/bin/bash
+# Takes lines of python error output as standard input and makes a
+# vim script to vsp into the last error-containing file and jump to the
+# line where the error occurs
+# The parent directory where you would like to look for errors:
+ERR_DIR=/home/john/bmad_dist/tao/gui #edit as needed
+# The location of the vim script to write:
+VIM_SCRIPT=/tmp/vim_script.vim
+while read line
+do
+  # Still output to stderr
+  echo "$line" >&2
+  ERR_FILE=""
+  # Possible format: File "$ERR_DIR/file.py"...
+  if [[ -n $(echo "$line" | grep -o $ERR_DIR) ]]; then
+    # File
+    ERR_FILE=$(echo "$line" | grep -o "$ERR_DIR[\/\a-z_]*\.py")
+  else
+    # Possible format: File "file.py" ...
+    if [[ -n $(echo "$line" | grep -o "File \"[a-z_]*\.py\"") ]]; then
+      ERR_FILE=$(echo "$line" | grep -o "File \"[a-z_]*\.py\"" | sed "s/File \"//" | sed "s/\"//")
+      ERR_FILE=$ERR_DIR/$ERR_FILE
+    fi
+  fi
+  # Only proceed if a file has been found
+  if [[ -z $ERR_FILE ]]; then
+    continue
+  fi
+  # Line number
+  num=$(echo "$line" | grep -o "line [0-9]*" | grep -o "[0-9]*")
+  # Make the script
+  if [ -f $VIM_SCRIPT ]; then
+    rm $VIM_SCRIPT
+  fi
+  touch $VIM_SCRIPT
+  # The script:
+  echo "if expand('%:p') == \"$ERR_FILE\"" >> $VIM_SCRIPT
+  echo "  $num" >> $VIM_SCRIPT
+  echo "else" >> $VIM_SCRIPT
+  echo "  vsp $ERR_FILE" >> $VIM_SCRIPT
+  echo "  $num" >> $VIM_SCRIPT
+  echo "endif" >> $VIM_SCRIPT
+done
