@@ -1,5 +1,6 @@
 # vim: filetype=sh
 alias h="cd ~/ && ls -a" \
+gotex="cd ~/Dropbox/TeX && ls" \
 d="cd ~/Documents && ls -a" \
 D="cd ~/Downloads && ls -a" \
 m="cd ~/Music && ls -a" \

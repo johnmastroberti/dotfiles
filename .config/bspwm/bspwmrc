@@ -1,5 +1,6 @@
 #! /bin/sh
 
+xrdb ~/.config/bspwm/.low_alpha
 sxhkd &
 compton &
 startpolybar &
@@ -16,6 +17,7 @@ bspc config gapless_monocle      true
 
 #bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Surf state=tiling
+bspc rule -a Zathura state=tiling
 bspc rule -a Tao desktop='^5' state=floating
 #bspc rule -a mplayer2 state=floating
 #bspc rule -a Kupfer.py focus=on

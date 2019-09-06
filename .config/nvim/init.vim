@@ -21,6 +21,7 @@ Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
 call plug#end()
+packadd vimball
 
 set bg=light
 set go=a
@@ -167,11 +168,12 @@ autocmd FileType tex inoremap ,nal \begin{align}<Enter><Enter>\end{align}<Enter>
 autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><Enter>\end{exercise}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,im \begin{figure}[h]<Enter>\includegraphics[width=10cm]{}<Enter>\centering<Enter>\caption{<++>}<Enter>\end{figure}<Enter><++><Esc>4kf}i
-autocmd FileType tex inoremap ,ar \begin{array}{}<Enter><++><Enter>\end{array}<Enter><++><Esc>3k$i
+autocmd FileType tex inoremap ,ar \begin{array}{}<Enter><++><Enter>\end{array}<++><Esc>2k$i
 autocmd FileType tex inoremap ,dc \begin{dcases*}<Enter><Enter>\end{dcases*}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,ct \begin{figure}[h]<Enter>\begin{circuitikz} \draw <Enter><Enter>;<Enter>\end{circuitikz}<Enter>\centering\caption{<++>}<Enter>\end{figure}<Esc>5ki
 autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><Enter>\end{enumerate}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
+autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter>\item<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
 """HTML
 	autocmd FileType html inoremap ,b <b></b><Space><++><Esc>FbT>i
 	autocmd FileType html inoremap ,it <em></em><Space><++><Esc>FeT>i

@@ -2,6 +2,7 @@
 alias ka="killall" \
   :q="exit" \
   config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
+  runcl="cd ~/Documents/cl/code; [[ -f cl ]] || make; ./cl net3_4_2 trainfile testfile" \
   info="pinfo" \
   guitao="tao -init ~/bmad_dist/tao/gui/cesrbeam/cesr_beam.init -noplot -external_plotting" \
 	mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \

@@ -4,7 +4,7 @@
     geometry = "350x5-0+24"
     indicate_hidden = yes
     shrink = yes
-    transparency = 90
+    transparency = 0
     notification_height = 0
     separator_height = 2
     padding = 0
@@ -83,14 +83,14 @@
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#458588"
-    foreground = "#ebdbb2"
+    background = "#000000"
+    foreground = "#dddddd"
     timeout = 5
 
 [urgency_critical]
-    background = "#cc2421"
-    foreground = "#ebdbb2"
-    frame_color = "#fabd2f"
+    background = "#000000"
+    foreground = "#d73737"
+    frame_color = "#cfb017"
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
