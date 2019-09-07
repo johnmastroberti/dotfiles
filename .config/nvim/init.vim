@@ -133,6 +133,10 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 
   autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
 
+" Use 4 spaces for tabs for tao development
+  autocmd BufEnter ~/bmad_dist/tao/python/* setlocal tabstop=4 expandtab softtabstop=4 shiftwidth=4
+  autocmd BufEnter ~/bmad_dist/tao/python/* setlocal keywordprg=~/.config/nvim/good_pydoc.sh
+
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
