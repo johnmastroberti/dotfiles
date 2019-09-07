@@ -38,7 +38,7 @@ color15:      #fefbec
 
 ! st settings
 st.font: Monospace-20;
-st.alpha: 0.9
+!st.alpha: 0.9
 ! special
 st.foreground:   #dddddd
 st.background:   #000000
