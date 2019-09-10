@@ -144,6 +144,8 @@ super + c
   chromium
 super + alt + e
   splatmoji copy
+super + alt + n
+  new_notes
 
 #
 # Dev
