@@ -17,6 +17,6 @@ if [ -n $CLASS ]; then
     # Fix the date line in the new file
     sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
     # Open the file in st
-    open_notes $NEWFILE $CLASS
+    st -T 'st' -e open_notes $NEWFILE $CLASS
   fi
 fi

@@ -1,5 +1,7 @@
 #!/bin/bash
 # Opens the notes file $1 in the directory ~/Dropbox/TeX/$2/notes/
+# $1: the file name
+# $2: the class
 cd ~/Dropbox/TeX/$2/notes/
 nvim $1
 bash
