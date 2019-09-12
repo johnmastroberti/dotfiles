@@ -133,9 +133,15 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 
   autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
 
-" Use 4 spaces for tabs for tao development
+" Settings for tao development
+  function Pydoc_Man()
+    " Generate a manpage with pydoc_man_gen
+    !pydoc_man_gen <cword>
+    " Open the manpage (placed at /tmp/pydoc_man_page
+    Man /tmp/pydoc_man_page
+  endfunction
   autocmd BufEnter ~/bmad_dist/tao/python/* setlocal tabstop=4 expandtab softtabstop=4 shiftwidth=4
-  autocmd BufEnter ~/bmad_dist/tao/python/* setlocal keywordprg=~/.config/nvim/good_pydoc.sh
+  autocmd BufEnter ~/bmad_dist/tao/python/* nnoremap K :call Pydoc_Man()<CR><CR>
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
