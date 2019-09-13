@@ -3,7 +3,7 @@
 # vim script to vsp into the last error-containing file and jump to the
 # line where the error occurs
 # The parent directory where you would like to look for errors:
-ERR_DIR=/home/john/bmad_dist/tao/gui #edit as needed
+ERR_DIR=/home/john/bmad_dist/tao/python #edit as needed
 # The location of the vim script to write:
 VIM_SCRIPT=/tmp/vim_script.vim
 while read line

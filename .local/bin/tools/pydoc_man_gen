@@ -1,13 +1,17 @@
 #!/bin/bash
 # Generate a man page for $1 using pydoc
+faketty() {
+  # Fools pydoc into properly formatting output
+  script -qfc "$(printf "%q " "$@")" /dev/null
+}
 prefixes='tkinter ttk tkinter.Widget ttk.Widget'
 found='no'
 PAGER='cat > /tmp/pydoc_man_page'
 [ -f /tmp/pydoc_man_page ] && rm /tmp/pydoc_man_page
 # Try plain pydoc first
 if [ -z "$(pydoc $1 | grep 'No Python documentation found')" ]; then
-  #PAGER="cat>/tmp/pydoc_man_page" pydoc $1 &
-  pydoc $1 > /tmp/pydoc_man_page
+  faketty PAGER="cat>/tmp/pydoc_man_page" pydoc $1
+  #pydoc $1 > /tmp/pydoc_man_page
   found='yes'
 fi
 for prefix in $prefixes; do
@@ -15,8 +19,8 @@ for prefix in $prefixes; do
     break
   fi
   if [ -z "$(pydoc $prefix.$1 | grep 'No Python documentation found')" ]; then
-    #PAGER="cat>/tmp/pydoc_man_page" pydoc $prefix.$1 &
-    pydoc $prefix.$1 > /tmp/pydoc_man_page
+    faketty PAGER="cat>/tmp/pydoc_man_page" pydoc $prefix.$1
+    #pydoc $prefix.$1 > /tmp/pydoc_man_page
     found='yes'
     break
   fi

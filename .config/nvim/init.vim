@@ -174,6 +174,7 @@ command Q q
 	" Word count:
 
 autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
+autocmd FileType tex inoremap ,pf \begin{proof}<Enter><Enter>\end{proof}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,nal \begin{align}<Enter><Enter>\end{align}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><Enter>\end{exercise}<Enter><++><Esc>2ki
