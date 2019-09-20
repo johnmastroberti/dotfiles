@@ -1,0 +1,9 @@
+#!/bin/bash
+# Makes a symlink to $1 in the fix_dir so that
+# pyenv doesn't fuck it up
+fix_dir="$HOME/.pyenv-fixes"
+# Make sure fix_dir exists
+[ -d "$fix_dir" ] || mkdir "$fix_dir"
+# Make the link
+cd "$fix_dir"
+ln --symbolic "$1"

@@ -30,3 +30,5 @@ ulimit -S -d 25165824
 
 neofetch
 eval "$(pyenv init -)"
+# Fix for pyenv causing bsdtar not to be found
+export PATH="/home/john/.pyenv-fixes:$PATH"

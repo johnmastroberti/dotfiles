@@ -1,0 +1,20 @@
+# You can add comments to these files with #
+h	~/
+d	~/Documents
+D	~/Downloads
+m	~/Music
+pp	~/Pictures
+vv	~/Videos
+cf	~/.config
+sc	~/.local/bin
+mn	/mnt
+# GUI development
+g ~/bmad_dist/tao/python/pytao/gui
+b ~/bmad_dist
+pylib ~/.pyenv/versions/3.5.5/lib/python3.5
+# LaTeX
+gotex ~/Dropbox/TeX
+go317 ~/Dropbox/TeX/PHYS-3317
+go438 ~/Dropbox/TeX/AEP-4380
+go410 ~/Dropbox/TeX/PHYS-4410
+go413 ~/Dropbox/TeX/MATH-4130
