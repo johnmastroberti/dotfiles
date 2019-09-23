@@ -1,0 +1,46 @@
+Axis options:
+
+Commas at end of each setting except last one
+
+xmin=#, xmax=#
+
+ymin=#, ymax=#
+
+axis x line=box|top|middle|center|bottom|none
+
+axis y line=box|left|middle|center|right|none
+
+xtick={#1, #2, ..., #N},
+
+xticklabels={label1, label2, ..., labelN},
+
+xlabel=text
+
+ylabel=text
+
+
+Plot options:
+
+Line styles:
+
+solid
+
+dotted
+
+densely dotted
+
+loosely dotted
+
+dashed
+
+densely dashed
+
+loosely dashed
+
+dash dot
+
+Thicknesses:
+
+(very|ultra) thin
+
+(very|ultra|semi) thick

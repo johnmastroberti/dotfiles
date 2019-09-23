@@ -51,7 +51,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+"	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
@@ -186,7 +186,14 @@ autocmd FileType tex inoremap ,dc \begin{dcases*}<Enter><Enter>\end{dcases*}<Ent
 autocmd FileType tex inoremap ,ct \begin{figure}[h]<Enter>\begin{circuitikz} \draw <Enter><Enter>;<Enter>\end{circuitikz}<Enter>\centering\caption{<++>}<Enter>\end{figure}<Esc>5ki
 autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><Enter>\end{enumerate}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
-autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter>\item<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
+autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
+" Image figure
+autocmd FileType tex inoremap ,fi \begin{figure}[h]<Enter>\centering<Enter>\includegraphics[]{<++>}<Enter>\caption{<++><Enter>\end{figure}<Enter><++><Esc>3kf[a
+" Plot figure
+autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
+autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, black, thick]{<Enter><Enter>};<Esc>ki
+autocmd FileType tex nnoremap <F12> :Man ~/.config/
+
 
 """.bib
 	autocmd FileType bib inoremap ,a @article{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>journal<Space>=<Space>{<++>},<Enter>volume<Space>=<Space>{<++>},<Enter>pages<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
