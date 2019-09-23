@@ -20,6 +20,7 @@ Plug 'vifm/vifm.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
+Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 packadd vimball
 
@@ -143,6 +144,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   autocmd BufEnter ~/bmad_dist/tao/python/* setlocal tabstop=4 expandtab softtabstop=4 shiftwidth=4
   autocmd BufEnter ~/bmad_dist/tao/python/* nnoremap K :call Pydoc_Man()<CR><CR>
   autocmd BufEnter ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex map <leader>c :w! \| !compiler tao.tex<CR>
+	autocmd VimLeave ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex !texclear tao.tex
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
