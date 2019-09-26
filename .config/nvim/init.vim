@@ -20,6 +20,7 @@ Plug 'vifm/vifm.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
+Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'
 call plug#end()
 packadd vimball
