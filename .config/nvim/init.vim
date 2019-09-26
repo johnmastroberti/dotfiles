@@ -192,7 +192,7 @@ autocmd FileType tex inoremap ,fi \begin{figure}[h]<Enter>\centering<Enter>\incl
 " Plot figure
 autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
 autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, black, thick]{<Enter><Enter>};<Esc>ki
-autocmd FileType tex nnoremap <F12> :Man ~/.config/
+autocmd FileType tex nnoremap <F12> :Man /home/john/.config/nvim/TeX_snippets/pgfplots_ref.txt<CR>
 
 
 """.bib
