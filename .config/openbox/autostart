@@ -1,0 +1,4 @@
+~/.screenlayout/default.sh &
+compton &
+tint2 &
+nitrogen --restore &
