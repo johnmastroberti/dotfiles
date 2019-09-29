@@ -15,13 +15,26 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/mybar]
-width = 1920
+[settings]
+;https://github.com/jaagr/polybar/wiki/Configuration#application-settings
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+[bar/bspwm-master]
+width = 2560
 height = 32
 offset-x = 0
 offset-y = 0
 radius = 0.0
 fixed-center = true
+bottom = false
 
 background = ${xrdb:background:#000}
 foreground = ${xrdb:foreground:#DDDDDD}
@@ -42,15 +55,45 @@ font-0 = mono:pixelsize=13;2
 ;font-1 = M+ 1mn:pixelsize=15;3
 font-1 = MaterialIcons:size=18:antialias=false;6
 
-;modules-left = calcurse ranger subscriptions ncmpcpp notes volume
-modules-left = date
-modules-center = bspwm
-modules-right = network pulseaudio battery
+wm-restack = bspwm
+override-redirect = true
 
+enable-ipc = true
+
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
 tray-position = right
 tray-padding = 2
+tray-maxsize = 20
+tray-scale = 1.0
+tray-background = ${colors.background}
 
-wm-restack = bspwm
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+
+[bar/desktop-bspwm-left]
+inherit = bar/bspwm-master
+monitor = DP-0
+tray-position = none
+modules-left = date
+modules-center = bspwm
+modules-right = network pulseaudio
+
+[bar/desktop-bspwm-right]
+inherit = bar/bspwm-master
+monitor = DP-2
+modules-left = date
+modules-center = bspwm
+modules-right = network pulseaudio
+
+[bar/laptop]
+inherit = bar/bspwm-master
+width = 1920
+modules-left = date
+modules-center = bspwm
+modules-right = network pulseaudio
 
 [module/date]
 type = internal/date
@@ -58,6 +101,25 @@ date = %A, %B %d ~ %I:%M %p
 
 [module/bspwm]
 type = internal/bspwm
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = " "
+
+format = <label-state> <label-mode>
 
 label-focused = %name%
 label-focused-background = ${xrdb:background:#ff0000}
@@ -113,3 +175,17 @@ animation-charging-3 = [--- ]
 animation-charging-4 = [----]
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
+
+[module/xwindow]
+;https://github.com/jaagr/polybar/wiki/Module:-xwindow
+type = internal/xwindow
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+format-prefix = "  "
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
