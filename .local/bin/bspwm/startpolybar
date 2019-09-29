@@ -1,5 +1,10 @@
 #!/bin/sh
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-polybar mybar &
+if [ $HOSTNAME == "john-pc" ]; then
+  polybar desktop-bspwm-left &
+  polybar desktop-bspwm-right &
+else
+  polybar laptop &
+fi
 echo "Polybar launched..."
