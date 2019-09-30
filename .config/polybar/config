@@ -93,7 +93,7 @@ inherit = bar/bspwm-master
 width = 1920
 modules-left = date
 modules-center = bspwm
-modules-right = network pulseaudio
+modules-right = network pulseaudio battery
 
 [module/date]
 type = internal/date
