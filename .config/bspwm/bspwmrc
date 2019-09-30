@@ -5,7 +5,7 @@ sxhkd &
 compton &
 startpolybar &
 setbg &
-dropbox &
+#dropbox &
 
 if [ $HOSTNAME == "john-pc" ]; then
   bspc monitor DP-0 -d 1 2 3 4 5
