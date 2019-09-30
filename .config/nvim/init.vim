@@ -189,10 +189,10 @@ autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><En
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
 " Image figure
-autocmd FileType tex inoremap ,fi \begin{figure}[h]<Enter>\centering<Enter>\includegraphics[]{<++>}<Enter>\caption{<++><Enter>\end{figure}<Enter><++><Esc>3kf[a
+autocmd FileType tex inoremap ,fi \begin{figure}<Enter>\centering<Enter>\includegraphics[<++>]{<++>}<Enter>\caption{<++><Enter>\end{figure}<Enter><++><Esc>3kf[a
 " Plot figure
 autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
-autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, black, thick]{<Enter><Enter>};<Esc>ki
+autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, mark=none, black, thick]{<Enter><Enter>};<Esc>ki
 autocmd FileType tex nnoremap <F12> :Man /home/john/.config/nvim/TeX_snippets/pgfplots_ref.txt<CR>
 
 
