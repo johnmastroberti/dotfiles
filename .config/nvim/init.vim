@@ -40,7 +40,6 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 
 " Some basics:
 	nnoremap c "_c
-  let g:ctags_statusline=1
 	set nocompatible
 	filetype plugin on
 	syntax on
@@ -50,6 +49,10 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" ctags
+  let g:ctags_statusline=1
+  autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
+  autocmd BufWritePost ~/Dropbox/TeX/*.cpp !ctags -R .
 
 " Goyo plugin makes text more readable when writing prose:
 "	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
@@ -133,7 +136,6 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 " When shortcut files are updated, renew bash and vifm configs with new material:
 	autocmd BufWritePost ~/.config/bmdirs,~/.config/bmfiles !shortcuts
 
-  autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
 
 " Settings for tao development
   function Pydoc_Man()
@@ -173,6 +175,8 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 " remap :W to :w
   command W w
   command Q q
+
+autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab1/* map <leader>c :w! \| !make<CR>
 
 """LATEX
 autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
