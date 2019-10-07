@@ -79,21 +79,21 @@ monitor = DP-0
 tray-position = none
 modules-left = date
 modules-center = bspwm
-modules-right = network pulseaudio
+modules-right = xwindow
 
 [bar/desktop-bspwm-right]
 inherit = bar/bspwm-master
 monitor = DP-2
-modules-left = date
+modules-left = date xwindow
 modules-center = bspwm
-modules-right = network pulseaudio
+modules-right = desktop-network pulseaudio
 
 [bar/laptop]
 inherit = bar/bspwm-master
 width = 1920
 modules-left = date
 modules-center = bspwm
-modules-right = network pulseaudio battery
+modules-right = laptop-network pulseaudio battery
 
 [module/date]
 type = internal/date
@@ -146,11 +146,17 @@ interval = 5
 label-volume = Vol: %percentage%%
 
 
-[module/network]
+[module/laptop-network]
 type = internal/network
 interface = wlp1s0
 format-connected = <label-connected>
 label-connected = %essid% %downspeed:9%
+
+[module/desktop-network]
+type = internal/network
+interface = enp5s0
+format-connected = <label-connected>
+label-connected = Ethernet %downspeed:9%
 
 [module/battery]
 
