@@ -148,13 +148,15 @@ super + alt + e
   splatmoji copy
 super + alt + n
   new_notes
+super + alt + h
+  new_hw
 
 #
 # Dev
 #
 # Start gui
 super + g
-  ~/rungui.sh
+  st -e /home/john/rungui.sh
 # Update bmad/tao
 super + alt + u
   bmad_backup_update
