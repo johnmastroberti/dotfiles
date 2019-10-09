@@ -154,7 +154,7 @@ super + alt + n
 #
 # Start gui
 super + g
-  ~/rungui.sh
+  st -e ~/rungui.sh
 # Update bmad/tao
 super + alt + u
   bmad_backup_update
