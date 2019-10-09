@@ -1,6 +1,7 @@
 #!/bin/sh
 alias ka="killall" \
   :q="exit" \
+  gp="gnuplot" \
   config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
   runcl="cd ~/Documents/cl/code; [[ -f cl ]] || make; ./cl net3_4_2 trainfile testfile" \
   info="pinfo" \
