@@ -202,10 +202,11 @@ autocmd FileType tex inoremap ,fi \begin{figure}<Enter>\centering<Enter>\include
 autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
 autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, mark=none, black, thick]{<Enter><Enter>};<Esc>ki
 autocmd FileType tex nnoremap <F12> :Man /home/john/.config/nvim/TeX_snippets/pgfplots_ref.txt<CR>
+" Code
+autocmd FileType tex inoremap ,cpp \begin{lstlisting}<Enter><Enter>\end{lstlisting}<Enter><++><Esc>2ki
 " Beamer
 autocmd FileType tex inoremap ,bf \begin{frame}<Enter>\frametitle{}<Enter><++><Enter>\end{frame}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,bc \begin{columns}<Enter>\column{}<Enter><++><Enter><Enter>\column{<++>}<Enter><++><Enter><Enter>\end{columns}<Enter><++><Esc>7k$i
-
 
 
 
