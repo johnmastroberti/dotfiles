@@ -134,29 +134,31 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
   light -U 10
 # Touch toggle
-super + alt + t
+hyper + shift + t
   touchtoggle
 
 #
 # Application shortcuts
 #
-super + c
+# Convention: hyper + key if it opens an application (window)
+# hyper + shift + key if it doesn't
+hyper + c
   chromium
-super + d
+hyper + d
   discord
-super + alt + e
+hyper + shift + e
   splatmoji copy
-super + alt + n
+hyper + n
   new_notes
-super + alt + h
+hyper + h
   new_hw
 
 #
 # Dev
 #
 # Start gui
-super + g
+hyper + g
   st -e /home/john/rungui.sh
 # Update bmad/tao
-super + alt + u
+hyper + shift + u
   bmad_backup_update
