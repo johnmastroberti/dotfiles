@@ -2,8 +2,13 @@
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 if [ $HOSTNAME == "john-pc" ]; then
-  polybar desktop-bspwm-left &
-  polybar desktop-bspwm-right &
+  if [[ -n $(pgrep -x bspwm) ]]; then
+    polybar desktop-bspwm-left &
+    polybar desktop-bspwm-right &
+  else
+    polybar desktop-openbox-left &
+    polybar desktop-openbox-right &
+  fi
 else
   polybar laptop &
 fi
