@@ -1,0 +1,22 @@
+#!/bin/bash
+# Gives a dmenu prompt for what class the notes are for,
+# Then opens vim in st with a new notes file (properly named)
+
+# The dmenu prompt
+CLASS=$(echo -e "AEP-4380\nPHYS-3317\n\nMATH-4130" | dmenu)
+if [ -n $CLASS ]; then
+  # Make a new notes file
+  NEWFILE="$(date +%m-%d.tex)"
+  cd ~/Dropbox/TeX/$CLASS/notes/
+  # Don't clobber the file if it already exists
+  if [ -f $NEWFILE ]; then
+    # Open it
+    st -T 'st' -e open_notes $NEWFILE $CLASS
+  else
+    cp template.tex $NEWFILE
+    # Fix the date line in the new file
+    sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
+    # Open the file in st
+    st -T 'st' -e open_notes $NEWFILE $CLASS
+  fi
+fi
