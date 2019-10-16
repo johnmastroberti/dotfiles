@@ -1,4 +1,7 @@
-~/.screenlayout/default.sh &
+#~/.screenlayout/default.sh &
+#compton &
+#tint2 &
+#nitrogen --restore &
 compton &
-tint2 &
-nitrogen --restore &
+startpolybar &
+setbg &

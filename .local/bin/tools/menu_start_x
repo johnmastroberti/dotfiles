@@ -1,0 +1,16 @@
+#!/bin/sh
+# Provides a menu when logging in on tty to
+# choose what wm/de to load
+choicefile="/tmp/wmchoice"
+dialog --menu "Choose WM:" 10 30 3 \
+  1 bspwm \
+  2 openbox \
+  3 tty 2>$choicefile
+
+chosenwm=$(cat $choicefile)
+case $chosenwm in
+  1) cp $HOME/.config/bspwm/bp.xinitrc $HOME/.xinitrc && startx ;;
+  2) cp $HOME/.config/openbox/ob.xinitrc $HOME/.xinitrc && startx ;;
+  *) clear ;;
+esac
+rm $choicefile

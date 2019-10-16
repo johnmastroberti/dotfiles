@@ -95,6 +95,62 @@ modules-left = date
 modules-center = bspwm
 modules-right = laptop-network pulseaudio battery
 
+[bar/openbox-master]
+width = 2560
+height = 32
+offset-x = 0
+offset-y = 0
+radius = 0.0
+fixed-center = true
+bottom = false
+
+background = ${xrdb:background:#000}
+foreground = ${xrdb:foreground:#DDDDDD}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = ${xrdb:color8:#FF000000}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = mono:pixelsize=13;2
+;font-1 = M+ 1mn:pixelsize=15;3
+font-1 = MaterialIcons:size=18:antialias=false;6
+
+override-redirect = true
+
+enable-ipc = true
+
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-position = right
+tray-padding = 2
+tray-maxsize = 20
+tray-scale = 1.0
+tray-background = ${colors.background}
+
+[bar/desktop-openbox-left]
+inherit = bar/openbox-master
+monitor = DP-0
+tray-position = none
+modules-left = date
+modules-center = workspaces
+modules-right = desktop-network pulseaudio
+
+[bar/desktop-openbox-right]
+inherit = bar/openbox-master
+monitor = DP-2
+modules-left = date
+modules-center = workspaces
+modules-right = desktop-network pulseaudio
+
 [module/date]
 type = internal/date
 date = %A, %B %d ~ %I:%M %p
@@ -195,3 +251,29 @@ label-maxlen = 50
 format-prefix = "  "
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
+
+[module/workspaces]
+type = internal/xworkspaces
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+icon-default =
+format = <label-state>
+label-active = %name%
+label-active-background = ${xrdb:background:#ff0000}
+label-active-underline= ${xrdb:color9:#ff0000}
+label-active-padding = 1
+
+label-occupied = %name%
+
+label-occupied-foreground = ${xrdb:color1:FF000000}
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-background = ${xrdb:color1:#ff0000}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${xrdb:foreground:#ff0000}
+label-empty-padding = 1
