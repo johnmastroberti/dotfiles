@@ -181,6 +181,46 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab1/* map <leader>c :w! \| !make<CR>
 autocmd BufEnter ~/Dropbox/TeX/AEP-4380/hw/* map <leader>c :w! \| !make<CR>
 
+" Deal with tab completing a file where multiple files with the same name but different endinds exist
+" e.g. mod.cpp + mod.hpp + mod.o -> mod tab completes to mod.
+" For c/c++, want to open the c/cpp file, and the header if it exists
+" For latex, just want to open the tex
+
+function GoodTabComplete()
+  let l:basename = expand('%')
+  " case 1: cpp + o ( + h/hpp)
+  if filereadable(l:basename . 'cpp')
+    exe 'edit ' . l:basename . 'cpp'
+    set filetype=cpp
+    " Check for header
+    if filereadable(l:basename . 'hpp')
+      exe 'vsp ' . l:basename . 'hpp'
+      set filetype=cpp
+    elseif filereadable(l:basename . 'h')
+      exe 'vsp ' . l:basename . 'h'
+      set filetype=cpp
+    endif
+  " Case 2: c + o ( + h )
+  elseif filereadable(l:basename . 'c')
+    exe 'edit ' . l:basename . 'cpp'
+    set filetype=c
+    " Check for header
+    if filereadable(l:basename . 'hpp')
+      exe 'vsp ' . l:basename . 'hpp'
+      set filetype=c
+    elseif filereadable(l:basename . 'h')
+      exe 'vsp ' . l:basename . 'h'
+      set filetype=c
+    endif
+  " Case 3: tex
+  elseif filereadable(l:basename . 'tex')
+    exe 'edit ' . l:basename . 'tex'
+    set filetype=tex
+  endif
+endfunction
+
+autocmd BufEnter *. call GoodTabComplete()
+
 """LATEX
 autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,mp \begin{minipage}{}<Enter><++><Enter>\end{minipage}<Enter><++><Esc>3k$i
