@@ -98,7 +98,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   nnoremap <F10> :call CCon()<CR>
 
 " Check file in shellcheck:
-	map <leader>s :!clear && shellcheck %<CR>
+	"map <leader>s :!clear && shellcheck %<CR>
 
 " Open my bibliography file in split
 	map <leader>b :vsp<space>$BIB<CR>
@@ -202,13 +202,10 @@ function GoodTabComplete()
     endif
   " Case 2: c + o ( + h )
   elseif filereadable(l:basename . 'c')
-    exe 'edit ' . l:basename . 'cpp'
+    exe 'edit ' . l:basename . 'c'
     set filetype=c
     " Check for header
-    if filereadable(l:basename . 'hpp')
-      exe 'vsp ' . l:basename . 'hpp'
-      set filetype=c
-    elseif filereadable(l:basename . 'h')
+    if filereadable(l:basename . 'h')
       exe 'vsp ' . l:basename . 'h'
       set filetype=c
     endif
@@ -222,22 +219,26 @@ endfunction
 autocmd BufEnter *. call GoodTabComplete()
 
 """LATEX
-autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
-autocmd FileType tex inoremap ,mp \begin{minipage}{}<Enter><++><Enter>\end{minipage}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,pf \begin{proof}<Enter><Enter>\end{proof}<Enter><++><Esc>2ki
-autocmd FileType tex inoremap ,le \begin{lemma}{}<Enter><++><Enter>\end{lemma}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,nal \begin{align}<Enter><Enter>\end{align}<Enter><++><Esc>2ki
-autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><++><Enter>\end{exercise}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,im \begin{figure}[h]<Enter>\includegraphics[width=10cm]{}<Enter>\centering<Enter>\caption{<++>}<Enter>\end{figure}<Enter><++><Esc>4kf}i
-autocmd FileType tex inoremap ,ar \begin{array}{}<Enter><++><Enter>\end{array}<++><Esc>2k$i
-autocmd FileType tex inoremap ,dc \begin{dcases*}<Enter><Enter>\end{dcases*}<Enter><++><Esc>2ki
-autocmd FileType tex inoremap ,ct \begin{figure}[h]<Enter>\begin{circuitikz} \draw <Enter><Enter>;<Enter>\end{circuitikz}<Enter>\centering\caption{<++>}<Enter>\end{figure}<Esc>5ki
+" General
 autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><Enter>\end{enumerate}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
+autocmd FileType tex inoremap ,pf \begin{proof}<Enter><Enter>\end{proof}<Enter><++><Esc>2ki
+autocmd FileType tex inoremap ,le \begin{lemma}{}<Enter><++><Enter>\end{lemma}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
-" Image figure
+autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
+autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><++><Enter>\end{exercise}<Enter><++><Esc>3k$i
+autocmd FileType tex inoremap ,sec \section*{}<Enter><++><Esc>k$i
+autocmd FileType tex inoremap ,ssec \subsection*{}<Enter><++><Esc>k$i
+autocmd FileType tex inoremap ,sssec \subsubsection*{}<Enter><++><Esc>k$i
+" Math mode
+autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
+autocmd FileType tex inoremap ,nal \begin{align}<Enter><Enter>\end{align}<Enter><++><Esc>2ki
+autocmd FileType tex inoremap ,ar \begin{array}{}<Enter><++><Enter>\end{array}<++><Esc>2k$i
+autocmd FileType tex inoremap ,dc \begin{dcases*}<Enter><Enter>\end{dcases*}<++><Esc>ki
+autocmd FileType tex inoremap ,ct \begin{figure}[h]<Enter>\begin{circuitikz} \draw <Enter><Enter>;<Enter>\end{circuitikz}<Enter>\centering\caption{<++>}<Enter>\end{figure}<Esc>5ki
+" Figures
 autocmd FileType tex inoremap ,fi \begin{figure}<Enter>\centering<Enter>\includegraphics[]{<++>}<Enter>\caption{<++><Enter>\end{figure}<Enter><++><Esc>3kf[a
+autocmd FileType tex inoremap ,mp \begin{minipage}{}<Enter><++><Enter>\end{minipage}<Enter><++><Esc>3k$i
 " Plot figure
 autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
 autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, mark=none, black, thick]{<Enter><Enter>};<Esc>ki
