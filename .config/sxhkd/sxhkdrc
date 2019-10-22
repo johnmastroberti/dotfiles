@@ -152,13 +152,15 @@ hyper + n
   new_notes
 hyper + h
   new_hw
+hyper + v
+  nvidia-settings
 
 #
 # Dev
 #
 # Start gui
 hyper + g
-  st -e /home/john/rungui.sh
+  bspc desktop -f '^5' && st -e /home/john/rungui.sh
 # Update bmad/tao
 hyper + shift + u
   bmad_backup_update
