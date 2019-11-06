@@ -179,6 +179,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   command Q q
 
 autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab1/* map <leader>c :w! \| !make<CR>
+autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab2/* map <leader>c :w! \| !make<CR>
 autocmd BufEnter ~/Dropbox/TeX/AEP-4380/hw/* map <leader>c :w! \| !make<CR>
 
 " Deal with tab completing a file where multiple files with the same name but different endinds exist
