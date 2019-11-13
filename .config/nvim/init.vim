@@ -55,6 +55,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
   autocmd BufWritePost ~/Dropbox/TeX/*.cpp !ctags -R .
   autocmd BufWritePost ~/Documents*.cpp !ctags -R .
+  autocmd BufWritePost ~/Documents/cl/code/*c !ctags -R .
 
 " Goyo plugin makes text more readable when writing prose:
 "	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
@@ -122,6 +123,11 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
+
+" Fortran syntax settings
+  let fortran_free_source=1
+  let fortran_more_precise=1
+  let fortran_do_enddo=1
 
 " Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
 	vnoremap <C-c> "+y
