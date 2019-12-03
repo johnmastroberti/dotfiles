@@ -257,6 +257,8 @@ autocmd FileType tex inoremap ,cpp \begin{lstlisting}<Enter><Enter>\end{lstlisti
 " Beamer
 autocmd FileType tex inoremap ,bf \begin{frame}<Enter>\frametitle{}<Enter><++><Enter>\end{frame}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,bc \begin{columns}<Enter>\column{}<Enter><++><Enter><Enter>\column{<++>}<Enter><++><Enter><Enter>\end{columns}<Enter><++><Esc>7k$i
+" Swap left and right hand sides in align
+autocmd FileType tex nnoremap ,swa 0"ldt&f=w"rd$"lp0"rP:s/\\\\//<Enter>
 
 
 

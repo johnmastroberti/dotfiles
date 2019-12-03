@@ -1,3 +1,4 @@
+#!/bin/sh
 #~/.screenlayout/default.sh &
 #compton &
 #tint2 &

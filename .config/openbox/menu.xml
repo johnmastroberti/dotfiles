@@ -4,20 +4,23 @@
 	<item label="st"> <action name="Execute">
 		<execute>st</execute>
 	</action> </item>
-	<item label="Chrome"> <action name="Execute">
-		<execute>chromium</execute>
+	<item label="Firefox"> <action name="Execute">
+		<execute>firefox</execute>
 	</action> </item>
 	<item label="Discord"> <action name="Execute">
 		<execute>discord</execute>
 	</action> </item>
 	<item label="Files"> <action name="Execute">
-		<execute>nautilus</execute>
+		<execute>st -e vifm</execute>
 	</action> </item>
 	<item label="obconf"> <action name="Execute">
 		<execute>obconf</execute>
 	</action> </item>
-	<item label="obtheme"> <action name="Execute">
-		<execute>/home/john/Downloads/obtheme/src/obtheme-2013.2.20.2/obtheme</execute>
+	<item label="lxappearance"> <action name="Execute">
+		<execute>lxappearance</execute>
+	</action> </item>
+	<item label="nVidia Settings"> <action name="Execute">
+		<execute>nvidia-settings</execute>
 	</action> </item>
         <separator/>
         <menu id="40" label="OpenBox">

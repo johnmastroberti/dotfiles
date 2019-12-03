@@ -142,8 +142,8 @@ hyper + shift + t
 #
 # Convention: hyper + key if it opens an application (window)
 # hyper + shift + key if it doesn't
-hyper + c
-  chromium
+hyper + f
+  firefox
 hyper + d
   discord
 hyper + shift + e
@@ -154,6 +154,8 @@ hyper + h
   new_hw
 hyper + v
   nvidia-settings
+hyper + shift + v
+  /home/john/.screenlayout/main.sh
 
 #
 # Dev
