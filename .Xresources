@@ -36,45 +36,83 @@ color14:      #1fad83
 color7:       #a6a28c
 color15:      #fefbec
 
-! st settings
-st.font: Monospace-20;
-st.alpha: 255
+! st
 ! special
-st.foreground:   #dddddd
-st.background:   #000000
-st.cursorColor:  #a6a28c
+st.font: Monospace-20;
+st.foreground:   #d3d0c8
+st.background:   #2d2d2d
+st.cursorColor:  #d3d0c8
 
 ! black
-st.color0:       #20201d
-st.color8:       #7d7a68
+st.color0:       #2d2d2d
+st.color8:       #747369
 
 ! red
-st.color1:       #d73737
-st.color9:       #d73737
+st.color1:       #f2777a
+st.color9:       #f2777a
 
 ! green
-st.color2:       #60ac39
-st.color10:      #60ac39
+st.color2:       #99cc99
+st.color10:      #99cc99
 
 ! yellow
-st.color3:       #cfb017
-st.color11:      #cfb017
+st.color3:       #ffcc66
+st.color11:      #ffcc66
 
 ! blue
-st.color4:       #6684e1
-st.color12:      #6684e1
+st.color4:       #6699cc
+st.color12:      #6699cc
 
 ! magenta
-st.color5:       #b854d4
-st.color13:      #b854d4
+st.color5:       #cc99cc
+st.color13:      #cc99cc
 
 ! cyan
-st.color6:       #1fad83
-st.color14:      #1fad83
+st.color6:       #66cccc
+st.color14:      #66cccc
 
 ! white
-st.color7:       #a6a28c
-st.color15:      #fefbec
+st.color7:       #d3d0c8
+st.color15:      #f2f0ec
+! st settings
+!st.font: Monospace-20;
+!st.alpha: 255
+!! special
+!st.foreground:   #dddddd
+!st.background:   #000000
+!st.cursorColor:  #a6a28c
+!
+!! black
+!st.color0:       #20201d
+!st.color8:       #7d7a68
+!
+!! red
+!st.color1:       #d73737
+!st.color9:       #d73737
+!
+!! green
+!st.color2:       #60ac39
+!st.color10:      #60ac39
+!
+!! yellow
+!st.color3:       #cfb017
+!st.color11:      #cfb017
+!
+!! blue
+!st.color4:       #6684e1
+!st.color12:      #6684e1
+!
+!! magenta
+!st.color5:       #b854d4
+!st.color13:      #b854d4
+!
+!! cyan
+!st.color6:       #1fad83
+!st.color14:      #1fad83
+!
+!! white
+!st.color7:       #a6a28c
+!st.color15:      #fefbec
 ! special
 !st.foreground:   #a6a28c
 !st.background:   #20201d
