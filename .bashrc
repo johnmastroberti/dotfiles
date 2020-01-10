@@ -4,7 +4,7 @@ shopt -s autocd #Allows you to cd into directory merely by typing the directory 
 HISTSIZE= HISTFILESIZE= # Infinite history.
 # Prompt
 my_bash_prompt() {
-  pstr="$(tput bold)$(tput setaf 3)$(who | grep tty1 | awk '{print $1}')"
+  pstr="$(tput bold)$(tput setaf 3)$(whoami | awk '{print $1}')"
   pstr=$pstr"$(tput setaf 2) @ $(tput setaf 4)$(uname -a | awk '{print $2}') "
   wd=$(pwd | sed "s|$HOME|~|")
   pstr=$pstr"$(tput setaf 5)$wd$(tput sgr0)"
