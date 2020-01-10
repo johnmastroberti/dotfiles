@@ -156,6 +156,9 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   autocmd BufEnter ~/bmad_dist/tao/python/* nnoremap K :call Pydoc_Man()<CR><CR>
   autocmd BufEnter ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex map <leader>c :w! \| !compiler tao.tex<CR>
 	autocmd VimLeave ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex !texclear tao.tex
+  " Syntax highlighting for bmad/tao config files
+  autocmd BufNewFile,BufRead tao.init set filetype=fortran
+  autocmd BufNewFile,BufRead *.bmad set filetype=fortran
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %

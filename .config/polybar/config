@@ -84,6 +84,7 @@ modules-right = xwindow
 [bar/desktop-bspwm-right]
 inherit = bar/bspwm-master
 monitor = DP-2
+tray-position = none
 modules-left = date xwindow
 modules-center = bspwm
 modules-right = desktop-network pulseaudio

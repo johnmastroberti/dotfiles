@@ -4,6 +4,10 @@ alias ka="killall" \
   gp="gnuplot" \
   config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
   runcl="cd ~/Documents/cl/code; [[ -f cl ]] || make; ./cl net3_4_2 trainfile testfile" \
+  vruncl="./cl net3_4_2 vec_trainfile vec_trainfile" \
+  101runcl="./cl net1_0_1 vec_trainfile vec_trainfile" \
+  201runcl="./cl net2_0_1 vec_trainfile vec_trainfile" \
+  111runcl="./cl net1_1_1 vec_trainfile vec_trainfile" \
   info="pinfo" \
   guitao="tao -init ~/bmad_dist/tao/gui/cesrbeam/cesr_beam.init -noplot -external_plotting" \
 	mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)" \

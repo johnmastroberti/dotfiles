@@ -3,8 +3,8 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 precmd() {
-  pstr="$(tput bold)$(tput setaf 3)$(who | awk '{print $1}')"
-  pstr=$pstr"$(tput setaf 2) @ $(tput setaf 4)$(uname -a | awk '{print $2}') "
+  pstr="$(tput bold)$(tput setaf 3)$(who | grep tty1 | awk '{print $1}')"
+  pstr=$pstr"$(tput setaf 2) @ $(tput setaf 4)$(hostname) "
   wd=$(pwd | sed "s|$HOME|~|")
   pstr=$pstr"$(tput setaf 5)$wd$(tput sgr0)"
   echo "$pstr"
@@ -90,9 +90,11 @@ bindkey '^e' edit-command-line
 #export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 #export LOG=$ACC_LOCAL_ROOT/compile.log
 #source ${DIST_BASE_DIR}/util/dist_source_me
-#ulimit -S -c 0
-#ulimit -S -s 10240
-#ulimit -S -d 25165824
+source ~/.bmad_settings
+export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
+ulimit -S -c 0
+ulimit -S -s 10240
+ulimit -S -d 25165824
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
