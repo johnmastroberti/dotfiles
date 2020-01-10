@@ -3,10 +3,14 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 precmd() {
-  pstr="$(tput bold)$(tput setaf 3)$(who | awk '{print $1}')"
+  pstr="$(tput bold)$(tput setaf 3)$(whoami | awk '{print $1}')"
   pstr=$pstr"$(tput setaf 2) @ $(tput setaf 4)$(uname -a | awk '{print $2}') "
   wd=$(pwd | sed "s|$HOME|~|")
-  pstr=$pstr"$(tput setaf 5)$wd$(tput sgr0)"
+  gitbranch=$(git branch 2>/dev/null | grep \* | sed 's/\* //')
+  if [[ -n $gitbranch ]]; then
+    gitbranch="$(tput setaf 1)($gitbranch)"
+  fi
+  pstr=$pstr"$(tput setaf 5)$wd $gitbranch$(tput sgr0)"
   echo "$pstr"
 }
 PS1="%B$%b "
@@ -85,7 +89,7 @@ bindkey '^e' edit-command-line
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 #Bmad/Tao configuration
-#export DIST_BASE_DIR="/home/john/bmad_dist"
+export DIST_BASE_DIR="/home/john/bmad_dist"
 #export DIST_SETUP_QUIET="Y"
 #export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 #export LOG=$ACC_LOCAL_ROOT/compile.log

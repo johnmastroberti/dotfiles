@@ -42,6 +42,7 @@ st.font: Monospace-20;
 st.foreground:   #d3d0c8
 st.background:   #2d2d2d
 st.cursorColor:  #d3d0c8
+st.alpha: 1
 
 ! black
 st.color0:       #2d2d2d

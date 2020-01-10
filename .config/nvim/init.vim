@@ -85,6 +85,11 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 
 " python syntax check
   autocmd BufWritePost *.py !python -m py_compile % 2> >(tee >(mark_maker 2>/dev/null) >&2)
+
+" Colors
+  hi Search ctermfg = 0
+  hi QuickFixLine ctermfg = 0
+  hi QuickFixLine ctermbg = 11
 " Toggle color column
   function CCon()
     set cc=80
@@ -146,6 +151,8 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 
 
 " Settings for tao development
+  au BufEnter tao.init set filetype=fortran
+  au BufEnter *.bmad set filetype=fortran
   function Pydoc_Man()
     " Generate a manpage with pydoc_man_gen
     !pydoc_man_gen <cword>
