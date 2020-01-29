@@ -40,6 +40,9 @@ __git_files () {
 bindkey -v
 export KEYTIMEOUT=1
 
+# Reverse i-search
+bindkey '^R' history-incremental-pattern-search-backward
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -97,6 +100,9 @@ export DIST_BASE_DIR="/home/john/bmad_dist"
 #ulimit -S -c 0
 #ulimit -S -s 10240
 #ulimit -S -d 25165824
+
+#Geant4 configuration
+cd "/home/john/geant/geant4.10.06-build/" && source "/home/john/geant/geant4.10.06-build/geant4make.sh" && cd
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then

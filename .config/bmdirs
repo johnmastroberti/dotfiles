@@ -12,6 +12,8 @@ mn	/mnt
 g ~/bmad_dist/tao/python/pytao/gui
 b ~/bmad_dist
 pylib ~/.pyenv/versions/3.6.9/lib/python3.6
+# Linac
+goconv ~/Documents/converter/geant/run/results
 # LaTeX
 gotex ~/Dropbox/TeX
 go317 ~/Dropbox/TeX/PHYS-3317

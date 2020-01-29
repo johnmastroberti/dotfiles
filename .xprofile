@@ -3,7 +3,7 @@
 #setbg &		# Set the background
 #sxhkd &	# Bind keys
 # Switch to US international with Caps as Mod/Escape
-setxkbmap -option caps:hyper -variant altgr-intl && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape' &
+setxkbmap -option caps:hyper -variant altgr-intl && killall xcape 2>/dev/null ; xcape -e 'Super_L=Escape;Hyper_L=Escape' &
 # Make sure super and hyper don't get assigned the same mod number
 xmodmap -e "remove Mod4 = Hyper_L" -e "add Mod3 = Hyper_L"
 # Properties button extra Mod/Escape
