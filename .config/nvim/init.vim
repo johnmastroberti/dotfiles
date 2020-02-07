@@ -22,6 +22,9 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
 Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'xavierd/clang_complete'
+Plug 'coot/CRDispatcher'
+Plug 'coot/enchantedvim'
 call plug#end()
 packadd vimball
 
@@ -54,8 +57,21 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   nnoremap <A-]> :vsp<CR> <C-]>
   autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
   autocmd BufWritePost ~/Dropbox/TeX/*.cpp !ctags -R .
-  autocmd BufWritePost ~/Documents*.cpp !ctags -R .
+  autocmd BufWritePost ~/Documents*.cpp,~/Documents*.hpp !ctags $(du -a . | grep '.*\.[ch]pp' | sed 's|\./||' | cut -f2)
   autocmd BufWritePost ~/Documents/cl/code/*c !ctags -R .
+  " Ignore tags file with wildcard expansion
+  set wildignore+=tags
+
+" Enchanted vim: turn on very magic for all searches
+  let g:VeryMagicSubstitute = 1
+  let g:VeryMagicGlobal = 1
+  let g:VeryMagicVimGrep = 1
+  let g:VeryMagicSearchArg = 1
+  let g:VeryMagicFunction = 1
+  let g:VeryMagicHelpgrep = 1
+  let g:VeryMagicRange = 1
+  " let g:VeryMagicEscapeBackslashesInSearchArg = 1
+  " let g:SortEditArgs = 1
 
 " Goyo plugin makes text more readable when writing prose:
 "	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
@@ -183,6 +199,10 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	set shiftwidth=2
 	filetype indent on
 
+" Use normal tabs for .txt and big tabs for .dat
+  autocmd Filetype txt set noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+  autocmd Filetype dat set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8
+
 " Set automatic scrolling
   set scrolloff=9999
 
@@ -193,6 +213,12 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 " remap :W to :w
   command W w
   command Q q
+  command Wq wq
+  command Vsp vsp
+
+" turn off tab expand (for buffers with tab delimited data)
+  command Bigtabs setl noexpandtab tabstop=15 softtabstop=15 shiftwidth=15 nowrap
+  autocmd BufEnter *.dat Bigtabs
 
 autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab1/* map <leader>c :w! \| !make<CR>
 autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab2/* map <leader>c :w! \| !make<CR>

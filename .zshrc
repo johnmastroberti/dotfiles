@@ -40,6 +40,9 @@ __git_files () {
 bindkey -v
 export KEYTIMEOUT=1
 
+# Reverse i-search
+bindkey '^R' history-incremental-pattern-search-backward
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -60,13 +63,15 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+if [[ "$0" != '-zsh' ]]; then
+  zle-line-init() {
+      zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+      echo -ne "\e[5 q"
+  }
+  zle -N zle-line-init
+  echo -ne '\e[5 q' # Use beam shape cursor on startup.
+  preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+fi
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -99,6 +104,9 @@ export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824
+
+#Geant4 configuration
+cd "/home/john/geant/geant4.10.06-build/" && source "/home/john/geant/geant4.10.06-build/geant4make.sh" && cd
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
