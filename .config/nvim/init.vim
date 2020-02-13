@@ -23,8 +23,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'xavierd/clang_complete'
-Plug 'coot/CRDispatcher'
-Plug 'coot/enchantedvim'
 call plug#end()
 packadd vimball
 
