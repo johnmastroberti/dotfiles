@@ -2,4 +2,6 @@
 
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 xrdb ~/.Xresources
-exec bspwm
+# autostart script:
+$HOME/.config/dwm/autostart.sh &
+exec dwm

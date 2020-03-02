@@ -106,7 +106,10 @@ ulimit -S -s 10240
 ulimit -S -d 25165824
 
 #Geant4 configuration
-cd "/home/john/geant/geant4.10.06-build/" && source "/home/john/geant/geant4.10.06-build/geant4make.sh" && cd
+if [ -d /home/john/geant ]; then
+  cd "/home/john/geant/geant4.10.06-build/" && source "/home/john/geant/geant4.10.06-build/geant4make.sh" && cd
+  #cd "/home/john/geant/geant4.10.06-install/bin" && source "geant4.sh" && cd
+fi
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
