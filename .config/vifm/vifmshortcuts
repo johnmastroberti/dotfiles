@@ -47,10 +47,10 @@ map gpylib :cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR>
 map tpylib <tab>:cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR><tab>
 map Mpylib <tab>:cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR><tab>:mo<CR>
 map Ypylib <tab>:cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR><tab>:co<CR>
-map ggoconv :cd ~/Documents/converter/geant/run/results<CR>
-map tgoconv <tab>:cd ~/Documents/converter/geant/run/results<CR><tab>
-map Mgoconv <tab>:cd ~/Documents/converter/geant/run/results<CR><tab>:mo<CR>
-map Ygoconv <tab>:cd ~/Documents/converter/geant/run/results<CR><tab>:co<CR>
+map ggoconv :cd ~/Documents/converter/geant/calibrator<CR>
+map tgoconv <tab>:cd ~/Documents/converter/geant/calibrator<CR><tab>
+map Mgoconv <tab>:cd ~/Documents/converter/geant/calibrator<CR><tab>:mo<CR>
+map Ygoconv <tab>:cd ~/Documents/converter/geant/calibrator<CR><tab>:co<CR>
 map ggotex :cd ~/Dropbox/TeX<CR>
 map tgotex <tab>:cd ~/Dropbox/TeX<CR><tab>
 map Mgotex <tab>:cd ~/Dropbox/TeX<CR><tab>:mo<CR>

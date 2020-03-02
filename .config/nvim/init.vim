@@ -85,11 +85,11 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vimling:
-	nm <leader>d :call ToggleDeadKeys()<CR>
-	imap <leader>d <esc>:call ToggleDeadKeys()<CR>a
-	nm <leader>i :call ToggleIPA()<CR>
-	imap <leader>i <esc>:call ToggleIPA()<CR>a
-	nm <leader>q :call ToggleProse()<CR>
+	" nm <leader>d :call ToggleDeadKeys()<CR>
+	" imap <leader>d <esc>:call ToggleDeadKeys()<CR>a
+	" nm <leader>i :call ToggleIPA()<CR>
+	" imap <leader>i <esc>:call ToggleIPA()<CR>a
+	" nm <leader>q :call ToggleProse()<CR>
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
@@ -255,6 +255,112 @@ function GoodTabComplete()
 endfunction
 
 autocmd BufEnter *. call GoodTabComplete()
+
+" Opening the corresponding header/source file
+function OpenHeader()
+  " Source name
+  let l:sourcename = expand('%')
+  " Case 1: sourcename = foo.cpp
+  if match(l:sourcename, '^[a-zA-Z0-9_-]*\.cpp$') != -1
+    let l:headername = matchstr(l:sourcename, '^[a-zA-Z0-9_-]*\.') . 'hpp'
+    " In same directory
+    if filereadable(l:headername)
+      exe 'vsp ' . l:headername
+      set filetype=cpp
+    " In ../include directory
+    elseif filereadable('../include/' . l:headername)
+      exe 'vsp ../include/' . l:headername
+      set filetype=cpp
+    endif
+  " Case 2: sourcename = foo/bar/baz/src/blah.cpp
+  elseif match(l:sourcename, '^.*\/src\/[a-zA-Z0-9_-]*\.cpp') != -1
+    " Assume header is in adjacent include directory
+    let l:header_dir = join(split(l:sourcename, '/')[:-3], '/') . '/include'
+    let l:headername = matchstr(split(l:sourcename, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'hpp'
+    " echo 'Header dir: ' . l:header_dir
+    " echo 'Header name: ' . l:headername
+    if filereadable(l:header_dir . '/' . l:headername)
+      exe 'vsp ' . l:header_dir . '/' . l:headername
+      set filetype=cpp
+    endif
+  " Case 2a: src/foo.cpp
+  elseif match(l:sourcename, '^src\/[a-zA-Z0-9_-]*\.cpp') != -1
+    " Assume header is in adjacent include directory
+    let l:header_dir = 'include'
+    let l:headername = matchstr(split(l:sourcename, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'hpp'
+    "echo 'Header dir: ' . l:header_dir
+    "echo 'Header name: ' . l:headername
+    if filereadable(l:header_dir . '/' . l:headername)
+      exe 'vsp ' . l:header_dir . '/' . l:headername
+      set filetype=cpp
+    endif
+  " Case 3: foo/bar/baz.cpp
+  elseif match(l:sourcename, '^.*\/[a-zA-Z0-9_-]*\.cpp') != -1
+    " Assume header is in same directory as source
+    let l:headername = matchstr(l:sourcename, '^.*\.') . 'hpp'
+    if filereadable(l:headername)
+      exe 'vsp ' l:headername
+      set filetype=cpp
+    endif
+  endif
+endfunction
+
+autocmd FileType cpp nnoremap ,h :call OpenHeader()<CR>
+
+function OpenSource()
+  " Header name
+  let l:headername = expand('%')
+  " Case 1: headername = foo.hpp
+  if match(l:headername, '^[a-zA-Z0-9_-]*\.hpp$') != -1
+    "echo 'Case 1'
+    let l:sourcename = matchstr(l:headername, '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    " In same directory
+    if filereadable(l:sourcename)
+      exe 'vsp ' . l:sourcename
+      set filetype=cpp
+    " In ../src directory
+    elseif filereadable('../src/' . l:sourcename)
+      exe 'vsp ../src/' . l:sourcename
+      set filetype=cpp
+    endif
+  " Case 2: headername = foo/bar/baz/src/blah.hpp
+  elseif match(l:headername, '^.*\/include\/[a-zA-Z0-9_-]*\.hpp') != -1
+    "echo 'Case 2'
+    " Assume header is in adjacent src directory
+    let l:source_dir = join(split(l:headername, '/')[:-3], '/') . '/src'
+    let l:sourcename = matchstr(split(l:headername, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    " echo 'Header dir: ' . l:header_dir
+    " echo 'Header name: ' . l:headername
+    if filereadable(l:source_dir . '/' . l:sourcename)
+      exe 'vsp ' . l:source_dir . '/' . l:sourcename
+      set filetype=cpp
+    endif
+  " Case 2a: src/foo.cpp
+  elseif match(l:headername, '^include\/[a-zA-Z0-9_-]*\.hpp') != -1
+    "echo 'Case 2a'
+    " Assume header is in adjacent include directory
+    let l:source_dir = 'src'
+    let l:sourcename = matchstr(split(l:headername, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    "echo 'Source dir: ' . l:source_dir
+    "echo 'Source name: ' . l:sourcename
+    if filereadable(l:source_dir . '/' . l:sourcename)
+      exe 'vsp ' . l:source_dir . '/' . l:sourcename
+      set filetype=cpp
+    endif
+  " Case 3: foo/bar/baz.cpp
+  elseif match(l:headername, '^.*\/[a-zA-Z0-9_-]*\.hpp') != -1
+    "echo 'Case 3'
+    " Assume header is in same directory as source
+    let l:sourcename = matchstr(l:headername, '^.*\.') . 'cpp'
+    if filereadable(l:sourcename)
+      exe 'vsp ' l:sourcename
+      set filetype=cpp
+    endif
+  endif
+endfunction
+
+autocmd FileType cpp nnoremap ,s :call OpenSource()<CR>
+
 
 """LATEX
 " General
