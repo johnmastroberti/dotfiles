@@ -99,7 +99,7 @@ export DIST_BASE_DIR="/home/john/bmad_dist"
 #export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 #export LOG=$ACC_LOCAL_ROOT/compile.log
 #source ${DIST_BASE_DIR}/util/dist_source_me
-source ~/.bmad_settings
+[ -f ~/.bmad_settings ] && source ~/.bmad_settings
 export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
 ulimit -S -c 0
 ulimit -S -s 10240

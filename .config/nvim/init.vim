@@ -142,6 +142,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
+  autocmd BufRead,BufNewFile *.gp,*.gnu set filetype=gnuplot
 
 " Fortran syntax settings
   let fortran_free_source=1
@@ -222,6 +223,15 @@ autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab1/* map <leader>c :w! \| !make<CR>
 autocmd BufEnter ~/Dropbox/TeX/PHYS-4410/lab2/* map <leader>c :w! \| !make<CR>
 autocmd BufEnter ~/Dropbox/TeX/AEP-4380/hw/* map <leader>c :w! \| !make<CR>
 
+" Automatically add #pragma once at the beginning of new header files
+function NewHeaderPragma()
+  if !filereadable(expand('%'))
+    echo expand('%') . ' is a new header'
+    norm O#pragma once
+  endif
+endfunction
+
+autocmd BufEnter *.hpp call NewHeaderPragma()
 " Deal with tab completing a file where multiple files with the same name but different endinds exist
 " e.g. mod.cpp + mod.hpp + mod.o -> mod tab completes to mod.
 " For c/c++, want to open the c/cpp file, and the header if it exists
@@ -234,22 +244,22 @@ function GoodTabComplete()
     exe 'edit ' . l:basename . 'cpp'
     set filetype=cpp
     " Check for header
-    if filereadable(l:basename . 'hpp')
-      exe 'vsp ' . l:basename . 'hpp'
-      set filetype=cpp
-    elseif filereadable(l:basename . 'h')
-      exe 'vsp ' . l:basename . 'h'
-      set filetype=cpp
-    endif
+    " if filereadable(l:basename . 'hpp')
+    "   exe 'vsp ' . l:basename . 'hpp'
+    "   set filetype=cpp
+    " elseif filereadable(l:basename . 'h')
+    "   exe 'vsp ' . l:basename . 'h'
+    "   set filetype=cpp
+    " endif
   " Case 2: c + o ( + h )
   elseif filereadable(l:basename . 'c')
     exe 'edit ' . l:basename . 'c'
     set filetype=c
     " Check for header
-    if filereadable(l:basename . 'h')
-      exe 'vsp ' . l:basename . 'h'
-      set filetype=c
-    endif
+    " if filereadable(l:basename . 'h')
+    "   exe 'vsp ' . l:basename . 'h'
+    "   set filetype=c
+    " endif
   " Case 3: tex
   elseif filereadable(l:basename . 'tex')
     exe 'edit ' . l:basename . 'tex'

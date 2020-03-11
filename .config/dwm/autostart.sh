@@ -1,5 +1,5 @@
 #!/bin/sh
-compton &
+picom &
 setbg &
 # Shuffle wallpapers
 while true; do
