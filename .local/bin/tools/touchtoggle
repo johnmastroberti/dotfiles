@@ -1,5 +1,9 @@
 #!/bin/sh
 id=$(xinput | grep Touchscreen | awk '{print $5}' | sed "s/id=//;")
+if [ -z $id ]; then
+  notify-send "No touchscreen detected"
+  return
+fi
 state=$(xinput list-props $id | grep "Device Enabled" | sed "s/Device Enabled ([0-9]*)://;" | tr -d [:blank:])
 case "$state" in
   0) xinput set-prop $id 'Device Enabled' 1 && notify-send "Touch enabled" ;;
