@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu>
     <menu id="root-menu" label="OpenBox 3">
-	<item label="st"> <action name="Execute">
-		<execute>st</execute>
+	<item label="alacritty"> <action name="Execute">
+		<execute>alacritty</execute>
 	</action> </item>
 	<item label="Firefox"> <action name="Execute">
 		<execute>firefox</execute>

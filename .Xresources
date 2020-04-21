@@ -1,192 +1,100 @@
-! general settings
 ! special
-foreground:   #dddddd
-background:   #000000
-cursorColor:  #a6a28c
+st.font: Hack-16;
+st.alpha: 1
+*.foreground:   #a8a19f
+*.background:   #1b1918
+*.cursorColor:  #a8a19f
 
 ! black
-color0:       #20201d
-color8:       #7d7a68
+*.color0:       #1b1918
+*.color8:       #766e6b
 
 ! red
-color1:       #d73737
-color9:       #d73737
+*.color1:       #f22c40
+*.color9:       #f22c40
 
 ! green
-color2:       #60ac39
-color10:      #60ac39
+*.color2:       #5ab738
+*.color10:      #5ab738
 
 ! yellow
-color3:       #cfb017
-color11:      #cfb017
+*.color3:       #d5911a
+*.color11:      #d5911a
 
 ! blue
-color4:       #6684e1
-color12:      #6684e1
+*.color4:       #407ee7
+*.color12:      #407ee7
 
 ! magenta
-color5:       #b854d4
-color13:      #b854d4
+*.color5:       #6666ea
+*.color13:      #6666ea
 
 ! cyan
-color6:       #1fad83
-color14:      #1fad83
+*.color6:       #00ad9c
+*.color14:      #00ad9c
 
 ! white
-color7:       #a6a28c
-color15:      #fefbec
+*.color7:       #a8a19f
+*.color15:      #f1efee
 
+! dwm settings
+
+! normal border color, and normal background/selected forground
+! dwm.color0:     #1b1918
+! ! selected border color
+! dwm.color8:     #d5911a
+! ! normal forground color
+! dwm.color6:     #f22c40
+! ! selected background color
+! dwm.color14:    #f22c40
+
+
+
+
+! pastel scheme
 ! st
 ! special
-st.font: Monospace-20;
-st.foreground:   #d3d0c8
-st.alpha: 1
-st.background:   #2d2d2d
-st.cursorColor:  #d3d0c8
-st.alpha: 1
-
-! black
-st.color0:       #2d2d2d
-st.color8:       #747369
-
-! red
-st.color1:       #f2777a
-st.color9:       #f2777a
-
-! green
-st.color2:       #99cc99
-st.color10:      #99cc99
-
-! yellow
-st.color3:       #ffcc66
-st.color11:      #ffcc66
-
-! blue
-st.color4:       #6699cc
-st.color12:      #6699cc
-
-! magenta
-st.color5:       #cc99cc
-st.color13:      #cc99cc
-
-! cyan
-st.color6:       #66cccc
-st.color14:      #66cccc
-
-! white
-st.color7:       #d3d0c8
-st.color15:      #f2f0ec
-! st settings
 !st.font: Monospace-20;
-!st.alpha: 255
-!! special
-!st.foreground:   #dddddd
-!st.background:   #000000
-!st.cursorColor:  #a6a28c
+!st.foreground:   #d3d0c8
+!st.alpha: 1
+!st.background:   #2d2d2d
+!st.cursorColor:  #d3d0c8
+!st.alpha: 1
 !
 !! black
-!st.color0:       #20201d
-!st.color8:       #7d7a68
+!st.color0:       #2d2d2d
+!st.color8:       #747369
 !
 !! red
-!st.color1:       #d73737
-!st.color9:       #d73737
+!st.color1:       #f2777a
+!st.color9:       #f2777a
 !
 !! green
-!st.color2:       #60ac39
-!st.color10:      #60ac39
+!st.color2:       #99cc99
+!st.color10:      #99cc99
 !
 !! yellow
-!st.color3:       #cfb017
-!st.color11:      #cfb017
+!st.color3:       #ffcc66
+!st.color11:      #ffcc66
 !
 !! blue
-!st.color4:       #6684e1
-!st.color12:      #6684e1
+!st.color4:       #6699cc
+!st.color12:      #6699cc
 !
 !! magenta
-!st.color5:       #b854d4
-!st.color13:      #b854d4
+!st.color5:       #cc99cc
+!st.color13:      #cc99cc
 !
 !! cyan
-!st.color6:       #1fad83
-!st.color14:      #1fad83
+!st.color6:       #66cccc
+!st.color14:      #66cccc
 !
 !! white
-!st.color7:       #a6a28c
-!st.color15:      #fefbec
-! special
-!st.foreground:   #a6a28c
-!st.background:   #20201d
-!st.cursorColor:  #a6a28c
-!
-!! black
-!st.color0:       #20201d
-!st.color8:       #7d7a68
-!
-!! red
-!st.color1:       #d73737
-!st.color9:       #d73737
-!
-!! green
-!st.color2:       #60ac39
-!st.color10:      #60ac39
-!
-!! yellow
-!st.color3:       #cfb017
-!st.color11:      #cfb017
-!
-!! blue
-!st.color4:       #6684e1
-!st.color12:      #6684e1
-!
-!! magenta
-!st.color5:       #b854d4
-!st.color13:      #b854d4
-!
-!! cyan
-!st.color6:       #1fad83
-!st.color14:      #1fad83
-!
-!! white
-!st.color7:       #a6a28c
-!st.color15:      #fefbec
-! special
-!st.foreground:   #b7b8b9
-!st.background:   #0c0d0e
-!st.cursorColor:  #b7b8b9
-!
-!! black
-!st.color0:       #0c0d0e
-!st.color8:       #737475
-!
-!! red
-!st.color1:       #b31a1c
-!st.color9:       #b31a1c
-!
-!! green
-!st.color2:       #31a354
-!st.color10:      #31a354
-!
-!! yellow
-!st.color3:       #dca060
-!st.color11:      #dca060
-!
-!! blue
-!st.color4:       #3182bd
-!st.color12:      #3182bd
-!
-!! magenta
-!st.color5:       #756bb1
-!st.color13:      #756bb1
-!
-!! cyan
-!st.color6:       #80b1d3
-!st.color14:      #80b1d3
-!
-!! white
-!st.color7:       #b7b8b9
-!st.color15:      #fcfdfe
+!st.color7:       #d3d0c8
+!st.color15:      #f2f0ec
+
+
+
 ! XTerm settings
 XTerm.termName: xterm-256color
 XTerm.vt100.metaSendsEscape: true
@@ -194,40 +102,76 @@ XTerm.vt100.locale: true
 XTerm.vt100.backarrowKey: false
 XTerm.ttyModes: erase ^?
 XTerm.vt100.reverseVideo: true
+XTerm.vt100.faceName: Inconsolata:size=20
 ! special
-XTerm.foreground:   #a6a28c
-XTerm.background:   #20201d
-XTerm.cursorColor:  #a6a28c
+XTerm.foreground:   #a8a19f
+XTerm.background:   #1b1918
+XTerm.cursorColor:  #a8a19f
 
 ! black
-XTerm.vt100.color0:       #20201d
-XTerm.vt100.color8:       #7d7a68
+XTerm.vt100.color0:       #1b1918
+XTerm.vt100.color8:       #766e6b
 
 ! red
-XTerm.vt100.color1:       #d73737
-XTerm.vt100.color9:       #d73737
+XTerm.vt100.color1:       #f22c40
+XTerm.vt100.color9:       #f22c40
 
 ! green
-XTerm.vt100.color2:       #60ac39
-XTerm.vt100.color10:      #60ac39
+XTerm.vt100.color2:       #5ab738
+XTerm.vt100.color10:      #5ab738
 
 ! yellow
-XTerm.vt100.color3:       #cfb017
-XTerm.vt100.color11:      #cfb017
+XTerm.vt100.color3:       #d5911a
+XTerm.vt100.color11:      #d5911a
 
 ! blue
-XTerm.vt100.color4:       #6684e1
-XTerm.vt100.color12:      #6684e1
+XTerm.vt100.color4:       #407ee7
+XTerm.vt100.color12:      #407ee7
 
 ! magenta
-XTerm.vt100.color5:       #b854d4
-XTerm.vt100.color13:      #b854d4
+XTerm.vt100.color5:       #6666ea
+XTerm.vt100.color13:      #6666ea
 
 ! cyan
-XTerm.vt100.color6:       #1fad83
-XTerm.vt100.color14:      #1fad83
+XTerm.vt100.color6:       #00ad9c
+XTerm.vt100.color14:      #00ad9c
 
 ! white
-XTerm.vt100.color7:       #a6a28c
-XTerm.vt100.color15:      #fefbec
-XTerm.vt100.faceName: Inconsolata Mono:size=24
+XTerm.vt100.color7:       #a8a19f
+XTerm.vt100.color15:      #f1efee
+!XTerm.vt100.foreground:   #a6a28c
+!XTerm.vt100.background:   #20201d
+!XTerm.vt100.cursorColor:  #a6a28c
+!
+!! black
+!XTerm.vt100.color0:       #20201d
+!XTerm.vt100.color8:       #7d7a68
+!
+!! red
+!XTerm.vt100.color1:       #d73737
+!XTerm.vt100.color9:       #d73737
+!
+!! green
+!XTerm.vt100.color2:       #60ac39
+!XTerm.vt100.color10:      #60ac39
+!
+!! yellow
+!XTerm.vt100.color3:       #cfb017
+!XTerm.vt100.color11:      #cfb017
+!
+!! blue
+!XTerm.vt100.color4:       #6684e1
+!XTerm.vt100.color12:      #6684e1
+!
+!! magenta
+!XTerm.vt100.color5:       #b854d4
+!XTerm.vt100.color13:      #b854d4
+!
+!! cyan
+!XTerm.vt100.color6:       #1fad83
+!XTerm.vt100.color14:      #1fad83
+!
+!! white
+!XTerm.vt100.color7:       #a6a28c
+!XTerm.vt100.color15:      #fefbec
+!XTerm.vt100.faceName: Inconsolata Mono:size=24

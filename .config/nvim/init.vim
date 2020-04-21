@@ -56,20 +56,11 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   autocmd BufWritePost ~/bmad_dist/tao/python/* !ctags -R .
   autocmd BufWritePost ~/Dropbox/TeX/*.cpp !ctags -R .
   autocmd BufWritePost ~/Documents*.cpp,~/Documents*.hpp !ctags $(du -a . | grep '.*\.[ch]pp' | sed 's|\./||' | cut -f2)
+  autocmd BufWritePost ~/bmad_dist*.cpp,~/bmad_dist*.hpp !ctags $(du -a . | grep '.*\.[ch]pp' | sed 's|\./||' | cut -f2)
   autocmd BufWritePost ~/Documents/cl/code/*c !ctags -R .
   " Ignore tags file with wildcard expansion
   set wildignore+=tags
 
-" Enchanted vim: turn on very magic for all searches
-  let g:VeryMagicSubstitute = 1
-  let g:VeryMagicGlobal = 1
-  let g:VeryMagicVimGrep = 1
-  let g:VeryMagicSearchArg = 1
-  let g:VeryMagicFunction = 1
-  let g:VeryMagicHelpgrep = 1
-  let g:VeryMagicRange = 1
-  " let g:VeryMagicEscapeBackslashesInSearchArg = 1
-  " let g:SortEditArgs = 1
 
 " Goyo plugin makes text more readable when writing prose:
 "	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
@@ -143,6 +134,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
   autocmd BufRead,BufNewFile *.gp,*.gnu set filetype=gnuplot
+  autocmd BufRead config.txt set filetype=fortran
 
 " Fortran syntax settings
   let fortran_free_source=1
@@ -226,7 +218,6 @@ autocmd BufEnter ~/Dropbox/TeX/AEP-4380/hw/* map <leader>c :w! \| !make<CR>
 " Automatically add #pragma once at the beginning of new header files
 function NewHeaderPragma()
   if !filereadable(expand('%'))
-    echo expand('%') . ' is a new header'
     norm O#pragma once
   endif
 endfunction
@@ -270,7 +261,8 @@ endfunction
 autocmd BufEnter *. call GoodTabComplete()
 
 " Opening the corresponding header/source file
-function OpenHeader()
+" split type should be 'vsp' or 'spl'
+function OpenHeader(split_type)
   " Source name
   let l:sourcename = expand('%')
   " Case 1: sourcename = foo.cpp
@@ -278,11 +270,11 @@ function OpenHeader()
     let l:headername = matchstr(l:sourcename, '^[a-zA-Z0-9_-]*\.') . 'hpp'
     " In same directory
     if filereadable(l:headername)
-      exe 'vsp ' . l:headername
+      exe a:split_type . ' ' . l:headername
       set filetype=cpp
     " In ../include directory
     elseif filereadable('../include/' . l:headername)
-      exe 'vsp ../include/' . l:headername
+      exe a:split_type . ' ../include/' . l:headername
       set filetype=cpp
     endif
   " Case 2: sourcename = foo/bar/baz/src/blah.cpp
@@ -293,7 +285,7 @@ function OpenHeader()
     " echo 'Header dir: ' . l:header_dir
     " echo 'Header name: ' . l:headername
     if filereadable(l:header_dir . '/' . l:headername)
-      exe 'vsp ' . l:header_dir . '/' . l:headername
+      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
       set filetype=cpp
     endif
   " Case 2a: src/foo.cpp
@@ -304,7 +296,7 @@ function OpenHeader()
     "echo 'Header dir: ' . l:header_dir
     "echo 'Header name: ' . l:headername
     if filereadable(l:header_dir . '/' . l:headername)
-      exe 'vsp ' . l:header_dir . '/' . l:headername
+      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
       set filetype=cpp
     endif
   " Case 3: foo/bar/baz.cpp
@@ -312,15 +304,16 @@ function OpenHeader()
     " Assume header is in same directory as source
     let l:headername = matchstr(l:sourcename, '^.*\.') . 'hpp'
     if filereadable(l:headername)
-      exe 'vsp ' l:headername
+      exe a:split_type . ' ' l:headername
       set filetype=cpp
     endif
   endif
 endfunction
 
-autocmd FileType cpp nnoremap ,h :call OpenHeader()<CR>
+autocmd FileType cpp nnoremap ,h :call OpenHeader('vsp')<CR>
+autocmd FileType cpp nnoremap ,H :call OpenHeader('spl')<CR>
 
-function OpenSource()
+function OpenSource(split_type)
   " Header name
   let l:headername = expand('%')
   " Case 1: headername = foo.hpp
@@ -329,11 +322,11 @@ function OpenSource()
     let l:sourcename = matchstr(l:headername, '^[a-zA-Z0-9_-]*\.') . 'cpp'
     " In same directory
     if filereadable(l:sourcename)
-      exe 'vsp ' . l:sourcename
+      exe a:split_type . ' ' . l:sourcename
       set filetype=cpp
     " In ../src directory
     elseif filereadable('../src/' . l:sourcename)
-      exe 'vsp ../src/' . l:sourcename
+      exe a:split_type . ' ../src/' . l:sourcename
       set filetype=cpp
     endif
   " Case 2: headername = foo/bar/baz/src/blah.hpp
@@ -345,7 +338,7 @@ function OpenSource()
     " echo 'Header dir: ' . l:header_dir
     " echo 'Header name: ' . l:headername
     if filereadable(l:source_dir . '/' . l:sourcename)
-      exe 'vsp ' . l:source_dir . '/' . l:sourcename
+      exe a:split_type . ' ' . l:source_dir . '/' . l:sourcename
       set filetype=cpp
     endif
   " Case 2a: src/foo.cpp
@@ -357,7 +350,7 @@ function OpenSource()
     "echo 'Source dir: ' . l:source_dir
     "echo 'Source name: ' . l:sourcename
     if filereadable(l:source_dir . '/' . l:sourcename)
-      exe 'vsp ' . l:source_dir . '/' . l:sourcename
+      exe a:split_type . ' ' . l:source_dir . '/' . l:sourcename
       set filetype=cpp
     endif
   " Case 3: foo/bar/baz.cpp
@@ -366,13 +359,28 @@ function OpenSource()
     " Assume header is in same directory as source
     let l:sourcename = matchstr(l:headername, '^.*\.') . 'cpp'
     if filereadable(l:sourcename)
-      exe 'vsp ' l:sourcename
+      exe a:split_type . ' ' l:sourcename
       set filetype=cpp
     endif
   endif
 endfunction
 
-autocmd FileType cpp nnoremap ,s :call OpenSource()<CR>
+autocmd FileType cpp nnoremap ,s :call OpenSource('vsp')<CR>
+autocmd FileType cpp nnoremap ,S :call OpenSource('spl')<CR>
+
+
+" Neovim terminal application shortcuts
+function TerminalPythonShortcut()
+  vsp
+  term python
+endfunction
+command Tpy call TerminalPythonShortcut()
+
+function TerminalGnuplotShortcut()
+  vsp
+  term gnuplot
+endfunction
+command Tgp call TerminalGnuplotShortcut()
 
 
 """LATEX
@@ -381,12 +389,12 @@ autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><En
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,pf \begin{proof}<Enter><Enter>\end{proof}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,le \begin{lemma}{}<Enter><++><Enter>\end{lemma}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter><Enter>\end{verbatim}<Enter><++><Esc>3ki
+autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter>\end{verbatim}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><++><Enter>\end{exercise}<Enter><++><Esc>3k$i
-autocmd FileType tex inoremap ,sec \section*{}<Enter><++><Esc>k$i
-autocmd FileType tex inoremap ,ssec \subsection*{}<Enter><++><Esc>k$i
-autocmd FileType tex inoremap ,sssec \subsubsection*{}<Enter><++><Esc>k$i
+autocmd FileType tex inoremap ,sec \section{}<Enter><++><Esc>k$i
+autocmd FileType tex inoremap ,ssec \subsection{}<Enter><++><Esc>k$i
+autocmd FileType tex inoremap ,sssec \subsubsection{}<Enter><++><Esc>k$i
 " Math mode
 autocmd FileType tex inoremap ,al \begin{align*}<Enter><Enter>\end{align*}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,nal \begin{align}<Enter><Enter>\end{align}<Enter><++><Esc>2ki
