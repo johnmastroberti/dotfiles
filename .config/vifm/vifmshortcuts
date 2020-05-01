@@ -59,6 +59,10 @@ map ggcd :cd ~/bmad_dist/util_programs/converter_element_modeling/doc<CR>
 map tgcd <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/doc<CR><tab>
 map Mgcd <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/doc<CR><tab>:mo<CR>
 map Ygcd <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/doc<CR><tab>:co<CR>
+map ggct :cd ~/bmad_dist/util_programs/converter_element_modeling/test_prog<CR>
+map tgct <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/test_prog<CR><tab>
+map Mgct <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/test_prog<CR><tab>:mo<CR>
+map Ygct <tab>:cd ~/bmad_dist/util_programs/converter_element_modeling/test_prog<CR><tab>:co<CR>
 map ggotex :cd ~/Dropbox/TeX<CR>
 map tgotex <tab>:cd ~/Dropbox/TeX<CR><tab>
 map Mgotex <tab>:cd ~/Dropbox/TeX<CR><tab>:mo<CR>
@@ -83,6 +87,7 @@ map bf :e ~/.config/bmfiles<CR>
 map bd :e ~/.config/bmdirs<CR>
 map cfb :e ~/.bashrc<CR>
 map cfa :e ~/.config/aliasrc<CR>
+map cfx :e ~/.Xresources<CR>
 map cfz :e ~/.zshrc<CR>
 map cfv :e ~/.config/nvim/init.vim<CR>
 map cfm :e ~/.config/mutt/muttrc<CR>

@@ -16,6 +16,7 @@ pylib ~/.pyenv/versions/3.6.9/lib/python3.6
 gcs ~/bmad_dist/util_programs/converter_element_modeling/simulation
 gcf ~/bmad_dist/util_programs/converter_element_modeling/fitter
 gcd ~/bmad_dist/util_programs/converter_element_modeling/doc
+gct ~/bmad_dist/util_programs/converter_element_modeling/test_prog
 # LaTeX
 gotex ~/Dropbox/TeX
 go317 ~/Dropbox/TeX/PHYS-3317

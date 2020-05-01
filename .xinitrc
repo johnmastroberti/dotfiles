@@ -4,4 +4,4 @@
 xrdb ~/.Xresources
 # autostart script:
 $HOME/.config/dwm/autostart.sh &
-exec dwm
+exec dwm 2>$HOME/log.txt

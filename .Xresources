@@ -1,5 +1,6 @@
+Xcursor.theme: neutral
 ! special
-st.font: Hack-16;
+st.font: DejaVuSansMono Nerd Font-16
 st.alpha: 1
 *.foreground:   #a8a19f
 *.background:   #1b1918

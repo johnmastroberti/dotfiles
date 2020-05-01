@@ -18,6 +18,8 @@ export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export GOPATH="$HOME/.local/go"
+
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"

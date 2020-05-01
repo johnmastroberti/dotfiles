@@ -22,7 +22,6 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
 Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'xavierd/clang_complete'
 call plug#end()
 packadd vimball
 
@@ -38,6 +37,8 @@ nmap <F8> :TagbarToggle<CR>
 let g:indentLine_enabled = 0
 nmap <F11> :IndentLinesToggle<CR>
 nmap <F12> :so /tmp/vim_script.vim<CR>
+map Q <ESC>
+map q: <ESC>
 
 " Some basics:
 	nnoremap c "_c
@@ -195,7 +196,7 @@ nmap <F12> :so /tmp/vim_script.vim<CR>
   autocmd Filetype dat set noexpandtab tabstop=8 softtabstop=8 shiftwidth=8
 
 " Set automatic scrolling
-  set scrolloff=9999
+  " set scrolloff=9999
 
 " Word wrap
   set linebreak

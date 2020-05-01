@@ -30,6 +30,7 @@ fi
 export DIST_BASE_DIR="/home/john/bmad_dist"
 export DIST_SETUP_QUIET="Y"
 export ACC_LOCAL_ROOT="/home/john/bmad_dist"
+export ACC_BUILD_TEST_EXES="Y"
 export LOG=$ACC_LOCAL_ROOT/compile.log
 source ${DIST_BASE_DIR}/util/dist_source_me
 ulimit -S -c 0
@@ -37,6 +38,6 @@ ulimit -S -s 10240
 ulimit -S -d 25165824
 
 neofetch
-eval "$(pyenv init -)"
-# Fix for pyenv causing bsdtar not to be found
-export PATH="/home/john/.pyenv-fixes:$PATH"
+#eval "$(pyenv init -)"
+## Fix for pyenv causing bsdtar not to be found
+#export PATH="/home/john/.pyenv-fixes:$PATH"

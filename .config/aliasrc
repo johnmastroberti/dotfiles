@@ -2,6 +2,7 @@
 alias ka="killall" \
   :q="exit" \
   gp="gnuplot" \
+  mutt="neomutt" \
   config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
   runcl="cd ~/Documents/cl/code; [[ -f cl ]] || make; ./cl net3_4_2 trainfile testfile" \
   vruncl="./cl net3_4_2 vec_trainfile vec_trainfile" \
@@ -29,7 +30,7 @@ alias ka="killall" \
 	x="sxiv -ft *" \
 	sdn="sudo shutdown -h now" \
 	gua="git remote | xargs -L1 git push --all" \
-	ls="ls -hN --color=auto --group-directories-first" \
+	ls="exa --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi" \

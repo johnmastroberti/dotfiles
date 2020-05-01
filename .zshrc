@@ -120,9 +120,9 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 
 neofetch
-eval "$(pyenv init -)"
-# Fix for pyenv causing bsdtar not to be found
-export PATH="/home/john/.pyenv-fixes:$PATH"
+#eval "$(pyenv init -)"
+## Fix for pyenv causing bsdtar not to be found
+#export PATH="/home/john/.pyenv-fixes:$PATH"
 
 
 # Load zsh-syntax-highlighting; should be last.
