@@ -1,0 +1,25 @@
+#!/bin/sh
+
+volstat="$(amixer get Master)"
+
+muted="$(echo "$volstat" | grep "\[off\]" >/dev/null && echo "Y")"
+
+vol=$(echo "$volstat" | grep -o "\[[0-9]\+%\]" | sed 's/[^0-9]*//g' | uniq)
+
+if [ "$muted" = "Y" ]; then
+  icon="婢"
+elif [ "$vol" -gt "70" ]; then
+	icon="墳"
+elif [ "$vol" -lt "30" ]; then
+	icon="奄"
+else
+	icon="奔"
+fi
+
+playing="$([ -n "$(mpc status 2>/dev/null | grep '\[playing\]')" ] && echo "Y" || echo "N")"
+if [ "$playing" = "Y" ]; then
+  music=" ﱘ $(mpc current | sed 's/ - / ~ /')"
+fi
+
+#printf "%s %s%%\\n" "$icon" "$vol"
+echo "${icon} ${vol}%${music}"
