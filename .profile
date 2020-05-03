@@ -35,7 +35,7 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
 # Start graphical server if bspwm/openbox not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x bspwm >/dev/null && ! pgrep -x openbox && exec menu_start_x
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x bspwm >/dev/null && ! pgrep -x openbox && exec startx
 
 # Switch escape and caps if tty:
 sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
