@@ -7,18 +7,25 @@
 # Adds `~/.local/bin` and all subdirectories to $PATH
 export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
 export FILE="vifm"
-export BIB="$HOME/Documents/LaTeX/uni.bib"
-export REFER="$HOME/Documents/referbib"
+export PAGER="less"
 export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 export GOPATH="$HOME/.local/go"
+export GNUPLOT_LIB="$XDG_CONFIG_HOME/gnuplot"
+export LESSHISTFILE="-"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # less/man colors
 export LESS=-R

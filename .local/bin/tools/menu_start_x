@@ -10,9 +10,9 @@ dialog --menu "Choose WM:" 10 30 3 \
 
 chosenwm=$(cat $choicefile)
 case $chosenwm in
-  1) cp $HOME/.config/dwm/dwm.xinitrc $HOME/.xinitrc && startx ;;
-  2) cp $HOME/.config/bspwm/bp.xinitrc $HOME/.xinitrc && startx ;;
-  3) cp $HOME/.config/openbox/ob.xinitrc $HOME/.xinitrc && startx ;;
+  1) cp $HOME/.config/dwm/dwm.xinitrc $HOME/.config/xinitrc && startx ;;
+  2) cp $HOME/.config/bspwm/bp.xinitrc $HOME/.config/xinitrc && startx ;;
+  3) cp $HOME/.config/openbox/ob.xinitrc $HOME/.config/xinitrc && startx ;;
   *) clear && $SHELL ;;
 esac
 rm $choicefile

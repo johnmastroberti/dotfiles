@@ -2,6 +2,7 @@
 stty -ixon # Disable ctrl-s and ctrl-q.
 shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 HISTSIZE= HISTFILESIZE= # Infinite history.
+export HISTFILE="$XDG_DATA_HOME/bash/history"
 # Prompt
 my_bash_prompt() {
   pstr="$(tput bold)$(tput setaf 3)$(whoami | awk '{print $1}')"
@@ -33,6 +34,7 @@ export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 export ACC_BUILD_TEST_EXES="Y"
 export LOG=$ACC_LOCAL_ROOT/compile.log
 source ${DIST_BASE_DIR}/util/dist_source_me
+rm ~/.Bmad_Dist_Setup_Log.tmp
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824

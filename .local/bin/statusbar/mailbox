@@ -18,6 +18,7 @@ main_unread="$(ls ~/.local/share/mail/main/INBOX/new | wc -l 2>/dev/null)"
 cornell_unread="$(ls ~/.local/share/mail/cornell/INBOX/new | wc -l 2>/dev/null)"
 crap_unread="$(ls ~/.local/share/mail/crap/INBOX/new | wc -l 2>/dev/null)"
 aol_unread="$(ls ~/.local/share/mail/aol/Inbox/new | wc -l 2>/dev/null)"
+iu_unread="$(ls ~/.local/share/mail/iu/INBOX/new | wc -l 2>/dev/null)"
 
 #icon="$(cat "/tmp/imapsyncicon_$USER")"
 
@@ -37,4 +38,7 @@ fi
 if [ "$aol_unread" != "0" ]; then
   message="$message A $aol_unread"
 fi
-[ "$main_unread" = "0" ] && [ "$cornell_unread" = "0" ] && [ "$crap_unread" = "0" ] && [ "$aol_unread" = "0" ] || echo "$message"
+if [ "$iu_unread" != "0" ]; then
+  message="$message I $iu_unread"
+fi
+[ "$main_unread" = "0" ] && [ "$cornell_unread" = "0" ] && [ "$crap_unread" = "0" ] && [ "$aol_unread" = "0" ] && [ "$iu_unread" = "0" ] || echo "$message"

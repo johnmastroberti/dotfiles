@@ -99,15 +99,15 @@ export DIST_BASE_DIR="/home/john/bmad_dist"
 #export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 #export LOG=$ACC_LOCAL_ROOT/compile.log
 #source ${DIST_BASE_DIR}/util/dist_source_me
-[ -f ~/.bmad_settings ] && source ~/.bmad_settings
+[ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
 export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824
 
 #Geant4 configuration
-if [ -d /home/john/geant ]; then
-  cd "/home/john/geant/geant4.10.06-build/" && source "/home/john/geant/geant4.10.06-build/geant4make.sh" && cd
+if [ -d /home/john/.local/lib/geant ]; then
+  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
   #cd "/home/john/geant/geant4.10.06-install/bin" && source "geant4.sh" && cd
 fi
 
