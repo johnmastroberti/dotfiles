@@ -1,0 +1,7 @@
+#!/bin/sh
+
+[ -f "$HOME/.xprofile" ] && . ~/.xprofile
+xrdb ~/.config/Xresources
+# autostart script:
+$HOME/.config/dwm/autostart.sh &
+exec dwm
