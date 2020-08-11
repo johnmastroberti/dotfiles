@@ -98,9 +98,11 @@ export DIST_BASE_DIR="/home/john/bmad_dist"
 export DIST_SETUP_QUIET="Y"
 export ACC_LOCAL_ROOT="/home/john/bmad_dist"
 export LOG=$ACC_LOCAL_ROOT/compile.log
-[ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ] \
-  && source ${DIST_BASE_DIR}/util/dist_source_me.zsh \
-  || echo "Note: bmad not configured..."
+if [ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ]; then
+  source ${DIST_BASE_DIR}/util/dist_source_me.zsh
+else
+  echo "Note: bmad not configured..."
+fi
 [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
 [ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
 #source $DIST_BASE_DIR/util/dist_env_vars
