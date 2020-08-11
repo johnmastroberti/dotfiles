@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "350x5-0+24"
+    geometry = "500x5-0+32"
     indicate_hidden = yes
     shrink = yes
     transparency = 0
@@ -25,7 +25,7 @@
     sort = yes
 
     idle_threshold = 120
-    font = Monospace 14
+    font = Monospace 20
     line_height = 0
     markup = full
 

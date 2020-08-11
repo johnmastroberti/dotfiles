@@ -22,6 +22,11 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'Yggdroot/indentLine'
 Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'
+Plug 'petrbroz/vim-glsl'
+Plug 'johnmastroberti/vim-opengl'
+Plug 'igankevich/mesonic'
+Plug 'fedorenchik/qt-support.vim'
+Plug 'ap/vim-css-color'
 call plug#end()
 packadd vimball
 
@@ -37,8 +42,6 @@ nmap <F8> :TagbarToggle<CR>
 let g:indentLine_enabled = 0
 nmap <F11> :IndentLinesToggle<CR>
 nmap <F12> :so /tmp/vim_script.vim<CR>
-map Q <ESC>
-map q: <ESC>
 
 " Some basics:
 	nnoremap c "_c
@@ -46,7 +49,7 @@ map q: <ESC>
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
-	set number relativenumber
+	set number
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -88,12 +91,16 @@ map q: <ESC>
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+" Shortcuts for tabs
+  map <leader>t :tabnew<CR>
+  map <leader>T <C-w>T
 
 " python syntax check
   autocmd BufWritePost *.py !python -m py_compile % 2> >(tee >(mark_maker 2>/dev/null) >&2)
 
 " Colors
   hi Search ctermfg = 0
+  hi Folded ctermfg=black
   hi QuickFixLine ctermfg = 0
   hi QuickFixLine ctermbg = 11
 " Toggle color column
@@ -112,15 +119,15 @@ map q: <ESC>
 " Check file in shellcheck:
 	"map <leader>s :!clear && shellcheck %<CR>
 
-" Open my bibliography file in split
-	map <leader>b :vsp<space>$BIB<CR>
-	map <leader>r :vsp<space>$REFER<CR>
-
 " Replace all is aliased to S.
 	nnoremap S :%s//g<Left><Left>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler <c-r>%<CR>
+  if filereadable("Makefile")
+    map <leader>c :w! \| make<CR>
+  else
+    map <leader>c :w! \| !compiler <c-r>%<CR>
+  endif
 
 " Open corresponding .pdf/.html or preview
 	map <leader>p :!opout <c-r>%<CR><CR>
@@ -136,6 +143,9 @@ map q: <ESC>
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
   autocmd BufRead,BufNewFile *.gp,*.gnu set filetype=gnuplot
   autocmd BufRead config.txt set filetype=fortran
+  autocmd BufRead cmake.* set filetype=cmake
+  autocmd BufRead *.icc set filetype=cpp
+  autocmd BufRead xmobarrc* set filetype=haskell
 
 " Fortran syntax settings
   let fortran_free_source=1
@@ -159,8 +169,6 @@ map q: <ESC>
 
 
 " Settings for tao development
-  au BufEnter tao.init set filetype=fortran
-  au BufEnter *.bmad set filetype=fortran
   function Pydoc_Man()
     " Generate a manpage with pydoc_man_gen
     !pydoc_man_gen <cword>
@@ -172,8 +180,10 @@ map q: <ESC>
   autocmd BufEnter ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex map <leader>c :w! \| !compiler tao.tex<CR>
 	autocmd VimLeave ~/bmad_dist/tao/python/pytao/gui/doc/gui.tex !texclear tao.tex
   " Syntax highlighting for bmad/tao config files
-  autocmd BufNewFile,BufRead tao.init set filetype=fortran
-  autocmd BufNewFile,BufRead *.bmad set filetype=fortran
+  "autocmd BufNewFile,BufRead tao.init set filetype=fortran
+  au BufNewFile,BufRead tao.init set filetype=namelist
+  au BufNewFile,BufRead *.tao set filetype=namelist
+  au BufNewFile,BufRead *.bmad set filetype=fortran
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
@@ -263,111 +273,196 @@ autocmd BufEnter *. call GoodTabComplete()
 
 " Opening the corresponding header/source file
 " split type should be 'vsp' or 'spl'
-function OpenHeader(split_type)
-  " Source name
-  let l:sourcename = expand('%')
+function OpenHeader_impl(split_type, source_file, s_ext, h_ext)
   " Case 1: sourcename = foo.cpp
-  if match(l:sourcename, '^[a-zA-Z0-9_-]*\.cpp$') != -1
-    let l:headername = matchstr(l:sourcename, '^[a-zA-Z0-9_-]*\.') . 'hpp'
+  if match(a:source_file, '^[a-zA-Z0-9_-]*\.' . a:s_ext . '$') != -1
+    let l:headername = matchstr(a:source_file, '^[a-zA-Z0-9_-]*\.') . a:h_ext
     " In same directory
     if filereadable(l:headername)
       exe a:split_type . ' ' . l:headername
       set filetype=cpp
+      return 1
     " In ../include directory
     elseif filereadable('../include/' . l:headername)
       exe a:split_type . ' ../include/' . l:headername
       set filetype=cpp
+      return 1
     endif
   " Case 2: sourcename = foo/bar/baz/src/blah.cpp
-  elseif match(l:sourcename, '^.*\/src\/[a-zA-Z0-9_-]*\.cpp') != -1
+  elseif match(a:source_file, '^.*\/src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
     " Assume header is in adjacent include directory
-    let l:header_dir = join(split(l:sourcename, '/')[:-3], '/') . '/include'
-    let l:headername = matchstr(split(l:sourcename, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'hpp'
+    let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
+    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
     " echo 'Header dir: ' . l:header_dir
     " echo 'Header name: ' . l:headername
     if filereadable(l:header_dir . '/' . l:headername)
       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
       set filetype=cpp
+      return 1
     endif
   " Case 2a: src/foo.cpp
-  elseif match(l:sourcename, '^src\/[a-zA-Z0-9_-]*\.cpp') != -1
+  elseif match(a:source_file, '^src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
     " Assume header is in adjacent include directory
     let l:header_dir = 'include'
-    let l:headername = matchstr(split(l:sourcename, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'hpp'
+    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
     "echo 'Header dir: ' . l:header_dir
     "echo 'Header name: ' . l:headername
     if filereadable(l:header_dir . '/' . l:headername)
       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
       set filetype=cpp
+      return 1
+    endif
+  " Case 2: sourcename = foo/bar/baz/source/blah.cpp
+  elseif match(a:source_file, '^.*\/source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+    " Assume header is in adjacent include directory
+    let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
+    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+    " echo 'Header dir: ' . l:header_dir
+    " echo 'Header name: ' . l:headername
+    if filereadable(l:header_dir . '/' . l:headername)
+      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+      set filetype=cpp
+      return 1
+    endif
+  " Case 2a: source/foo.cpp
+  elseif match(a:source_file, '^source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+    " Assume header is in adjacent include directory
+    let l:header_dir = 'include'
+    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+    "echo 'Header dir: ' . l:header_dir
+    "echo 'Header name: ' . l:headername
+    if filereadable(l:header_dir . '/' . l:headername)
+      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+      set filetype=cpp
+      return 1
     endif
   " Case 3: foo/bar/baz.cpp
-  elseif match(l:sourcename, '^.*\/[a-zA-Z0-9_-]*\.cpp') != -1
+  elseif match(a:source_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
     " Assume header is in same directory as source
-    let l:headername = matchstr(l:sourcename, '^.*\.') . 'hpp'
+    let l:headername = matchstr(a:source_file, '^.*\.') . a:h_ext
     if filereadable(l:headername)
       exe a:split_type . ' ' l:headername
       set filetype=cpp
+      return 1
     endif
   endif
+  return 0
+endfunction
+
+function OpenHeader(split_type)
+  " Possible file extensions for C++ source and header files
+  let l:source_extensions = ['cpp', 'cc', 'C']
+  let l:header_extensions = ['hpp', 'hh', 'h']
+  " Source name
+  let l:sourcename = expand('%')
+  for s_ext in l:source_extensions
+    for h_ext in l:header_extensions
+      if OpenHeader_impl(a:split_type, l:sourcename, s_ext, h_ext)
+        return
+      endif
+    endfor
+  endfor
 endfunction
 
 autocmd FileType cpp nnoremap ,h :call OpenHeader('vsp')<CR>
 autocmd FileType cpp nnoremap ,H :call OpenHeader('spl')<CR>
 
-function OpenSource(split_type)
-  " Header name
-  let l:headername = expand('%')
+function OpenSource_impl(split_type, header_file, s_ext, h_ext)
   " Case 1: headername = foo.hpp
-  if match(l:headername, '^[a-zA-Z0-9_-]*\.hpp$') != -1
+  if match(a:header_file, '^[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
     "echo 'Case 1'
-    let l:sourcename = matchstr(l:headername, '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    let l:sourcename = matchstr(a:header_file, '^[a-zA-Z0-9_-]*\.') . a:s_ext
     " In same directory
     if filereadable(l:sourcename)
       exe a:split_type . ' ' . l:sourcename
       set filetype=cpp
+      return 1
     " In ../src directory
     elseif filereadable('../src/' . l:sourcename)
       exe a:split_type . ' ../src/' . l:sourcename
       set filetype=cpp
+      return 1
+    " In ../source directory
+    elseif filereadable('../source/' . l:sourcename)
+      exe a:split_type . ' ../source/' . l:sourcename
+      set filetype=cpp
+      return 1
     endif
-  " Case 2: headername = foo/bar/baz/src/blah.hpp
-  elseif match(l:headername, '^.*\/include\/[a-zA-Z0-9_-]*\.hpp') != -1
+  " Case 2: headername = foo/bar/baz/include/blah.hpp
+  elseif match(a:header_file, '^.*\/include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
     "echo 'Case 2'
     " Assume header is in adjacent src directory
-    let l:source_dir = join(split(l:headername, '/')[:-3], '/') . '/src'
-    let l:sourcename = matchstr(split(l:headername, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    let l:source_dir1 = join(split(a:header_file, '/')[:-3], '/') . '/src'
+    let l:source_dir2 = join(split(a:header_file, '/')[:-3], '/') . '/source'
+    let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
     " echo 'Header dir: ' . l:header_dir
-    " echo 'Header name: ' . l:headername
-    if filereadable(l:source_dir . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir . '/' . l:sourcename
+    " echo 'Header name: ' . a:header_file
+    if filereadable(l:source_dir1 . '/' . l:sourcename)
+      exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
       set filetype=cpp
+      return 1
+    elseif filereadable(l:source_dir2 . '/' . l:sourcename)
+      exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
+      set filetype=cpp
+      return 1
     endif
-  " Case 2a: src/foo.cpp
-  elseif match(l:headername, '^include\/[a-zA-Z0-9_-]*\.hpp') != -1
+  " Case 2a: include/foo.hpp
+  elseif match(a:header_file, '^include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
     "echo 'Case 2a'
     " Assume header is in adjacent include directory
-    let l:source_dir = 'src'
-    let l:sourcename = matchstr(split(l:headername, '/')[-1], '^[a-zA-Z0-9_-]*\.') . 'cpp'
+    let l:source_dir1 = 'src'
+    let l:source_dir2 = 'source'
+    let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
     "echo 'Source dir: ' . l:source_dir
     "echo 'Source name: ' . l:sourcename
-    if filereadable(l:source_dir . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir . '/' . l:sourcename
+    if filereadable(l:source_dir1 . '/' . l:sourcename)
+      exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
       set filetype=cpp
+      return 1
+    elseif filereadable(l:source_dir2 . '/' . l:sourcename)
+      exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
+      set filetype=cpp
+      return 1
     endif
-  " Case 3: foo/bar/baz.cpp
-  elseif match(l:headername, '^.*\/[a-zA-Z0-9_-]*\.hpp') != -1
+  " Case 3: foo/bar/baz.hpp
+  elseif match(a:header_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
     "echo 'Case 3'
     " Assume header is in same directory as source
-    let l:sourcename = matchstr(l:headername, '^.*\.') . 'cpp'
+    let l:sourcename = matchstr(a:header_file, '^.*\.') . a:s_ext
     if filereadable(l:sourcename)
       exe a:split_type . ' ' l:sourcename
       set filetype=cpp
+      return 1
     endif
   endif
+  return 0
+endfunction
+
+function OpenSource(split_type)
+  " Possible file extensions for C++ source and header files
+  let l:source_extensions = ['cpp', 'cc', 'C']
+  let l:header_extensions = ['hpp', 'hh', 'h']
+  " Source name
+  let l:headername = expand('%')
+  for s_ext in l:source_extensions
+    for h_ext in l:header_extensions
+      if OpenSource_impl(a:split_type, l:headername, s_ext, h_ext)
+        return
+      endif
+    endfor
+  endfor
 endfunction
 
 autocmd FileType cpp nnoremap ,s :call OpenSource('vsp')<CR>
 autocmd FileType cpp nnoremap ,S :call OpenSource('spl')<CR>
+
+
+" Set path to include ./include and ./inc
+au FileType cpp set path+=/usr/include/c++/10.1.0
+au FileType cpp set path+=./include
+au FileType cpp set path+=./inc
+au FileType c set path+=./include
+au FileType c set path+=./inc
 
 
 " Neovim terminal application shortcuts
@@ -385,6 +480,11 @@ command Tgp call TerminalGnuplotShortcut()
 
 
 """LATEX
+function TeXinit()
+  read ~/.config/nvim/TeX_snippets/skel.tex
+  1d
+endfunction
+command Texinit call TeXinit()
 " General
 autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><Enter>\end{enumerate}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
@@ -419,6 +519,9 @@ autocmd FileType tex inoremap ,bc \begin{columns}<Enter>\column{}<Enter><++><Ent
 " Swap left and right hand sides in align
 autocmd FileType tex nnoremap ,swa 0"ldt&f=w"rd$"lp0"rP:s/\\\\//<Enter>
 
+autocmd FileType tex inoremap ,ig \ingredient{}{<++>}<Enter><++><Esc>kf{a
+autocmd FileType tex inoremap ,ing \begin{ingredients}<Enter><++><Enter>\end{ingredients}<Enter><++><Esc>2k$i
+autocmd FileType tex inoremap ,r \begin{recipe}{}<Enter><Enter>\begin{ingredients}<Enter><++><Enter>\end{ingredients}<Enter><Enter>\begin{directions}<Enter><++><Enter>\end{directions}<Enter>\end{recipe}<Esc>9k$i
 
 
 """.bib

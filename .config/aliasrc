@@ -46,7 +46,9 @@ alias ka="killall" \
   bash="bash --init-file $XDG_CONFIG_HOME/bash/bashrc" \
   mbsync="mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc" \
   svn="svn --config-dir $XDG_CONFIG_HOME/subversion" \
-  nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings" \
+  nvr="sudo nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings" \
+  cos="converter_simulation" \
+  cof="converter_fitter" \
 
 
 

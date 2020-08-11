@@ -1,42 +1,42 @@
 Xcursor.theme: neutral
 ! special
-st.font: DejaVuSansMono Nerd Font-16
-st.alpha: 1
-*.foreground:   #a8a19f
-*.background:   #1b1918
-*.cursorColor:  #a8a19f
+st.font: JetBrainsMono-20
+st.alpha: 0.95
+*.foreground:   #a2aabc
+*.background:   #1d2433
+*.cursorColor:  #a2aabc
 
 ! black
-*.color0:       #1b1918
-*.color8:       #766e6b
+*.color0:       #171c28
+*.color8:       #8695b7
 
 ! red
-*.color1:       #f22c40
-*.color9:       #f22c40
+*.color1:       #ef6b73
+*.color9:       #f07178
 
 ! green
-*.color2:       #5ab738
-*.color10:      #5ab738
+*.color2:       #bae67e
+*.color10:      #bae67e
 
 ! yellow
-*.color3:       #d5911a
-*.color11:      #d5911a
+*.color3:       #ffd580
+*.color11:      #ffd580
 
 ! blue
-*.color4:       #407ee7
-*.color12:      #407ee7
+*.color4:       #5ccfe6
+*.color12:      #5ccfe6
 
 ! magenta
-*.color5:       #6666ea
-*.color13:      #6666ea
+*.color5:       #c3a6ff
+*.color13:      #c3a6ff
 
 ! cyan
-*.color6:       #00ad9c
-*.color14:      #00ad9c
+*.color6:       #5ccfe6
+*.color14:      #5ccfe6
 
 ! white
-*.color7:       #a8a19f
-*.color15:      #f1efee
+*.color7:       #d7dce2
+*.color15:      #d7dce2
 
 ! dwm settings
 

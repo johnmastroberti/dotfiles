@@ -1,3 +1,8 @@
 #!/bin/sh
 
+case $BLOCK_BUTTON in
+  1) st -t "popup" -g '65x10-0+0' -e popcal ;;
+esac
+
 echo " $(date '+%b %d ~ %I:%M%p')"
+

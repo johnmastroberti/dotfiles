@@ -6,11 +6,7 @@
 
 case $BLOCK_BUTTON in
 	1) "$TERMINAL" -e neomutt ;;
-	2) setsid mailsync >/dev/null & ;;
-	3) pgrep -x dunst >/dev/null && notify-send "📬 Mail module" "\- Shows unread mail
-- Shows 🔃 if syncing mail
-- Left click opens neomutt
-- Middle click syncs mail" ;;
+  3) st -t "popup" -f 'monospace:size=16' -g '70x10-0+0' -e popmail ;;
 esac
 
 #unread="$(find ~/.local/share/mail/*/INBOX/new/* -type f | wc -l 2>/dev/null)"
@@ -41,4 +37,9 @@ fi
 if [ "$iu_unread" != "0" ]; then
   message="$message I $iu_unread"
 fi
-[ "$main_unread" = "0" ] && [ "$cornell_unread" = "0" ] && [ "$crap_unread" = "0" ] && [ "$aol_unread" = "0" ] && [ "$iu_unread" = "0" ] || echo "$message"
+[ "$main_unread" = "0" ] \
+  && [ "$cornell_unread" = "0" ] \
+  && [ "$crap_unread" = "0" ] \
+  && [ "$aol_unread" = "0" ] \
+  && [ "$iu_unread" = "0" ] \
+  && echo "$message 0" || echo "$message"

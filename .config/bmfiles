@@ -1,9 +1,9 @@
 bf	~/.config/bmfiles
 bd	~/.config/bmdirs
-cfb	~/.bashrc
+cfb	~/.config/bash/bashrc
 cfa	~/.config/aliasrc
-cfx ~/.Xresources
-cfz	~/.zshrc
+cfx ~/.config/Xresources
+cfz	~/.config/zsh/.zshrc
 cfv	~/.config/nvim/init.vim
 cfm	~/.config/mutt/muttrc
 cfB ~/.config/bspwm/bspwmrc

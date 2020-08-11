@@ -5,7 +5,7 @@ autoload -U colors && colors
 precmd() {
   pstr="$(tput bold)$(tput setaf 3)$(whoami | awk '{print $1}')"
   pstr=$pstr"$(tput setaf 2) @ $(tput setaf 4)$(uname -a | awk '{print $2}') "
-  wd=$(pwd | sed "s|$HOME|~|")
+  wd=$(pwd -P | sed "s|$HOME|~|")
   gitbranch=$(git branch 2>/dev/null | grep \* | sed 's/\* //')
   if [[ -n $gitbranch ]]; then
     gitbranch="$(tput setaf 1)($gitbranch)"
@@ -95,12 +95,15 @@ bindkey '^e' edit-command-line
 
 #Bmad/Tao configuration
 export DIST_BASE_DIR="/home/john/bmad_dist"
-#export DIST_SETUP_QUIET="Y"
-#export ACC_LOCAL_ROOT="/home/john/bmad_dist"
-#export LOG=$ACC_LOCAL_ROOT/compile.log
-#source ${DIST_BASE_DIR}/util/dist_source_me
+export DIST_SETUP_QUIET="Y"
+export ACC_LOCAL_ROOT="/home/john/bmad_dist"
+export LOG=$ACC_LOCAL_ROOT/compile.log
+source ${DIST_BASE_DIR}/util/dist_source_me.zsh
 [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
-export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
+rm ~/.Bmad_Dist_Setup_Log.tmp
+#source $DIST_BASE_DIR/util/dist_env_vars
+#source $DIST_BASE_DIR/util/acc_vars.sh
+#export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824

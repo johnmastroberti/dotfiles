@@ -1,12 +1,23 @@
 #!/bin/sh
 #swaps between my jmm699@cornell.edu and johnmastroberti123@gmail.com ssh keys
 cd /home/john/.ssh
-if [ -f id_rsa_jmm699 ]; then
-  mv id_rsa id_rsa_123
-  mv id_rsa_jmm699 id_rsa
-  echo "Using jmm699 ssh key"
+if [ -n "$(diff id_rsa id_rsa_123)" ]; then
+  cp id_rsa_123 id_rsa
+  cp id_rsa_123.pub id_rsa.pub
+  echo "Using SSH key: johnmastroberti123@gmail.com"
+  ssh-add
 else
-  mv id_rsa id_rsa_jmm699
-  mv id_rsa_123 id_rsa
-  echo "Using johnmastroberti123 ssh key"
+  cp id_rsa_jmm699 id_rsa
+  cp id_rsa_jmm699.pub id_rsa.pub
+  echo "Using SSH key: jmm699@cornell.edu"
+  ssh-add
 fi
+#if [ -f id_rsa_jmm699 ]; then
+#  mv id_rsa id_rsa_123
+#  mv id_rsa_jmm699 id_rsa
+#  echo "Using jmm699 ssh key"
+#else
+#  mv id_rsa id_rsa_jmm699
+#  mv id_rsa_123 id_rsa
+#  echo "Using johnmastroberti123 ssh key"
+#fi
