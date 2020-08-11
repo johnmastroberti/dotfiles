@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Checking for mail..."
+mbsync -c /home/john/.config/isync/mbsyncrc -a
