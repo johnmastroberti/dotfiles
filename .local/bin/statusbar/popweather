@@ -1,8 +1,6 @@
 #!/bin/zsh
-WEATHER="/home/john/.local/share/weatherreport"
-cat /home/john/.local/share/weatherreport
 #exa -l $WEATHER
-sed 37q $WEATHER
+curl -s 'wttr.in/?u' | sed 37q
 #if [ -f "$WEATHER" ]; then
 #  echo "$WEATHER"
 #  exa -l $WEATHER
