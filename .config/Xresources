@@ -1,42 +1,48 @@
 Xcursor.theme: neutral
-! special
+! dmenu
+dmenu.font: JetBrainsMono-22
+dmenu.background: #171c28
+dmenu.foreground: #5ccfe6
+dmenu.selbackground: #5ccfe6
+dmenu.selforeground: #171c28
+! st
 st.font: JetBrainsMono-20
 st.alpha: 0.95
-*.foreground:   #a2aabc
-*.background:   #1d2433
-*.cursorColor:  #a2aabc
+st.foreground:   #a2aabc
+st.background:   #1d2433
+st.cursorColor:  #a2aabc
 
 ! black
-*.color0:       #171c28
-*.color8:       #8695b7
+st.color0:       #171c28
+st.color8:       #8695b7
 
 ! red
-*.color1:       #ef6b73
-*.color9:       #f07178
+st.color1:       #ef6b73
+st.color9:       #f07178
 
 ! green
-*.color2:       #bae67e
-*.color10:      #bae67e
+st.color2:       #bae67e
+st.color10:      #bae67e
 
 ! yellow
-*.color3:       #ffd580
-*.color11:      #ffd580
+st.color3:       #ffd580
+st.color11:      #ffd580
 
 ! blue
-*.color4:       #5ccfe6
-*.color12:      #5ccfe6
+st.color4:       #5ccfe6
+st.color12:      #5ccfe6
 
 ! magenta
-*.color5:       #c3a6ff
-*.color13:      #c3a6ff
+st.color5:       #c3a6ff
+st.color13:      #c3a6ff
 
 ! cyan
-*.color6:       #5ccfe6
-*.color14:      #5ccfe6
+st.color6:       #5ccfe6
+st.color14:      #5ccfe6
 
 ! white
-*.color7:       #d7dce2
-*.color15:      #d7dce2
+st.color7:       #d7dce2
+st.color15:      #d7dce2
 
 ! dwm settings
 

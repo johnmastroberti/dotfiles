@@ -39,10 +39,10 @@ map gg :cd ~/bmad_dist/tao/python/pytao/gui<CR>
 map tg <tab>:cd ~/bmad_dist/tao/python/pytao/gui<CR><tab>
 map Mg <tab>:cd ~/bmad_dist/tao/python/pytao/gui<CR><tab>:mo<CR>
 map Yg <tab>:cd ~/bmad_dist/tao/python/pytao/gui<CR><tab>:co<CR>
-map gb :cd ~/bmad_dist<CR>
-map tb <tab>:cd ~/bmad_dist<CR><tab>
-map Mb <tab>:cd ~/bmad_dist<CR><tab>:mo<CR>
-map Yb <tab>:cd ~/bmad_dist<CR><tab>:co<CR>
+map gb :cd ~/builds<CR>
+map tb <tab>:cd ~/builds<CR><tab>
+map Mb <tab>:cd ~/builds<CR><tab>:mo<CR>
+map Yb <tab>:cd ~/builds<CR><tab>:co<CR>
 map gpylib :cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR>
 map tpylib <tab>:cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR><tab>
 map Mpylib <tab>:cd ~/.pyenv/versions/3.6.9/lib/python3.6<CR><tab>:mo<CR>

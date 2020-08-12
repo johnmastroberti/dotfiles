@@ -10,7 +10,7 @@ sc	~/.local/bin
 mn	/mnt
 # GUI development
 g ~/bmad_dist/tao/python/pytao/gui
-b ~/bmad_dist
+b ~/builds
 pylib ~/.pyenv/versions/3.6.9/lib/python3.6
 # Linac
 gcs ~/bmad_dist/util_programs/converter_element_modeling/simulation
