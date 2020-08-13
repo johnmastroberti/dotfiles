@@ -1,0 +1,25 @@
+#!/bin/sh
+# Choose which script in ~/.local/bin to edit
+SCRIPT_BASE="$HOME/.local/bin" # No trailing /
+YESNO="Yes\nNo"
+
+DIR_CHOICES="$(find "$SCRIPT_BASE" -type d | grep "$SCRIPT_BASE/" | sed "s|$SCRIPT_BASE/||")"
+
+DIR="$(echo "$DIR_CHOICES" | dmenu -p "Script directory:")"
+[ -z "$DIR" ] && exit 1
+
+if [ ! -d "$SCRIPT_BASE/$DIR" ]; then
+  MAKEDIR="$(printf $YESNO | dmenu -p "$DIR does not exist. Create it?")"
+  [ "$MAKEDIR" != "Yes" ] && exit 1
+  mkdir $SCRIPT_BASE/$DIR
+fi
+
+FILE="$(ls "$SCRIPT_BASE/$DIR" | dmenu -p "Script to edit:")"
+[ -z "$FILE" ] && exit 1
+
+if [ ! -f "$SCRIPT_BASE/$DIR/$FILE" ]; then
+  MAKEFILE="$(printf $YESNO | dmenu -p "$FILE does not exist. Create it?")"
+  [ "$MAKEFILE" != "Yes" ] && exit 1
+fi
+
+st -e nvim -c "cd $SCRIPT_BASE/$DIR" "$SCRIPT_BASE/$DIR/$FILE" & disown

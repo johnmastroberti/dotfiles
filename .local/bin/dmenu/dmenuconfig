@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Presents a dmenu menu of various config files
+FILES="Zsh Profile
+Zsh Config File
+Xresources
+dwm
+dmenu
+st"
+
+FILE=""
+CONFIG="$(echo "$FILES" | dmenu -p "Edit a config file:")"
+case "$CONFIG" in
+  "Zsh Profile")      DIR="$HOME";                    FILE=".zprofile"  ;;
+  "Zsh Config File")  DIR="$HOME/.config/zsh";        FILE=".zshrc"     ;;
+  "Xresources")       DIR="$HOME/.config";            FILE="Xresources" ;;
+  "dwm")              DIR="$HOME/builds/mine/dwm";    FILE="config.h"   ;;
+  "dmenu")            DIR="$HOME/builds/mine/dmenu";  FILE="config.h"   ;;
+  "st")               DIR="$HOME/builds/mine/st";     FILE="config.h"   ;;
+esac
+
+if [ -n "$FILE" ]; then
+  st -e nvim -c "cd $DIR" "$DIR/$FILE" & disown
+fi
