@@ -10,5 +10,4 @@ while true; do
   sleep 10m
 done &
 dwmblocks &
-trayer --edge bottom --align right --distancefrom right --widthtype request &
 nm-applet &
