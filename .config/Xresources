@@ -5,6 +5,14 @@ dmenu.background: #171c28
 dmenu.foreground: #5ccfe6
 dmenu.selbackground: #5ccfe6
 dmenu.selforeground: #171c28
+! xmenu
+xmenu.font: JetBrainsMono-22
+xmenu.background: #171c28
+xmenu.foreground: #5ccfe6
+xmenu.selbackground: #5ccfe6
+xmenu.selforeground: #171c28
+xmenu.border: #5ccfe6
+
 ! st
 st.font: JetBrainsMono-20
 st.alpha: 0.95
