@@ -1,0 +1,20 @@
+IMG:/home/john/.local/share/icons/xmenu/st.png,Terminal,st
+IMG:/home/john/.local/share/icons/xmenu/firefox.png,Firefox,firefox
+Applications,,
+,IMG:/home/john/.local/share/icons/xmenu/thunar.png,Thunar,thunar
+,IMG:/home/john/.local/share/icons/xmenu/discord.png,Discord,discord
+,IMG:/home/john/.local/share/icons/xmenu/slack.png,Slack,slack
+,IMG:/home/john/.local/share/icons/xmenu/zoom.png,Zoom,zoom
+,IMG:/home/john/.local/share/icons/xmenu/gimp.png,Gimp,gimp
+,IMG:/home/john/.local/share/icons/xmenu/libreoffice.png,Libreoffice,libreoffice
+,IMG:/home/john/.local/share/icons/xmenu/qtcreator.png,Qt-Creator,qtcreator
+Websites,,
+,IMG:/home/john/.local/share/icons/xmenu/cpp.png,Cppreference,firefox https://en.cppreference.com/w/
+,IMG:/home/john/.local/share/icons/xmenu/arch.png,Arch Wiki,firefox https://wiki.archlinux.org/
+Config Files,,
+,Zsh Profile,st -e nvim -c "cd $HOME" "$HOME/.zprofile"
+,Zsh Config File,st -e nvim -c "cd $HOME/.config/zsh" "$HOME/.config/zsh/.zshrc"
+,Xresources,st -e nvim -c "cd $HOME/.config" "$HOME/.config/Xresources"
+,dwm,st -e nvim -c "cd $HOME/builds/mine/dwm" "$HOME/builds/mine/dwm/config.h"
+,dmenu,st -e nvim -c "cd $HOME/builds/mine/dmenu" "$HOME/builds/mine/dmenu/config.h"
+,st,st -e nvim -c "cd $HOME/builds/mine/st" "$HOME/builds/mine/st/config.h"
