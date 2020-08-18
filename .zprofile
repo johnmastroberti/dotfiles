@@ -43,6 +43,11 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 export LAPTOP="192.168.50.54"
 export RASPI="192.168.50.175"
 
+#Geant4 configuration
+if [ -d /home/john/.local/lib/geant ]; then
+  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
+fi
+
 [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
 
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"

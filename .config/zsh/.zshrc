@@ -105,18 +105,14 @@ else
 fi
 [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
 [ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
-#source $DIST_BASE_DIR/util/dist_env_vars
-#source $DIST_BASE_DIR/util/acc_vars.sh
-#export PATH="/home/john/bmad_dist/production/bin:/home/john/bmad_dist/debug/bin:$PATH:/home/john/bmad_dist/util"
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824
 
 #Geant4 configuration
-if [ -d /home/john/.local/lib/geant ]; then
-  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
-  #cd "/home/john/geant/geant4.10.06-install/bin" && source "geant4.sh" && cd
-fi
+#if [ -d /home/john/.local/lib/geant ]; then
+#  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
+#fi
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
