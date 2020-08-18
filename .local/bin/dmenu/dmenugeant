@@ -1,0 +1,18 @@
+#!/usr/bin/sh
+# Provides a dmenu interface to search the Geant4 codebase
+
+search_term="$(dmenu -p "Search Geant4:" < /dev/null)"
+
+filename="$(grep -E -d recurse --exclude=tags "$search_term" "$G4INSTALL/source" \
+            | grep -E '(/src/|/include/)' \
+            | grep -v '^.*//.*$' \
+            | sed "s|$G4INSTALL||g" \
+            | dmenu -p "Select File:" \
+            | sed 's/:.*//')"
+filename="${G4INSTALL}${filename}"
+DIR="$(echo "$filename" | grep -o '.*/')"
+
+if [ -f "$filename" ]; then
+  st -e nvim -c "cd $DIR" "$filename" & disown
+fi
+
