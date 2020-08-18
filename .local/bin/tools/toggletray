@@ -1,0 +1,8 @@
+#!/bin/sh
+TRAYPID="$(pidof trayer)"
+
+if [ -z "$TRAYPID" ]; then
+ trayer --edge bottom --align right --distancefrom right --widthtype request &
+else
+  kill $TRAYPID
+fi

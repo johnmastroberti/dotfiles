@@ -1,0 +1,8 @@
+#!/bin/sh
+# Uses dmenu to open a browser window with a search on cppreference.com
+
+QUERY=$(dmenu -p "Search on cppreference.com:" </dev/null)
+# Replace : and space as appropriate
+QUERY=$(echo $QUERY | sed 's/:/%3A/g;s/ /+/g')
+BASE_URL='https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search='
+vimb "${BASE_URL}${QUERY}"

@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /home/john/Dropbox/dnd/
+evince Character\ Sheets/elis.pdf & disown
+evince -p 71 Rulebooks/handbook.pdf & disown

@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+file="$(getf $1 | grep 'File:' | grep -Eo '(/[a-zA-Z0-9_]*)*.f90')"
+nvim "$file"

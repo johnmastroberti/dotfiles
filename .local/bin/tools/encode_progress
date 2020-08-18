@@ -1,0 +1,3 @@
+#!/bin/zsh
+DIR="/mnt/games/Videos/nicole"
+echo "$(ls "$DIR"/*.mp4 | wc -l)"/"$(ls "$DIR"/*.(webm|mkv) | wc -l)"

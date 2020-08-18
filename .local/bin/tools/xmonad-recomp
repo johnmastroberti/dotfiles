@@ -1,0 +1,10 @@
+#!/bin/zsh
+XMONADERR=/tmp/xmonad-comp-errs
+xmonad --recompile 2>/tmp/xmonad-comp-errs
+if [ $? != 0 ]; then
+  errors=$(grep '.*.hs:[0-9]*:[0-9].*' $XMONADERR | grep -o ':[0-9]*:' | grep -o '[0-9]*')
+  errors_verbose=$(for e in $errors; do echo "Error on line" $e; done)
+  notify-send --urgency=critical "Xmonad Compilation Failed" "$errors_verbose"
+else
+  notify-send --urgency=low "Xmonad Compilation Succeeded" "M-S-r to restart"
+fi

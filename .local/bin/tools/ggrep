@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+filename="$(grep --color=auto -d recurse --exclude=tags "$1" "$G4INSTALL/source" | dmenu -l 5 | sed 's/:.*$//')"
+[ -f "$filename" ] && $EDITOR $filename
