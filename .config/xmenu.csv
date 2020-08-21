@@ -3,6 +3,7 @@ IMG:/home/john/.local/share/icons/xmenu/firefox.png,Firefox,firefox
 Applications,,
 ,IMG:/home/john/.local/share/icons/xmenu/thunar.png,Thunar,thunar
 ,IMG:/home/john/.local/share/icons/xmenu/discord.png,Discord,discord
+,IMG:/home/john/.local/share/icons/xmenu/steam.png,Steam,steam
 ,IMG:/home/john/.local/share/icons/xmenu/slack.png,Slack,slack
 ,IMG:/home/john/.local/share/icons/xmenu/zoom.png,Zoom,zoom
 ,IMG:/home/john/.local/share/icons/xmenu/gimp.png,Gimp,gimp
@@ -18,3 +19,9 @@ Config Files,,
 ,dwm,st -e nvim -c "cd $HOME/builds/mine/dwm" "$HOME/builds/mine/dwm/config.h"
 ,dmenu,st -e nvim -c "cd $HOME/builds/mine/dmenu" "$HOME/builds/mine/dmenu/config.h"
 ,st,st -e nvim -c "cd $HOME/builds/mine/st" "$HOME/builds/mine/st/config.h"
+
+System,,
+,Shutdown,shutdown now
+,Reboot,reboot
+,Sleep,systemctl suspend
+,Log Out,killall dwm
