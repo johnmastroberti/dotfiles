@@ -484,6 +484,11 @@ function TeXinit()
   1d
 endfunction
 command Texinit call TeXinit()
+function TeXdate()
+  let l:format_string = "'+%B %-d, %Y'"
+  read !echo "\date{$(date '+\%B \%-d, \%Y')}"
+endfunction
+command Texdate call TeXdate()
 " General
 autocmd FileType tex inoremap ,en \begin{enumerate}<Enter>\item<Enter><Enter><Enter>\end{enumerate}<Enter><++><Esc>3ki
 autocmd FileType tex inoremap ,it \begin{itemize}<Enter>\item<Enter><Enter><Enter>\end{itemize}<Enter><++><Esc>3ki
