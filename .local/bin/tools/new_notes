@@ -2,21 +2,32 @@
 # Gives a dmenu prompt for what class the notes are for,
 # Then opens vim in st with a new notes file (properly named)
 
+CLASSES_BASE="$HOME/Documents/school"
+CLASSES_FILE="$CLASSES_BASE/classes.dat"
+NAME_FIELD="2"
+DIR_FIELD="1"
+
 # The dmenu prompt
-CLASS=$(echo -e "AEP-4380\nPHYS-3317\nPHYS-4410" | dmenu)
-if [ -n $CLASS ]; then
-  # Make a new notes file
-  NEWFILE="$(date +%m-%d.tex)"
-  cd ~/Dropbox/TeX/$CLASS/notes/
-  # Don't clobber the file if it already exists
-  if [ -f $NEWFILE ]; then
-    # Open it
-    st -T 'st' -e open_notes $NEWFILE $CLASS
-  else
+SELECTION="$(sed -n '2,$p' $CLASSES_FILE | cut -f $NAME_FIELD | dmenu)"
+[ -z "$SELECTION" ] && exit 1
+CLASS="$(grep "$SELECTION" $CLASSES_FILE | cut -f $DIR_FIELD)"
+[ -z "$CLASS" ] && exit 1
+
+CLASS_DIR="$CLASSES_BASE/$CLASS/notes"
+# Make a new notes file
+NEWFILE="$(date +%m-%d.tex)"
+mkdir -p $CLASS_DIR
+cd $CLASS_DIR
+# Don't clobber the file if it already exists
+if [ -f $NEWFILE ]; then
+  # Open it
+  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR
+else
+  if [ -f template.tex ]; then
     cp template.tex $NEWFILE
     # Fix the date line in the new file
     sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
-    # Open the file in st
-    st -T 'st' -e open_notes $NEWFILE $CLASS
   fi
+  # Open the file in st
+  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR
 fi
