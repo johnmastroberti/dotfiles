@@ -1,6 +1,11 @@
 #!/bin/sh
 # Give a battery name (e.g. BAT0) as an argument.
 
+case $BLOCK_BUTTON in
+  5) xbacklight -inc 10 ;;
+  4) xbacklight -dec 10 ;;
+esac
+
 capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
 status=$(cat /sys/class/power_supply/"$1"/status)
 
