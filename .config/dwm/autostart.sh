@@ -11,3 +11,4 @@ while true; do
 done &
 dwmblocks &
 nm-applet &
+blueman-applet &
