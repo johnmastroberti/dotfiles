@@ -481,7 +481,7 @@ command Tgp call TerminalGnuplotShortcut()
 """LATEX
 function TeXinit()
   read ~/.config/nvim/TeX_snippets/skel.tex
-  1d
+  "1d
 endfunction
 command Texinit call TeXinit()
 function TeXdate()
