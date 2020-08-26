@@ -509,6 +509,7 @@ autocmd FileType tex inoremap ,ct \begin{figure}[h]<Enter>\begin{circuitikz} \dr
 " Figures
 autocmd FileType tex inoremap ,fi \begin{figure}<Enter>\centering<Enter>\includegraphics[]{<++>}<Enter>\caption{<++><Enter>\end{figure}<Enter><++><Esc>3kf[a
 autocmd FileType tex inoremap ,mp \begin{minipage}{}<Enter><++><Enter>\end{minipage}<Enter><++><Esc>3k$i
+autocmd FileType tex inoremap ,tp \begin{center}[h]<Enter>\begin{tikzpicture}<Enter><Enter>\end{tikzpicture}<Enter>\end{center}<Enter><++><Esc>3ki
 " Plot figure
 autocmd FileType tex inoremap ,fp <Esc>:read ~/.config/nvim/TeX_snippets/plot.tex<CR>
 autocmd FileType tex inoremap ,gp \addplot gnuplot [raw gnuplot, mark=none, black, thick]{<Enter><Enter>};<Esc>ki
