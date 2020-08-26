@@ -1,0 +1,10 @@
+#!/bin/sh
+# Dmenu interface for a variety of search engines
+
+ENGINES=$HOME/.local/share/search_engines
+ENG="$(cut -f1 "$ENGINES" | dmenu -p "Search Engine:")"
+QUERRY="$(dmenu -p "Querry:" </dev/null)"
+
+URL="$(grep "$ENG" "$ENGINES" | cut -f2)""$(echo "$QUERRY" | tr ' ' '+')"
+
+$BROWSER "$URL"

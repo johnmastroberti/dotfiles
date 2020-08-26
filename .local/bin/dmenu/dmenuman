@@ -1,0 +1,8 @@
+#!/bin/sh
+# dmenu based man prompt
+
+PAGE="$(apropos . | grep -oP '^.*?\([1-9].*?\)' | sort -k2 | dmenu -p "Man page:")"
+SECTION="$(echo "$PAGE" | grep -oE '\([0-9].{,2}\)' | tr -d '()')"
+TITLE="$(echo $PAGE | cut -d' ' -f1)"
+[ -z "$SECTION" ] && exit 1
+st -e man $SECTION $TITLE
