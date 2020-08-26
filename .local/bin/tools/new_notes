@@ -21,7 +21,7 @@ cd $CLASS_DIR
 # Don't clobber the file if it already exists
 if [ -f $NEWFILE ]; then
   # Open it
-  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR
+  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR $CLASS
 else
   if [ -f template.tex ]; then
     cp template.tex $NEWFILE
@@ -29,5 +29,5 @@ else
     sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
   fi
   # Open the file in st
-  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR
+  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR $CLASS
 fi

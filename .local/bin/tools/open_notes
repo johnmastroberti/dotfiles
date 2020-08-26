@@ -1,7 +1,14 @@
 #!/bin/sh
-# Opens the notes file $1 in the directory ~/Dropbox/TeX/$2/notes/
+# Opens the notes file $1 in the directory $2, performing initialization for new files
 # $1: the file name
 # $2: the directory where it resides
+# $3: class name
 cd "$2"
-$EDITOR $1
+if [ -f "$1" ]; then
+  $EDITOR $1
+else
+  CLASS="$(echo $3 | tr '[:lower:]' '[:upper:]')"
+  # If file is new, perform initialization
+  $EDITOR -c Texinit -c "norm ,,Class Notes" -c"norm ,,$CLASS" -c Texdate -c "norm ,," $1
+fi
 $SHELL
