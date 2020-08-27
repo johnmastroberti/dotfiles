@@ -1,0 +1,15 @@
+#!/bin/sh
+# Scans a c++ build tree to generate makefile dependency rules
+# for source file dependence on headers
+# Format: all implementation files should be in ./src,
+#         all header files should be in ./include
+#         release objects should be in ./obj
+#         debug objects should be in ./objd
+
+# Scan for source files
+for sourcefile in $(find src -regex '.*.cpp'); do
+  RULE="$(cpp -Iinclude -MM $sourcefile)"
+  for prefix in obj objd; do
+    echo $prefix/$RULE
+  done
+done
