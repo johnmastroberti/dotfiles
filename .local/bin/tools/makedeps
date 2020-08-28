@@ -8,7 +8,7 @@
 
 # Scan for source files
 for sourcefile in $(find src -regex '.*.cpp'); do
-  RULE="$(cpp -Iinclude -MM $sourcefile)"
+  RULE="$(cpp -Iinclude -MM $sourcefile | tr -d '\\\n')"
   for prefix in obj objd; do
     echo $prefix/$RULE
   done
