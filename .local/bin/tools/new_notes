@@ -8,7 +8,7 @@ NAME_FIELD="2"
 DIR_FIELD="1"
 
 # The dmenu prompt
-SELECTION="$(sed -n '2,$p' $CLASSES_FILE | cut -f $NAME_FIELD | dmenu)"
+SELECTION="$(sed -n '2,$p' $CLASSES_FILE | cut -f $NAME_FIELD | dmenu -p "Select Course:")"
 [ -z "$SELECTION" ] && exit 1
 CLASS="$(grep "$SELECTION" $CLASSES_FILE | cut -f $DIR_FIELD)"
 [ -z "$CLASS" ] && exit 1
