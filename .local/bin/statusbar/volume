@@ -2,6 +2,7 @@
 
 case $BLOCK_BUTTON in
   1) st -t "popup" -f 'monospace:size=16' -g '80x30-0+0' -e pulsemixer ;;
+  2) mpc toggle ;;
   3) st -t "popup" -g '80x30-0+0' -e ncmpcpp ;;
 esac
 
