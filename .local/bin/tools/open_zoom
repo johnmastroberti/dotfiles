@@ -1,0 +1,16 @@
+#!/bin/zsh
+# Gives a dmenu prompt for all my zoom meetings.
+# After selecting one, that link is opened in zoom
+
+CLASSES_BASE="$HOME/Documents/school"
+ZOOM_FILE="$CLASSES_BASE/zoom.dat"
+NAME_FIELD="1"
+LINK_FIELD="2"
+
+# The dmenu prompt
+SELECTION="$(sed -n '2,$p' $ZOOM_FILE | cut -f $NAME_FIELD | dmenu -p "Select Meeting:")"
+[ -z "$SELECTION" ] && exit 1
+LINK="$(grep "$SELECTION" $ZOOM_FILE | cut -f $LINK_FIELD)"
+[ -z "$LINK" ] && exit 1
+
+xdg-open "$LINK" & disown
