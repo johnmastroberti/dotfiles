@@ -19,6 +19,18 @@ Config Files,,
 ,dwm,st -e nvim -c "cd $HOME/builds/mine/dwm" "$HOME/builds/mine/dwm/config.h"
 ,dmenu,st -e nvim -c "cd $HOME/builds/mine/dmenu" "$HOME/builds/mine/dmenu/config.h"
 ,st,st -e nvim -c "cd $HOME/builds/mine/st" "$HOME/builds/mine/st/config.h"
+Zoom Meetings,,
+,Classical Mechanics (Monday),xdg-open "https://iu.zoom.us/j/95975207976?pwd=S2J6THh2Y0ZDM0VabU5RWldQbVoxQT09" & disown
+,Classical Mechanics (Wednesday),xdg-open "https://iu.zoom.us/j/91426879725?pwd=b2hKRkZ2SjVpQ3owQTRoeVVpWUI3Zz09" & disown
+,Quantum Mechanics,xdg-open "https://iu.zoom.us/j/94498266075?pwd=cnExbnYyUktGQTlaSnQzWDgwOFFkUT09" & disown
+,Electricity and Magnetism,xdg-open "https://iu.zoom.us/j/682393491?pwd=WStxekxRbjVudTZidXlJKzQ2MktzUT09" & disown
+,P201 Lab 1,xdg-open "https://iu.zoom.us/j/91000020883?pwd=c1NOaFc5RmJEVGgxclU2aVFaRVpXdz09" & disown
+,P201 Lab 2,xdg-open "https://iu.zoom.us/j/92908195749?pwd=MmYrV0x0ZFpzUFBWU25DK1pvdzhRdz09" & disown
+,Teaching Practicum,xdg-open "https://iu.zoom.us/j/95344348946?pwd=RVFHY052ZkNXcGFmUnBzUW5Ncnk3dz09" & disown
+,Lab AI Meeting,xdg-open "https://iu.zoom.us/j/91474347116" & disown
+,Physics Tea,xdg-open "https://iu.zoom.us/j/155087528?pwd=VHkzZGprZkJsZGdRbnllZXRQTUJndz09" & disown
+,Colloquium,xdg-open "https://iu.zoom.us/w/94591808713?tk=sR6QBBJZg8G5BOUoLiO9k-t8-8vDkywVOOOmWuS2fe0.DQIAAAAWBhx0yRZBTC1IeV9QWFJIbXo4U0FJVlZMODNBAAAAAAAAAAAAAAAAAAAAAAAAAAAA&pwd=bWxHMDBzYnl5T0tuMnk3VnZzYnZ5Zz0https://iu.zoom.us/w/94591808713?tk=sR6QBBJZg8G5BOUoLiO9k-t8-" & disown
+,Physics Forum,xdg-open "https://iu.zoom.us/j/98658112733" & disown
 
 System,,
 ,Shutdown,shutdown now
