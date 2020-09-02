@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Gives a dmenu prompt for what class the hw is for,
 # Then opens vim in st with a new hw file (properly named)
 
@@ -15,13 +15,13 @@ CLASS="$(grep "$SELECTION" $CLASSES_FILE | cut -f $DIR_FIELD)"
 
 CLASS_DIR="$CLASSES_BASE/$CLASS/hw"
 # Make a new hw file or open the latest hw
-HWCOUNT=$(( $(ls $CLASS_DIR | wc -l) ))
-if [ -ge $HWCOUNT 0 ]; then
+HWCOUNT=$(( $(ls $CLASS_DIR/hw*.tex | wc -l) ))
+if [ $HWCOUNT -gt 0 ]; then
   MAKE_NEW="$(echo -e "Create\nOpen" | dmenu -p "Create new hw, or open homework ${HWCOUNT}?")"
 else
   MAKE_NEW="Create"
 fi
-if [ "$MAKE_NEW" == "Create" ]; then
+if [ "$MAKE_NEW" = "Create" ]; then
   HWCOUNT=$(( $HWCOUNT + 1))
   NEWFILE="hw${HWCOUNT}.tex"
   mkdir -p $CLASS_DIR
@@ -40,5 +40,6 @@ if [ "$MAKE_NEW" == "Create" ]; then
     st -T 'st' -e open_hw $NEWFILE $CLASS_DIR $CLASS
   fi
 else
+  NEWFILE="hw${HWCOUNT}.tex"
   st -T 'st' -e open_hw $NEWFILE $CLASS_DIR $CLASS
 fi
