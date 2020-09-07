@@ -496,6 +496,7 @@ autocmd FileType tex inoremap ,pf \begin{proof}<Enter><Enter>\end{proof}<Enter><
 autocmd FileType tex inoremap ,le \begin{lemma}{}<Enter><++><Enter>\end{lemma}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,vb \begin{verbatim}<Enter><Enter>\end{verbatim}<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,pr \begin{problem}{}<Enter><++><Enter>\end{problem}<Enter><++><Esc>3k$i
+autocmd FileType tex inoremap ,sol \begin{solution}{}<Enter><++><Enter>\end{solution}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,ex \begin{exercise}{}<Enter><++><Enter>\end{exercise}<Enter><++><Esc>3k$i
 autocmd FileType tex inoremap ,sec \section{}<Enter><++><Esc>k$i
 autocmd FileType tex inoremap ,ssec \subsection{}<Enter><++><Esc>k$i
