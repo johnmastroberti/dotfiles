@@ -1,5 +1,7 @@
 #!/bin/sh
 alias ka="killall" \
+  cp="cp -iv" \
+  mv="mv -iv" \
   :q="exit" \
   gp="gnuplot" \
   mutt="neomutt" \
