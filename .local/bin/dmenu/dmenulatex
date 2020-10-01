@@ -1,0 +1,22 @@
+#!/bin/sh
+# Choose which script in ~/.local/bin to edit
+LATEX_BASE="$HOME/.config/nvim/TeX_snippets/pkg" # No trailing /
+FILES="General
+Classical Mechanics
+Quantum Mechanics
+Electricity & Magnetism
+Units"
+
+FILE=""
+CHOICE="$(echo "$FILES" | dmenu -p "Edit a macro file:")"
+case "$CHOICE" in
+  "General")                  FILE="jm-macro-general.sty"   ;;
+  "Classical Mechanics")      FILE="jm-macro-classical.sty" ;;
+  "Quantum Mechanics")        FILE="jm-macro-quantum.sty"   ;;
+  "Electricity & Magnetism")  FILE="jm-macro-em.sty"        ;;
+  "Units")                    FILE="jm-macro-units.sty"     ;;
+esac
+
+if [ -n "$FILE" ]; then
+  st -e nvim -c "cd $LATEX_BASE" -c '$-2' "$LATEX_BASE/$FILE" & disown
+fi
