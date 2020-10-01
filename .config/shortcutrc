@@ -6,6 +6,7 @@ m="cd ~/Music && ls -a" \
 pp="cd ~/Pictures && ls -a" \
 vv="cd ~/Videos && ls -a" \
 cf="cd ~/.config && ls -a" \
+cft="cd ~/.config/nvim/TeX_snippets && ls -a" \
 sc="cd ~/.local/bin && ls -a" \
 mn="cd /mnt && ls -a" \
 g="cd ~/bmad_dist/tao/python/pytao/gui && ls -a" \

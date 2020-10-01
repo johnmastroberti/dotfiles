@@ -1,0 +1,28 @@
+\ProvidesPackage{jm}[My LaTeX Setup]
+
+% Packages
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsmath,amsthm,amssymb,graphicx,textcomp,gensymb,cite,multicol,mathtools}
+\RequirePackage{color}
+\RequirePackage[english]{babel}
+\RequirePackage[autostyle, english = american]{csquotes}
+\RequirePackage{tikz, pgfplots}
+
+
+% Macros
+\RequirePackage{jm-macro-general}
+\RequirePackage{jm-macro-classical}
+\RequirePackage{jm-macro-quantum}
+\RequirePackage{jm-macro-em}
+\RequirePackage{jm-macro-units}
+\RequirePackage{jm-env}
+
+\ProcessOptions\relax
+
+% Misc Configuration
+\MakeOuterQuote{"}
+\graphicspath{{figures/}}
+\allowdisplaybreaks
+\pgfplotsset{compat=newest}
+
+\endinput

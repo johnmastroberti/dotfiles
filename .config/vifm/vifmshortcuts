@@ -27,6 +27,10 @@ map gcf :cd ~/.config<CR>
 map tcf <tab>:cd ~/.config<CR><tab>
 map Mcf <tab>:cd ~/.config<CR><tab>:mo<CR>
 map Ycf <tab>:cd ~/.config<CR><tab>:co<CR>
+map gcft :cd ~/.config/nvim/TeX_snippets<CR>
+map tcft <tab>:cd ~/.config/nvim/TeX_snippets<CR><tab>
+map Mcft <tab>:cd ~/.config/nvim/TeX_snippets<CR><tab>:mo<CR>
+map Ycft <tab>:cd ~/.config/nvim/TeX_snippets<CR><tab>:co<CR>
 map gsc :cd ~/.local/bin<CR>
 map tsc <tab>:cd ~/.local/bin<CR><tab>
 map Msc <tab>:cd ~/.local/bin<CR><tab>:mo<CR>
