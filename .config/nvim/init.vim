@@ -26,6 +26,7 @@ Plug 'johnmastroberti/vim-opengl'
 Plug 'igankevich/mesonic'
 Plug 'fedorenchik/qt-support.vim'
 Plug 'ap/vim-css-color'
+Plug 'scarface-one/vim-dlang-phobos-highlighter'
 call plug#end()
 packadd vimball
 

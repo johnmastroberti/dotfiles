@@ -1,56 +1,92 @@
 Xcursor.theme: neutral
 ! dmenu
 dmenu.font: JetBrainsMono-22
-dmenu.background: #171c28
-dmenu.foreground: #5ccfe6
-dmenu.selbackground: #5ccfe6
-dmenu.selforeground: #171c28
+dmenu.background: #090300
+dmenu.foreground: #a5a2a2
+dmenu.selbackground: #a5a2a2
+dmenu.selforeground: #090300
 ! xmenu
 xmenu.font: JetBrainsMono-22
-xmenu.background: #171c28
-xmenu.foreground: #5ccfe6
-xmenu.selbackground: #5ccfe6
-xmenu.selforeground: #171c28
-xmenu.border: #5ccfe6
+xmenu.background: #090300
+xmenu.foreground: #a5a2a2
+xmenu.selbackground: #a5a2a2
+xmenu.selforeground: #090300
+xmenu.border: #fded02
 
 ! st
 st.font: JetBrainsMono-20
 st.alpha: 0.95
-st.foreground:   #a2aabc
-st.background:   #1d2433
-st.cursorColor:  #a2aabc
+! special
+st.foreground:   #a5a2a2
+st.background:   #090300
+st.cursorColor:  #a5a2a2
 
 ! black
-st.color0:       #171c28
-st.color8:       #8695b7
+st.color0:       #090300
+st.color8:       #5c5855
 
 ! red
-st.color1:       #ef6b73
-st.color9:       #f07178
+st.color1:       #db2d20
+st.color9:       #db2d20
 
 ! green
-st.color2:       #bae67e
-st.color10:      #bae67e
+st.color2:       #01a252
+st.color10:      #01a252
 
 ! yellow
-st.color3:       #ffd580
-st.color11:      #ffd580
+st.color3:       #fded02
+st.color11:      #fded02
 
 ! blue
-st.color4:       #5ccfe6
-st.color12:      #5ccfe6
+st.color4:       #01a0e4
+st.color12:      #01a0e4
 
 ! magenta
-st.color5:       #c3a6ff
-st.color13:      #c3a6ff
+st.color5:       #a16a94
+st.color13:      #a16a94
 
 ! cyan
-st.color6:       #5ccfe6
-st.color14:      #5ccfe6
+st.color6:       #b5e4f4
+st.color14:      #b5e4f4
 
 ! white
-st.color7:       #d7dce2
-st.color15:      #d7dce2
+st.color7:       #a5a2a2
+st.color15:      #f7f7f7
+!st.foreground:   #a2aabc
+!st.background:   #1d2433
+!st.cursorColor:  #a2aabc
+!
+!! black
+!st.color0:       #171c28
+!st.color8:       #8695b7
+!
+!! red
+!st.color1:       #ef6b73
+!st.color9:       #f07178
+!
+!! green
+!st.color2:       #bae67e
+!st.color10:      #bae67e
+!
+!! yellow
+!st.color3:       #ffd580
+!st.color11:      #ffd580
+!
+!! blue
+!st.color4:       #5ccfe6
+!st.color12:      #5ccfe6
+!
+!! magenta
+!st.color5:       #c3a6ff
+!st.color13:      #c3a6ff
+!
+!! cyan
+!st.color6:       #5ccfe6
+!st.color14:      #5ccfe6
+!
+!! white
+!st.color7:       #d7dce2
+!st.color15:      #d7dce2
 
 ! dwm settings
 
