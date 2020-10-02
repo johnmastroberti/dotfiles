@@ -12,3 +12,4 @@ image/x-portable-graymap=sxiv.desktop
 image/x-tga=sxiv.desktop
 image/x-xpixmap=sxiv.desktop
 inode/directory=thunar.desktop
+application/pdf=zathura.desktop
