@@ -1,12 +1,11 @@
 Xcursor.theme: neutral
+#include "Xresources.font"
 ! dmenu
-dmenu.font: JetBrainsMono-22
 dmenu.background: #090300
 dmenu.foreground: #a5a2a2
 dmenu.selbackground: #a5a2a2
 dmenu.selforeground: #090300
 ! xmenu
-xmenu.font: JetBrainsMono-22
 xmenu.background: #090300
 xmenu.foreground: #a5a2a2
 xmenu.selbackground: #a5a2a2
@@ -14,8 +13,7 @@ xmenu.selforeground: #090300
 xmenu.border: #fded02
 
 ! st
-st.font: JetBrainsMono-20
-st.alpha: 0.95
+st.alpha: 0.9
 ! special
 st.foreground:   #a5a2a2
 st.background:   #090300
