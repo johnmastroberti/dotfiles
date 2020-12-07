@@ -22,6 +22,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 export GOPATH="$HOME/.local/go"
+export GOBIN="$HOME/.local/go/bin"
+export PATH="$PATH:$GOBIN"
 export GNUPLOT_LIB="$XDG_CONFIG_HOME/gnuplot"
 export LESSHISTFILE="-"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"

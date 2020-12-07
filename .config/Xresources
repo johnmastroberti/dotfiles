@@ -1,55 +1,92 @@
 Xcursor.theme: neutral
 #include "Xresources.font"
 ! dmenu
-dmenu.background: #090300
-dmenu.foreground: #a5a2a2
-dmenu.selbackground: #a5a2a2
-dmenu.selforeground: #090300
+dmenu.background: #2a2926
+dmenu.foreground: #f7f7f7
+dmenu.selbackground: #9c5e21
+dmenu.selforeground: #f7f7f7
 ! xmenu
-xmenu.background: #090300
-xmenu.foreground: #a5a2a2
-xmenu.selbackground: #a5a2a2
-xmenu.selforeground: #090300
-xmenu.border: #fded02
+xmenu.background: #2a2926
+xmenu.foreground: #f7f7f7
+xmenu.selbackground: #9c5e21
+xmenu.selforeground: #f7f7f7
+xmenu.border: #9c5e21
 
 ! st
-st.alpha: 0.9
+st.alpha: 0.8
 ! special
-st.foreground:   #a5a2a2
-st.background:   #090300
-st.cursorColor:  #a5a2a2
+st.foreground:   #f7f7f7
+st.background:   #2a2926
+st.cursorColor:  #f7f7f7
 
 ! black
-st.color0:       #090300
-st.color8:       #5c5855
+st.color0:       #2e3436
+st.color8:       #555753
 
 ! red
-st.color1:       #db2d20
-st.color9:       #db2d20
+st.color1:       #cc0000
+st.color9:       #ef2929
 
 ! green
-st.color2:       #01a252
-st.color10:      #01a252
+st.color2:       #4e9a06
+st.color10:      #8ae234
 
 ! yellow
-st.color3:       #fded02
-st.color11:      #fded02
+st.color3:       #c4a000
+st.color11:      #fce94f
 
 ! blue
-st.color4:       #01a0e4
-st.color12:      #01a0e4
+st.color4:       #3465a4
+st.color12:      #729fcf
 
 ! magenta
-st.color5:       #a16a94
-st.color13:      #a16a94
+st.color5:       #75507b
+st.color13:      #ad7fa8
 
 ! cyan
-st.color6:       #b5e4f4
-st.color14:      #b5e4f4
+st.color6:       #06989a
+st.color14:      #34e2e2
 
 ! white
-st.color7:       #a5a2a2
-st.color15:      #f7f7f7
+st.color7:       #d3d7cf
+st.color15:      #eeeeec
+
+! special
+!st.foreground:   #a5a2a2
+!st.background:   #090300
+!st.cursorColor:  #a5a2a2
+!
+!! black
+!st.color0:       #090300
+!st.color8:       #5c5855
+!
+!! red
+!st.color1:       #db2d20
+!st.color9:       #db2d20
+!
+!! green
+!st.color2:       #01a252
+!st.color10:      #01a252
+!
+!! yellow
+!st.color3:       #fded02
+!st.color11:      #fded02
+!
+!! blue
+!st.color4:       #01a0e4
+!st.color12:      #01a0e4
+!
+!! magenta
+!st.color5:       #a16a94
+!st.color13:      #a16a94
+!
+!! cyan
+!st.color6:       #b5e4f4
+!st.color14:      #b5e4f4
+!
+!! white
+!st.color7:       #a5a2a2
+!st.color15:      #f7f7f7
 !st.foreground:   #a2aabc
 !st.background:   #1d2433
 !st.cursorColor:  #a2aabc

@@ -94,20 +94,20 @@ bindkey '^e' edit-command-line
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 #Bmad/Tao configuration
-export DIST_BASE_DIR="/home/john/bmad_dist"
-export DIST_SETUP_QUIET="Y"
-export ACC_LOCAL_ROOT="/home/john/bmad_dist"
-export LOG=$ACC_LOCAL_ROOT/compile.log
-if [ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ]; then
-  source ${DIST_BASE_DIR}/util/dist_source_me.zsh
-else
-  echo "Note: bmad not configured..."
-fi
-[ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
-[ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
-ulimit -S -c 0
-ulimit -S -s 10240
-ulimit -S -d 25165824
+# export DIST_BASE_DIR="/home/john/bmad_dist"
+# export DIST_SETUP_QUIET="Y"
+# export ACC_LOCAL_ROOT="/home/john/bmad_dist"
+# export LOG=$ACC_LOCAL_ROOT/compile.log
+# if [ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ]; then
+#   source ${DIST_BASE_DIR}/util/dist_source_me.zsh
+# else
+#   echo "Note: bmad not configured..."
+# fi
+# [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
+# [ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
+# ulimit -S -c 0
+# ulimit -S -s 10240
+# ulimit -S -d 25165824
 
 #Geant4 configuration
 #if [ -d /home/john/.local/lib/geant ]; then
@@ -122,7 +122,7 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
     eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" >/dev/null
 fi
 
-neofetch
+#neofetch
 #eval "$(pyenv init -)"
 ## Fix for pyenv causing bsdtar not to be found
 #export PATH="/home/john/.pyenv-fixes:$PATH"

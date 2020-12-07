@@ -13,4 +13,4 @@ setbg /home/john/Pictures/avatar.jpg
 dwmblocks & disown
 nm-applet & disown
 blueman-applet & disown
-thunderbird & disown
+evolution & disown
