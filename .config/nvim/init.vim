@@ -113,6 +113,8 @@ packadd vimball
   autocmd BufRead cmake.* set filetype=cmake
   autocmd BufRead *.icc set filetype=cpp
   autocmd BufRead xmobarrc* set filetype=haskell
+  autocmd BufRead,BufNewFile *.recipe set filetype=recipe
+  autocmd BufRead,BufNewFile ~/Documents/projects/muwm/*.h set filetype=c
 
   " Recipes
   autocmd BufRead,BufNewFile *.recipe set filetype=recipe
@@ -194,6 +196,9 @@ packadd vimball
   autocmd BufWritePost ~/Documents*.cpp,~/Documents*.hpp !ctags $(du -a . | grep '.*\.[ch]pp' | sed 's|\./||' | cut -f2)
   autocmd BufWritePost ~/bmad_dist*.cpp,~/bmad_dist*.hpp !ctags $(du -a . | grep '.*\.[ch]pp' | sed 's|\./||' | cut -f2)
   autocmd BufWritePost ~/Documents/cl/code/*c !ctags -R .
+  if filereadable('Makefile')
+    autocmd BufWritePost * !ctags -R .
+  endif
   " Ignore tags file with wildcard expansion
   set wildignore+=tags
   " Tagbar
@@ -384,7 +389,7 @@ endfunction
 
 function OpenHeader(split_type)
   " Possible file extensions for C++ source and header files
-  let l:source_extensions = ['cpp', 'cc', 'C']
+  let l:source_extensions = ['cpp', 'cc', 'C', 'c']
   let l:header_extensions = ['hpp', 'hh', 'h']
   " Source name
   let l:sourcename = expand('%')
@@ -473,7 +478,7 @@ endfunction
 
 function OpenSource(split_type)
   " Possible file extensions for C++ source and header files
-  let l:source_extensions = ['cpp', 'cc', 'C']
+  let l:source_extensions = ['cpp', 'cc', 'C', 'c']
   let l:header_extensions = ['hpp', 'hh', 'h']
   " Source name
   let l:headername = expand('%')
