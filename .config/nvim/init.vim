@@ -31,11 +31,12 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'preservim/nerdcommenter'
+Plug 'elzr/vim-json'
+Plug 'tkhren/vim-fake'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 packadd vimball
 " }}}
-
 
 " Mappings {{{
 " Spell-check set to <leader>o, 'o' for 'orthography':
@@ -50,6 +51,13 @@ packadd vimball
   let g:NERDSpaceDelims = 1
   let g:NERDCommentEmptyLines = 1
   let g:NERDDefaultAlign = 'left'
+
+" Lorem Ipsum text
+  call fake#define('sentense', 'fake#capitalize('
+                          \ . 'join(map(range(fake#int(3,15)),"fake#gen(\"nonsense\")"))'
+                          \ . ' . fake#chars(1,"..............!?"))')
+  call fake#define('paragraph', 'join(map(range(fake#int(3,10)),"fake#gen(\"sentense\")"))')
+  inoremap <leader>lip <C-R>=fake#gen("paragraph")<CR>
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
@@ -105,6 +113,14 @@ packadd vimball
   autocmd BufRead cmake.* set filetype=cmake
   autocmd BufRead *.icc set filetype=cpp
   autocmd BufRead xmobarrc* set filetype=haskell
+
+  " Recipes
+  autocmd BufRead,BufNewFile *.recipe set filetype=recipe
+  func RecipeInit()
+    read template.recipe
+    1d
+  endfunction
+  autocmd BufNewFile *.recipe call RecipeInit()
 
 " Enable Goyo by default for mutt writting
 	" Goyo's width will be the line limit in mutt.
