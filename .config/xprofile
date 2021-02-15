@@ -3,8 +3,9 @@
 #setbg &		# Set the background
 #sxhkd &	# Bind keys
 refreshkeys & # Set up keyboard
-unclutter &		# Remove mouse when idle
-dunst &			# dunst for notifications
+[ -f "/home/john/.config/Xresources" ] && xrdb /home/john/.config/Xresources
+#unclutter &		# Remove mouse when idle
+#dunst &			# dunst for notifications
 mpd &
 mpdupdate &
 # GNOME keyring:

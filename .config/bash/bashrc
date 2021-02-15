@@ -38,6 +38,7 @@ rm ~/.Bmad_Dist_Setup_Log.tmp
 ulimit -S -c 0
 ulimit -S -s 10240
 ulimit -S -d 25165824
+cd /home/john/.local/lib/geant/geant4.10.06-build && source geant4make.sh && cd -
 
 neofetch
 #eval "$(pyenv init -)"

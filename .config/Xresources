@@ -13,7 +13,7 @@ xmenu.selforeground: #f7f7f7
 xmenu.border: #9c5e21
 
 ! st
-st.alpha: 0.8
+st.alpha: 0.95
 ! special
 st.foreground:   #f7f7f7
 st.background:   #2a2926
@@ -188,7 +188,7 @@ XTerm.vt100.locale: true
 XTerm.vt100.backarrowKey: false
 XTerm.ttyModes: erase ^?
 XTerm.vt100.reverseVideo: true
-XTerm.vt100.faceName: JetBrainsMono:size=22
+XTerm.vt100.faceName: JetBrainsMono:size=10
 ! special
 XTerm.foreground:   #a8a19f
 XTerm.background:   #1b1918

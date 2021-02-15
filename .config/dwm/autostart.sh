@@ -9,7 +9,8 @@ picom & disown
 #  setbg "/home/john/Pictures/space/$(ls /home/john/Pictures/space/ | shuf | head -n 1)"
 #  sleep 10m
 #done &
-setbg /home/john/Pictures/avatar.jpg
+setbg &
+dunst & disown
 dwmblocks & disown
 nm-applet & disown
 blueman-applet & disown

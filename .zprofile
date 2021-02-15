@@ -28,7 +28,7 @@ export GNUPLOT_LIB="$XDG_CONFIG_HOME/gnuplot"
 export LESSHISTFILE="-"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # less/man colors
@@ -49,17 +49,17 @@ export LAPTOP="192.168.50.54"
 export RASPI="192.168.50.175"
 
 #Geant4 configuration
-if [ -d /home/john/.local/lib/geant ]; then
-  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
+if [ -d /home/john/.local/lib/geant/geant4.10.06.p01-build ]; then
+ cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
 fi
 
 [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
 
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
-# Start graphical server if bspwm/openbox not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
-
-# Switch escape and caps if tty:
-sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
+## Start graphical server if bspwm/openbox not already running.
+##[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+#
+## Switch escape and caps if tty:
+#sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
 
