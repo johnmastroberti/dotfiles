@@ -33,6 +33,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'preservim/nerdcommenter'
 Plug 'elzr/vim-json'
 Plug 'tkhren/vim-fake'
+Plug 'bkad/camelcasemotion'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 packadd vimball
@@ -45,6 +46,16 @@ packadd vimball
 " Nerd tree
 	map <leader>n :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Camel case motions
+  map <silent> w <Plug>CamelCaseMotion_w
+  map <silent> b <Plug>CamelCaseMotion_b
+  map <silent> e <Plug>CamelCaseMotion_e
+  map <silent> ge <Plug>CamelCaseMotion_ge
+  sunmap w
+  sunmap b
+  sunmap e
+  sunmap ge
 
 " Nerd commenter
   let g:NERDCreateDefaultMappings = 1
