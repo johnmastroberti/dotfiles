@@ -55,6 +55,7 @@ alias ka="killall" \
   nvr="sudo nvidia-settings --config=$XDG_CONFIG_HOME/nvidia/settings" \
   cos="converter_simulation" \
   cof="converter_fitter" \
+  gstf="git add -A; git status; git commit -m stuff; git push" \
 
 
 

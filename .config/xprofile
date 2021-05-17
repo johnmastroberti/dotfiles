@@ -3,6 +3,7 @@
 #setbg &		# Set the background
 #sxhkd &	# Bind keys
 refreshkeys & # Set up keyboard
+sudo hwclock --systohc
 [ -f "/home/john/.config/Xresources" ] && xrdb /home/john/.config/Xresources
 [ -f "$HOME/.config/screens.sh" ] && source "$HOME/.config/screens.sh"
 #unclutter &		# Remove mouse when idle
