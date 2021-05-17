@@ -49,8 +49,10 @@ export LAPTOP="192.168.50.54"
 export RASPI="192.168.50.175"
 
 #Geant4 configuration
-if [ -d /home/john/.local/lib/geant/geant4.10.06.p01-build ]; then
- cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
+if [ -d $HOME/.local/lib/geant-build ]; then
+  cd "$HOME/.local/lib/geant-build" && source "$HOME/.local/lib/geant-build/geant4make.sh" && cd - >/dev/null
+  export G4INSTALL="$HOME/.local/lib/geant-install"
+  export PATH="$G4INSTALL/bin:${PATH}"
 fi
 
 [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
@@ -58,7 +60,7 @@ fi
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
 ## Start graphical server if bspwm/openbox not already running.
-##[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 #
 ## Switch escape and caps if tty:
 #sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null

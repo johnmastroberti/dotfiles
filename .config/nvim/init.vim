@@ -183,7 +183,7 @@ packadd vimball
 	set splitbelow splitright
 
 " Automatically deletes all trailing whitespace on save.
-	autocmd BufWritePre * %s/\s\+$//e
+	" autocmd BufWritePre * %s/\s\+$//e
 
 " Set auto indent correctly
 	set tabstop=2

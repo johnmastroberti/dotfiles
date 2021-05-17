@@ -4,6 +4,7 @@
 #sxhkd &	# Bind keys
 refreshkeys & # Set up keyboard
 [ -f "/home/john/.config/Xresources" ] && xrdb /home/john/.config/Xresources
+[ -f "$HOME/.config/screens.sh" ] && source "$HOME/.config/screens.sh"
 #unclutter &		# Remove mouse when idle
 #dunst &			# dunst for notifications
 mpd &
