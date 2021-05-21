@@ -34,6 +34,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'elzr/vim-json'
 Plug 'tkhren/vim-fake'
 Plug 'bkad/camelcasemotion'
+Plug 'vim-scripts/a.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 packadd vimball
@@ -320,190 +321,193 @@ endfunction
 
 autocmd BufEnter *. call GoodTabComplete()
 
-" Opening the corresponding header/source file
-" split type should be 'vsp' or 'spl'
-function OpenHeader_impl(split_type, source_file, s_ext, h_ext)
-  " Case 1: sourcename = foo.cpp
-  if match(a:source_file, '^[a-zA-Z0-9_-]*\.' . a:s_ext . '$') != -1
-    let l:headername = matchstr(a:source_file, '^[a-zA-Z0-9_-]*\.') . a:h_ext
-    " In same directory
-    if filereadable(l:headername)
-      exe a:split_type . ' ' . l:headername
-      set filetype=cpp
-      return 1
-    " In ../include directory
-    elseif filereadable('../include/' . l:headername)
-      exe a:split_type . ' ../include/' . l:headername
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2: sourcename = foo/bar/baz/src/blah.cpp
-  elseif match(a:source_file, '^.*\/src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
-    " Assume header is in adjacent include directory
-    let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
-    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
-    " echo 'Header dir: ' . l:header_dir
-    " echo 'Header name: ' . l:headername
-    if filereadable(l:header_dir . '/' . l:headername)
-      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2a: src/foo.cpp
-  elseif match(a:source_file, '^src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
-    " Assume header is in adjacent include directory
-    let l:header_dir = 'include'
-    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
-    "echo 'Header dir: ' . l:header_dir
-    "echo 'Header name: ' . l:headername
-    if filereadable(l:header_dir . '/' . l:headername)
-      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2: sourcename = foo/bar/baz/source/blah.cpp
-  elseif match(a:source_file, '^.*\/source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
-    " Assume header is in adjacent include directory
-    let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
-    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
-    " echo 'Header dir: ' . l:header_dir
-    " echo 'Header name: ' . l:headername
-    if filereadable(l:header_dir . '/' . l:headername)
-      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2a: source/foo.cpp
-  elseif match(a:source_file, '^source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
-    " Assume header is in adjacent include directory
-    let l:header_dir = 'include'
-    let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
-    "echo 'Header dir: ' . l:header_dir
-    "echo 'Header name: ' . l:headername
-    if filereadable(l:header_dir . '/' . l:headername)
-      exe a:split_type . ' ' . l:header_dir . '/' . l:headername
-      set filetype=cpp
-      return 1
-    endif
-  " Case 3: foo/bar/baz.cpp
-  elseif match(a:source_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
-    " Assume header is in same directory as source
-    let l:headername = matchstr(a:source_file, '^.*\.') . a:h_ext
-    if filereadable(l:headername)
-      exe a:split_type . ' ' l:headername
-      set filetype=cpp
-      return 1
-    endif
-  endif
-  return 0
-endfunction
+let g:alternateExtensions_cc = "hh"
+let g:alternateExtensions_hh = "cc"
 
-function OpenHeader(split_type)
-  " Possible file extensions for C++ source and header files
-  let l:source_extensions = ['cpp', 'cc', 'C', 'c']
-  let l:header_extensions = ['hpp', 'hh', 'h']
-  " Source name
-  let l:sourcename = expand('%')
-  for s_ext in l:source_extensions
-    for h_ext in l:header_extensions
-      if OpenHeader_impl(a:split_type, l:sourcename, s_ext, h_ext)
-        return
-      endif
-    endfor
-  endfor
-endfunction
-
-autocmd FileType cpp nnoremap ,h :call OpenHeader('vsp')<CR>
-autocmd FileType cpp nnoremap ,H :call OpenHeader('spl')<CR>
-
-function OpenSource_impl(split_type, header_file, s_ext, h_ext)
-  " Case 1: headername = foo.hpp
-  if match(a:header_file, '^[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
-    "echo 'Case 1'
-    let l:sourcename = matchstr(a:header_file, '^[a-zA-Z0-9_-]*\.') . a:s_ext
-    " In same directory
-    if filereadable(l:sourcename)
-      exe a:split_type . ' ' . l:sourcename
-      set filetype=cpp
-      return 1
-    " In ../src directory
-    elseif filereadable('../src/' . l:sourcename)
-      exe a:split_type . ' ../src/' . l:sourcename
-      set filetype=cpp
-      return 1
-    " In ../source directory
-    elseif filereadable('../source/' . l:sourcename)
-      exe a:split_type . ' ../source/' . l:sourcename
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2: headername = foo/bar/baz/include/blah.hpp
-  elseif match(a:header_file, '^.*\/include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
-    "echo 'Case 2'
-    " Assume header is in adjacent src directory
-    let l:source_dir1 = join(split(a:header_file, '/')[:-3], '/') . '/src'
-    let l:source_dir2 = join(split(a:header_file, '/')[:-3], '/') . '/source'
-    let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
-    " echo 'Header dir: ' . l:header_dir
-    " echo 'Header name: ' . a:header_file
-    if filereadable(l:source_dir1 . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
-      set filetype=cpp
-      return 1
-    elseif filereadable(l:source_dir2 . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
-      set filetype=cpp
-      return 1
-    endif
-  " Case 2a: include/foo.hpp
-  elseif match(a:header_file, '^include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
-    "echo 'Case 2a'
-    " Assume header is in adjacent include directory
-    let l:source_dir1 = 'src'
-    let l:source_dir2 = 'source'
-    let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
-    "echo 'Source dir: ' . l:source_dir
-    "echo 'Source name: ' . l:sourcename
-    if filereadable(l:source_dir1 . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
-      set filetype=cpp
-      return 1
-    elseif filereadable(l:source_dir2 . '/' . l:sourcename)
-      exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
-      set filetype=cpp
-      return 1
-    endif
-  " Case 3: foo/bar/baz.hpp
-  elseif match(a:header_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
-    "echo 'Case 3'
-    " Assume header is in same directory as source
-    let l:sourcename = matchstr(a:header_file, '^.*\.') . a:s_ext
-    if filereadable(l:sourcename)
-      exe a:split_type . ' ' l:sourcename
-      set filetype=cpp
-      return 1
-    endif
-  endif
-  return 0
-endfunction
-
-function OpenSource(split_type)
-  " Possible file extensions for C++ source and header files
-  let l:source_extensions = ['cpp', 'cc', 'C', 'c']
-  let l:header_extensions = ['hpp', 'hh', 'h']
-  " Source name
-  let l:headername = expand('%')
-  for s_ext in l:source_extensions
-    for h_ext in l:header_extensions
-      if OpenSource_impl(a:split_type, l:headername, s_ext, h_ext)
-        return
-      endif
-    endfor
-  endfor
-endfunction
-
-autocmd FileType cpp nnoremap ,s :call OpenSource('vsp')<CR>
-autocmd FileType cpp nnoremap ,S :call OpenSource('spl')<CR>
+" " Opening the corresponding header/source file
+" " split type should be 'vsp' or 'spl'
+" function OpenHeader_impl(split_type, source_file, s_ext, h_ext)
+"   " Case 1: sourcename = foo.cpp
+"   if match(a:source_file, '^[a-zA-Z0-9_-]*\.' . a:s_ext . '$') != -1
+"     let l:headername = matchstr(a:source_file, '^[a-zA-Z0-9_-]*\.') . a:h_ext
+"     " In same directory
+"     if filereadable(l:headername)
+"       exe a:split_type . ' ' . l:headername
+"       set filetype=cpp
+"       return 1
+"     " In ../include directory
+"     elseif filereadable('../include/' . l:headername)
+"       exe a:split_type . ' ../include/' . l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2: sourcename = foo/bar/baz/src/blah.cpp
+"   elseif match(a:source_file, '^.*\/src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+"     " Assume header is in adjacent include directory
+"     let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
+"     let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+"     " echo 'Header dir: ' . l:header_dir
+"     " echo 'Header name: ' . l:headername
+"     if filereadable(l:header_dir . '/' . l:headername)
+"       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2a: src/foo.cpp
+"   elseif match(a:source_file, '^src\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+"     " Assume header is in adjacent include directory
+"     let l:header_dir = 'include'
+"     let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+"     "echo 'Header dir: ' . l:header_dir
+"     "echo 'Header name: ' . l:headername
+"     if filereadable(l:header_dir . '/' . l:headername)
+"       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2: sourcename = foo/bar/baz/source/blah.cpp
+"   elseif match(a:source_file, '^.*\/source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+"     " Assume header is in adjacent include directory
+"     let l:header_dir = join(split(a:source_file, '/')[:-3], '/') . '/include'
+"     let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+"     " echo 'Header dir: ' . l:header_dir
+"     " echo 'Header name: ' . l:headername
+"     if filereadable(l:header_dir . '/' . l:headername)
+"       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2a: source/foo.cpp
+"   elseif match(a:source_file, '^source\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+"     " Assume header is in adjacent include directory
+"     let l:header_dir = 'include'
+"     let l:headername = matchstr(split(a:source_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:h_ext
+"     "echo 'Header dir: ' . l:header_dir
+"     "echo 'Header name: ' . l:headername
+"     if filereadable(l:header_dir . '/' . l:headername)
+"       exe a:split_type . ' ' . l:header_dir . '/' . l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 3: foo/bar/baz.cpp
+"   elseif match(a:source_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:s_ext) != -1
+"     " Assume header is in same directory as source
+"     let l:headername = matchstr(a:source_file, '^.*\.') . a:h_ext
+"     if filereadable(l:headername)
+"       exe a:split_type . ' ' l:headername
+"       set filetype=cpp
+"       return 1
+"     endif
+"   endif
+"   return 0
+" endfunction
+" 
+" function OpenHeader(split_type)
+"   " Possible file extensions for C++ source and header files
+"   let l:source_extensions = ['cpp', 'cc', 'C', 'c']
+"   let l:header_extensions = ['hpp', 'hh', 'h']
+"   " Source name
+"   let l:sourcename = expand('%')
+"   for s_ext in l:source_extensions
+"     for h_ext in l:header_extensions
+"       if OpenHeader_impl(a:split_type, l:sourcename, s_ext, h_ext)
+"         return
+"       endif
+"     endfor
+"   endfor
+" endfunction
+" 
+" autocmd FileType cpp nnoremap ,h :call OpenHeader('vsp')<CR>
+" autocmd FileType cpp nnoremap ,H :call OpenHeader('spl')<CR>
+" 
+" function OpenSource_impl(split_type, header_file, s_ext, h_ext)
+"   " Case 1: headername = foo.hpp
+"   if match(a:header_file, '^[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
+"     "echo 'Case 1'
+"     let l:sourcename = matchstr(a:header_file, '^[a-zA-Z0-9_-]*\.') . a:s_ext
+"     " In same directory
+"     if filereadable(l:sourcename)
+"       exe a:split_type . ' ' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     " In ../src directory
+"     elseif filereadable('../src/' . l:sourcename)
+"       exe a:split_type . ' ../src/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     " In ../source directory
+"     elseif filereadable('../source/' . l:sourcename)
+"       exe a:split_type . ' ../source/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2: headername = foo/bar/baz/include/blah.hpp
+"   elseif match(a:header_file, '^.*\/include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
+"     "echo 'Case 2'
+"     " Assume header is in adjacent src directory
+"     let l:source_dir1 = join(split(a:header_file, '/')[:-3], '/') . '/src'
+"     let l:source_dir2 = join(split(a:header_file, '/')[:-3], '/') . '/source'
+"     let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
+"     " echo 'Header dir: ' . l:header_dir
+"     " echo 'Header name: ' . a:header_file
+"     if filereadable(l:source_dir1 . '/' . l:sourcename)
+"       exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     elseif filereadable(l:source_dir2 . '/' . l:sourcename)
+"       exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 2a: include/foo.hpp
+"   elseif match(a:header_file, '^include\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
+"     "echo 'Case 2a'
+"     " Assume header is in adjacent include directory
+"     let l:source_dir1 = 'src'
+"     let l:source_dir2 = 'source'
+"     let l:sourcename = matchstr(split(a:header_file, '/')[-1], '^[a-zA-Z0-9_-]*\.') . a:s_ext
+"     "echo 'Source dir: ' . l:source_dir
+"     "echo 'Source name: ' . l:sourcename
+"     if filereadable(l:source_dir1 . '/' . l:sourcename)
+"       exe a:split_type . ' ' . l:source_dir1 . '/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     elseif filereadable(l:source_dir2 . '/' . l:sourcename)
+"       exe a:split_type . ' ' . l:source_dir2 . '/' . l:sourcename
+"       set filetype=cpp
+"       return 1
+"     endif
+"   " Case 3: foo/bar/baz.hpp
+"   elseif match(a:header_file, '^.*\/[a-zA-Z0-9_-]*\.' . a:h_ext) != -1
+"     "echo 'Case 3'
+"     " Assume header is in same directory as source
+"     let l:sourcename = matchstr(a:header_file, '^.*\.') . a:s_ext
+"     if filereadable(l:sourcename)
+"       exe a:split_type . ' ' l:sourcename
+"       set filetype=cpp
+"       return 1
+"     endif
+"   endif
+"   return 0
+" endfunction
+" 
+" function OpenSource(split_type)
+"   " Possible file extensions for C++ source and header files
+"   let l:source_extensions = ['cpp', 'cc', 'C', 'c']
+"   let l:header_extensions = ['hpp', 'hh', 'h']
+"   " Source name
+"   let l:headername = expand('%')
+"   for s_ext in l:source_extensions
+"     for h_ext in l:header_extensions
+"       if OpenSource_impl(a:split_type, l:headername, s_ext, h_ext)
+"         return
+"       endif
+"     endfor
+"   endfor
+" endfunction
+" 
+" autocmd FileType cpp nnoremap ,s :call OpenSource('vsp')<CR>
+" autocmd FileType cpp nnoremap ,S :call OpenSource('spl')<CR>
 
 
 " Set path to include ./include and ./inc
