@@ -58,6 +58,7 @@ alias ka="killall" \
   gstf="git add -A; git status; git commit -m stuff; git push" \
   carb="ssh -XY jmastrob@carbonate.uits.iu.edu" \
   hcdata="ssh -XY jmastrob@hcdata.phy.ornl.gov" \
+  sns="ssh -XY jmastrob@coherent.sns.gov" \
 
 
 
