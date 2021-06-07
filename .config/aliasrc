@@ -59,6 +59,7 @@ alias ka="killall" \
   carb="ssh -XY jmastrob@carbonate.uits.iu.edu" \
   hcdata="ssh -XY jmastrob@hcdata.phy.ornl.gov" \
   sns="ssh -XY jmastrob@coherent.sns.gov" \
+  orphans="pacman -Qtdq | sudo pacman -Rns -" \
 
 
 
