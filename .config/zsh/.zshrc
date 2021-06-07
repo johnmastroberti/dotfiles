@@ -94,25 +94,26 @@ bindkey '^e' edit-command-line
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 #Bmad/Tao configuration
-# export DIST_BASE_DIR="/home/john/bmad_dist"
-# export DIST_SETUP_QUIET="Y"
-# export ACC_LOCAL_ROOT="/home/john/bmad_dist"
-# export LOG=$ACC_LOCAL_ROOT/compile.log
-# if [ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ]; then
-#   source ${DIST_BASE_DIR}/util/dist_source_me.zsh
-# else
-#   echo "Note: bmad not configured..."
-# fi
-# [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
-# [ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
-# ulimit -S -c 0
-# ulimit -S -s 10240
-# ulimit -S -d 25165824
+export DIST_BASE_DIR="/home/john/bmad_dist"
+export DIST_SETUP_QUIET="Y"
+export ACC_LOCAL_ROOT="/home/john/bmad_dist"
+export ACC_BUILD_TEST_EXES="Y"
+export LOG=$ACC_LOCAL_ROOT/compile.log
+if [ -f ${DIST_BASE_DIR}/util/dist_source_me.zsh ]; then
+  source ${DIST_BASE_DIR}/util/dist_source_me.zsh
+else
+  echo "Note: bmad not configured..."
+fi
+[ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
+#[ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
+ulimit -S -c 0
+ulimit -S -s 10240
+ulimit -S -d 25165824
 
-#Geant4 configuration
-#if [ -d /home/john/.local/lib/geant ]; then
+# Geant4 configuration
+# if [ -d /home/john/.local/lib/geant ]; then
 #  cd "/home/john/.local/lib/geant/geant4.10.06.p01-build/" && source "/home/john/.local/lib/geant/geant4.10.06.p01-build/geant4make.sh" && cd
-#fi
+# fi
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
@@ -120,6 +121,14 @@ if ! pgrep -u "$USER" ssh-agent > /dev/null; then
 fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
     eval "$(<"$XDG_RUNTIME_DIR/ssh-agent.env")" >/dev/null
+fi
+
+# Cenns 10
+CENNSMC="$HOME/Documents/cenns10/cenns10geant4"
+CENNS_SETUP="$CENNSMC/setenv.sh"
+if [ -f $CENNS_SETUP ]; then
+  export CENNSMC
+  source $CENNS_SETUP
 fi
 
 #neofetch
