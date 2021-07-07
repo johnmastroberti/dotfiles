@@ -3,53 +3,54 @@ Xcursor.theme: neutral
 ! dmenu
 dmenu.background: #2a2926
 dmenu.foreground: #f7f7f7
-dmenu.selbackground: #9c5e21
+dmenu.selbackground: #ae95c7
 dmenu.selforeground: #f7f7f7
 ! xmenu
 xmenu.background: #2a2926
 xmenu.foreground: #f7f7f7
-xmenu.selbackground: #9c5e21
+xmenu.selbackground: #ae95c7
 xmenu.selforeground: #f7f7f7
-xmenu.border: #9c5e21
+xmenu.border: #ae95c7
 
 ! st
 st.alpha: 0.95
 ! special
-st.foreground:   #f7f7f7
-st.background:   #2a2926
-st.cursorColor:  #f7f7f7
+st.foreground:   #c7ccd1
+st.background:   #1c2023
+st.cursorColor:  #c7ccd1
 
 ! black
-st.color0:       #2e3436
-st.color8:       #555753
+st.color0:       #1c2023
+st.color8:       #747c84
 
 ! red
-st.color1:       #cc0000
-st.color9:       #ef2929
+st.color1:       #c7ae95
+st.color9:       #c7ae95
 
 ! green
-st.color2:       #4e9a06
-st.color10:      #8ae234
+st.color2:       #95c7ae
+st.color10:      #95c7ae
 
 ! yellow
-st.color3:       #c4a000
-st.color11:      #fce94f
+st.color3:       #aec795
+st.color11:      #aec795
 
 ! blue
-st.color4:       #3465a4
-st.color12:      #729fcf
+st.color4:       #ae95c7
+st.color12:      #ae95c7
 
 ! magenta
-st.color5:       #75507b
-st.color13:      #ad7fa8
+st.color5:       #c795ae
+st.color13:      #c795ae
 
 ! cyan
-st.color6:       #06989a
-st.color14:      #34e2e2
+st.color6:       #95aec7
+st.color14:      #95aec7
 
 ! white
-st.color7:       #d3d7cf
-st.color15:      #eeeeec
+st.color7:       #c7ccd1
+st.color15:      #f3f4f5
+
 
 ! special
 !st.foreground:   #a5a2a2
