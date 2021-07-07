@@ -36,6 +36,7 @@ Plug 'tkhren/vim-fake'
 Plug 'bkad/camelcasemotion'
 Plug 'vim-scripts/a.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 packadd vimball
 " }}}
@@ -161,7 +162,7 @@ packadd vimball
 " Some basics:
   set bg=light
   set go=a
-  set mouse=
+  set mouse=a
   set nohlsearch
   set clipboard=unnamedplus
   set updatetime=300
@@ -238,6 +239,17 @@ packadd vimball
 " }}}
 
 
+" LSP settings {{{
+" luafile ~/.config/nvim/lsp-settings.lua
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+" " nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+" " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+" nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+"}}}
 
 
 " Settings for Bmad/Tao development {{{

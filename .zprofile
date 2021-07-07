@@ -5,7 +5,7 @@
 #xrdb ~/.Xdefaults
 
 # Adds `~/.local/bin` and all subdirectories to $PATH
-export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/Documents/cenns10/daqman/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/Documents/cenns10/daqman/bin:$HOME/.emacs.d/bin"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave"
