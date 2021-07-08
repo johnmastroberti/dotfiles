@@ -20,6 +20,8 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-auto-private "~/.doom.d/auctex")
+(setq font-latex-fontify-script nil)
+(setq LaTeX-indent-environment-check nil)
 ; (setq-default Tex-master nil) ; useful for multi-file documents
 (setq +latex-viewers '(zathura))
 
