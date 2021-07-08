@@ -37,6 +37,19 @@
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
+; Open Geant4 .mac files in sh-mode (close enough)
+(add-to-list 'auto-mode-alist '("\\.mac\\'" . sh-mode))
+
+; Auto close compilation window if successful
+(setq compilation-finish-functions
+      (lambda (buf str)
+        (if (null (string-match ".*exited abnormally.*" str))
+            ;;no errors, make the compilation window go away in a few seconds
+            (progn
+              (run-at-time
+               "2 sec" nil 'delete-windows-on buf)
+              (message "No Compilation Errors!")))))
+
 ; Open alternate file
 (evil-ex-define-cmd "A" 'ff-find-other-file)
 

@@ -109,6 +109,9 @@ packadd vimball
   command Q q
   command Wq wq
   command Vsp vsp
+
+" Backup command
+  command Backup :!cp % %.bak
 " }}}
 
 
@@ -161,7 +164,7 @@ packadd vimball
 " Some basics:
   set bg=light
   set go=a
-  set mouse=
+  set mouse=a
   set nohlsearch
   set clipboard=unnamedplus
   set updatetime=300
