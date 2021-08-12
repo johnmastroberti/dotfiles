@@ -22,8 +22,20 @@
 (setq TeX-auto-private "~/.doom.d/auctex")
 (setq font-latex-fontify-script nil)
 (setq LaTeX-indent-environment-check nil)
+(setq TeX-electric-sub-and-superscript nil)
 ; (setq-default Tex-master nil) ; useful for multi-file documents
 (setq +latex-viewers '(zathura))
+; Cleanup LaTeX build files after killing a .tex buffer
+(defun jm/texclear ()
+  (when (and buffer-file-name (string-match ".*\.tex" (buffer-file-name)))
+    (message (concat "[JM] Running texclear on " (buffer-file-name)))
+    (shell-command (concat "texclear " (buffer-file-name)))
+    ))
+
+(add-hook 'kill-buffer-hook 'jm/texclear)
+
+; org settings
+(after! org (setq org-format-latex-options (plist-put org-format-latex-options :scale 3)))
 
 
 ; LSP settings
@@ -114,3 +126,76 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+
+;; Indent settings
+(defun my-setup-indent (n)
+  ;; java/c/c++
+  (setq-local c-basic-offset n)
+  ;; web development
+  (setq-local coffee-tab-width n) ; coffeescript
+  (setq-local javascript-indent-level n) ; javascript-mode
+  (setq-local js-indent-level n) ; js-mode
+  ;(setq-local js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+  (setq-local web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+  (setq-local web-mode-css-indent-offset n) ; web-mode, css in html file
+  (setq-local web-mode-code-indent-offset n) ; web-mode, js code in html file
+  (setq-local css-indent-offset n) ; css-mode
+  )
+
+(defun my-office-code-style ()
+  (interactive)
+  (message "Office code style!")
+  ;; use tab instead of space
+  (setq-local indent-tabs-mode t)
+  ;; indent 4 spaces width
+  (my-setup-indent 4))
+
+(defun my-personal-code-style ()
+  (interactive)
+  (message "My personal code style!")
+  ;; use space instead of tab
+  (setq indent-tabs-mode nil)
+  ;; indent 2 spaces width
+  (my-setup-indent 2))
+
+;; (defun my-setup-develop-environment ()
+;;   (interactive)
+;;   (let ((proj-dir (file-name-directory (buffer-file-name))))
+;;     ;; if hobby project path contains string "hobby-proj1"
+;;     (if (string-match-p "hobby-proj1" proj-dir)
+;;         (my-personal-code-style))
+
+;;     ;; if commericial project path contains string "commerical-proj"
+;;     (if (string-match-p "commerical-proj" proj-dir)
+;;         (my-office-code-style))))
+
+;; prog-mode-hook requires emacs24+
+(add-hook 'prog-mode-hook 'my-personal-code-style)
+;; a few major-modes does NOT inherited from prog-mode
+(add-hook 'lua-mode-hook 'my-personal-code-style)
+(add-hook 'web-mode-hook 'my-personal-code-style)
+
+
+; mu4e
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+;;(require 'smtpmail)
+(setq user-mail-address "johnmastroberti123@gmail.com"
+      user-full-name  "John Mastroberti"
+      ;; I have my mbsyncrc in a different folder on my system, to keep it separate from the
+      ;; mbsyncrc available publicly in my dotfiles. You MUST edit the following line.
+      ;; Be sure that the following command is: "mbsync -c ~/.config/mu4e/mbsyncrc -a"
+      mu4e-get-mail-command "mbsync -c ~/.config/mu4e/mbsyncrc -a"
+      mu4e-update-interval  300
+      mu4e-main-buffer-hide-personal-addresses t
+      message-send-mail-function 'smtpmail-send-it
+      starttls-use-gnutls t
+      smtpmail-starttls-credentials '(("smtp.1and1.com" 587 nil nil))
+      mu4e-sent-folder "/main/Sent"
+      mu4e-drafts-folder "/main/Drafts"
+      mu4e-trash-folder "/main/Trash"
+      mu4e-maildir-shortcuts
+      '(("/main/Inbox"      . ?i)
+        ("/main/Sent Items" . ?s)
+        ("/main/Drafts"     . ?d)
+        ("/main/Trash"      . ?t)))

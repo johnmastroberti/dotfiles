@@ -9,7 +9,6 @@ cf	~/.config
 cft	~/.config/nvim/TeX_snippets
 sc	~/.local/src
 mn	/mnt
-gc ~/.local/go/src/github.com/johnmastroberti/gochat
 c ~/Documents/cenns10/cenns10geant4
 ## GUI development
 #g ~/bmad_dist/tao/python/pytao/gui
