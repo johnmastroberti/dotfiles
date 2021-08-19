@@ -2,6 +2,7 @@
 # Give a battery name (e.g. BAT0) as an argument.
 
 case $BLOCK_BUTTON in
+  1) st -t "popup" -f 'monospace:size=16' -g '75x4-0+0' -e popbattery ;;
   5) xbacklight -inc 10 ;;
   4) xbacklight -dec 10 ;;
 esac
