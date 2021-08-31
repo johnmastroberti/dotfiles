@@ -37,9 +37,18 @@ Plug 'bkad/camelcasemotion'
 Plug 'vim-scripts/a.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'rafi/awesome-vim-colorschemes'
+" Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'folke/todo-comments.nvim'
 call plug#end()
 packadd vimball
 " }}}
+
+lua require'todo-comments'.setup{}
+
 
 " Mappings {{{
 " Spell-check set to <leader>o, 'o' for 'orthography':
@@ -535,6 +544,25 @@ au FileType c set path+=./inc
 " }}}
 
 
+" LSP/Treesitter {{{
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+
+autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.hpp lua vim.lsp.buf.formatting_sync(nil, 100)
+luafile ~/.config/nvim/lsp.lua
+" luafile ~/.config/nvim/compe.lua
+
+luafile ~/.config/nvim/treesitter.lua
+" }}}
+
+
 " LaTeX shortcuts {{{
 	autocmd FileType tex setlocal noautoindent nocindent nosmartindent indentexpr=
 
@@ -603,6 +631,12 @@ autocmd FileType tex inoremap ,r \begin{recipe}{}<Enter><Enter>\begin{ingredient
 	autocmd FileType bib inoremap ,c @incollection{<Enter>author<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>booktitle<Space>=<Space>{<++>},<Enter>editor<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
 " }}}
 
+colorscheme OceanicNext
+" set background=dark
+" let g:two_firewatch_italics=0
+" colorscheme two-firewatch
+" let g:airline_theme='twofirewatch'
+" set background=dark
 
 " COC settings (currently unused) {{{
 " TextEdit might fail if hidden is not set.
