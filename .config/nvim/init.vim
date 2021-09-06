@@ -560,6 +560,8 @@ luafile ~/.config/nvim/lsp.lua
 " luafile ~/.config/nvim/compe.lua
 
 luafile ~/.config/nvim/treesitter.lua
+" lua require'lspconfig'.texlab.setup{}
+
 " }}}
 
 
@@ -632,6 +634,7 @@ autocmd FileType tex inoremap ,r \begin{recipe}{}<Enter><Enter>\begin{ingredient
 " }}}
 
 colorscheme OceanicNext
+let g:airline_theme='dark'
 " set background=dark
 " let g:two_firewatch_italics=0
 " colorscheme two-firewatch
