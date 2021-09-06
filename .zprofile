@@ -21,6 +21,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+export CPCODE="/home/john/Documents/school/p609/comp-phys-f21"
+
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
 export PATH="$PATH:$GOBIN"

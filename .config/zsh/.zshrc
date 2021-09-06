@@ -106,9 +106,9 @@ else
 fi
 [ -f ~/.config/bmad/bmad_settings ] && source ~/.config/bmad/bmad_settings
 #[ -f ~/.Bmad_Dist_Setup_Log.tmp ] && rm ~/.Bmad_Dist_Setup_Log.tmp
-ulimit -S -c 0
-ulimit -S -s 10240
-ulimit -S -d 25165824
+# ulimit -S -c 0
+# ulimit -S -s 10240
+# ulimit -S -d 25165824
 
 # Geant4 configuration
 # if [ -d /home/john/.local/lib/geant ]; then
