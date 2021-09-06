@@ -2,7 +2,7 @@
  "jm"
  (lambda ()
    (TeX-add-to-alist 'LaTeX-provided-package-options
-                     '(("geometry" "margin=1in") ("babel" "english") ("csquotes" "autostyle" "english=american")))
+                     '(("babel" "english") ("csquotes" "autostyle" "english=american")))
    (TeX-run-style-hooks
     "geometry"
     "amsmath"
@@ -24,9 +24,6 @@
     "jm-macro-quantum"
     "jm-macro-em"
     "jm-macro-units"
-    "jm-env")
-   (LaTeX-add-environments
-    '("solution" LaTeX-env-args ["argument"] 1)
-    '("problem" LaTeX-env-args ["argument"] 1)))
+    "jm-env"))
  :latex)
 

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: __notes
+# key: __notes
+# --
+
+#+TITLE: ${1:Class Notes}
+#+DATE: `(format-time-string "%B %-d, %Y")`
+#+AUTHOR: John Mastroberti
+
+$0

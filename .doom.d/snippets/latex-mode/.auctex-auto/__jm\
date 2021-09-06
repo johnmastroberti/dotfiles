@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: Basic LaTeX template
+# --
+\documentclass[12pt]{article}
+
+\usepackage{jm}
+
+% This changes the first-level of an enumerated list to use letters instead of numbers
+\renewcommand{\theenumi}{\alph{enumi}}
+\begin{document}
+
+\title{$1}
+\author{John Mastroberti\\
+$2}
+
+\maketitle
+
+$0
+
+
+
+\end{document}

@@ -2,6 +2,16 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+;;
+
+;; File templates
+(set-file-template! "/??-??\\.org" :trigger "__notes" :mode 'org-mode)
+(set-file-templates!
+  '("\\.c\\(?:c\\|pp\\)$" :trigger "__cpp" :mode c++-mode)
+  '("\\.h\\(?:h\\|pp\\|xx\\)$" :trigger "__hpp" :mode c++-mode)
+  '("/main\\.c\\(?:c\\|pp\\)$" :trigger "__main.cpp" :mode c++-mode)
+)
+(set-file-template! "\\.tex$" :trigger "__jm" :mode 'latex-mode)
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
@@ -25,14 +35,6 @@
 (setq TeX-electric-sub-and-superscript nil)
 ; (setq-default Tex-master nil) ; useful for multi-file documents
 (setq +latex-viewers '(zathura))
-; Cleanup LaTeX build files after killing a .tex buffer
-(defun jm/texclear ()
-  (when (and buffer-file-name (string-match ".*\.tex" (buffer-file-name)))
-    (message (concat "[JM] Running texclear on " (buffer-file-name)))
-    (shell-command (concat "texclear " (buffer-file-name)))
-    ))
-
-(add-hook 'kill-buffer-hook 'jm/texclear)
 
 ; org settings
 (after! org (setq org-format-latex-options (plist-put org-format-latex-options :scale 3)))
@@ -199,3 +201,33 @@
         ("/main/Sent Items" . ?s)
         ("/main/Drafts"     . ?d)
         ("/main/Trash"      . ?t)))
+
+
+;; Notes
+(defun new-notes () (interactive)
+       ; Get the class name and directory
+       (setq className
+             (completing-read "Choose class: "
+                              '("QFT" "Subatomic" "Computational")))
+       (setq classToDir '(("QFT" . "~/Documents/school/p621/notes/")
+                          ("Subatomic" .  "~/Documents/school/p640/notes/")
+                          ("Computational" .  "~/Documents/school/p609/notes/")))
+       (setq classDir (cdr (assoc className classToDir)))
+
+       (setq classToExt '(("QFT" . ".tex")
+                          ("Subatomic" .  ".tex")
+                          ("Computational" .  ".org")))
+       (setq classExt (cdr (assoc className classToExt)))
+
+       ; Open the appropriate notes file
+       (setq fileName (shell-command-to-string "echo -n $(date +%m-%d)"))
+       (find-file (concat classDir fileName classExt))
+)
+
+(map! :leader :desc "Create/open new notes file" :n "a n"
+      'new-notes)
+
+; Use actual tabs in makefiles
+(add-hook 'makefile-mode-hook
+   (lambda ()
+      (setq indent-tabs-mode t)))
