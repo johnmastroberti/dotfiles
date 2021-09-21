@@ -554,6 +554,12 @@ nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
+command LspOn lua vim.lsp.diagnostic.enable()
+command LspOff lua vim.lsp.diagnostic.disable()
+
+nnoremap <leader>lo <cmd>LspOff<CR>
+
+
 autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.hpp lua vim.lsp.buf.formatting_sync(nil, 100)
 luafile ~/.config/nvim/lsp.lua
