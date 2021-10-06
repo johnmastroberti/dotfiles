@@ -62,7 +62,7 @@ fi
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
 ## Start graphical server if bspwm/openbox not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 #
 ## Switch escape and caps if tty:
 #sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null

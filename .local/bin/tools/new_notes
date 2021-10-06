@@ -1,6 +1,6 @@
 #!/bin/bash
 # Gives a dmenu prompt for what class the notes are for,
-# Then opens vim in st with a new notes file (properly named)
+# Then opens vim in $TERMINAL with a new notes file (properly named)
 
 CLASSES_BASE="$HOME/Documents/school"
 CLASSES_FILE="$CLASSES_BASE/classes.dat"
@@ -21,13 +21,13 @@ cd $CLASS_DIR
 # Don't clobber the file if it already exists
 if [ -f $NEWFILE ]; then
   # Open it
-  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR $CLASS
+  $TERMINAL -e open_notes $NEWFILE $CLASS_DIR $CLASS
 else
   if [ -f template.tex ]; then
     cp template.tex $NEWFILE
     # Fix the date line in the new file
     sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
   fi
-  # Open the file in st
-  st -T 'st' -e open_notes $NEWFILE $CLASS_DIR $CLASS
+  # Open the file in $TERMINAL
+  $TERMINAL -e open_notes $NEWFILE $CLASS_DIR $CLASS
 fi

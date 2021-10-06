@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Gives a dmenu prompt for what class the hw is for,
-# Then opens vim in st with a new hw file (properly named)
+# Then opens vim in $TERMINAL with a new hw file (properly named)
 
 CLASSES_BASE="$HOME/Documents/school"
 CLASSES_FILE="$CLASSES_BASE/classes.dat"
@@ -29,7 +29,7 @@ if [ "$MAKE_NEW" = "Create" ]; then
   # Don't clobber the file if it already exists
   if [ -f $NEWFILE ]; then
     # Open it
-    st -T 'st' -e open_hw $NEWFILE $CLASS_DIR $CLASS
+    $TERMINAL -e open_hw $NEWFILE $CLASS_DIR $CLASS
   else
     if [ -f template.tex ]; then
       cp template.tex $NEWFILE
@@ -37,9 +37,9 @@ if [ "$MAKE_NEW" = "Create" ]; then
       sed --in-place "s/\\date{.*}/\\date{$(date '+%B %-d, %Y')}/" $NEWFILE
     fi
     # Open the file in st
-    st -T 'st' -e open_hw $NEWFILE $CLASS_DIR $CLASS
+    $TERMINAL -e open_hw $NEWFILE $CLASS_DIR $CLASS
   fi
 else
   NEWFILE="hw${HWCOUNT}.tex"
-  st -T 'st' -e open_hw $NEWFILE $CLASS_DIR $CLASS
+  $TERMINAL -e open_hw $NEWFILE $CLASS_DIR $CLASS
 fi

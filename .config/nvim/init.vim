@@ -643,6 +643,14 @@ autocmd FileType tex inoremap ,fed \begin{center}<Enter>\begin{tikzpicture}<Ente
 
 colorscheme OceanicNext
 let g:airline_theme='dark'
+" highlight clear CursorLine
+" highlight Normal ctermbg=none
+" highlight LineNr ctermbg=none
+" highlight Folded ctermbg=none
+" highlight NonText ctermbg=none
+" highlight SpecialKey ctermbg=none
+" highlight VertSplit ctermbg=none
+" highlight SignColumn ctermbg=none
 " set background=dark
 " let g:two_firewatch_italics=0
 " colorscheme two-firewatch
