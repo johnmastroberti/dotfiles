@@ -1,0 +1,7 @@
+#!/bin/sh
+
+BOOKMARKS=$XDG_CONFIG_HOME/bookmarks.dat
+
+SELECTION=$(cut -f1 "$BOOKMARKS" | dmenu -p 'Select Bookmark')
+
+grep "$(echo -e "$SELECTION\t")" "$BOOKMARKS" | cut -f2
