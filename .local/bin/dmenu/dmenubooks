@@ -1,0 +1,6 @@
+#!/bin/sh
+
+BOOKDIR="$HOME/Documents/books"
+cd $BOOKDIR
+BOOK="$(ls | dmenu)"
+$READER "$BOOK"
