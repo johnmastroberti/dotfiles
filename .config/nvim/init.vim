@@ -558,7 +558,7 @@ command LspOn lua vim.lsp.diagnostic.enable()
 command LspOff lua vim.lsp.diagnostic.disable()
 
 nnoremap <leader>lo <cmd>LspOff<CR>
-
+autocmd Filetype cpp lua vim.diagnostic.disable()
 
 autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.hpp lua vim.lsp.buf.formatting_sync(nil, 100)
