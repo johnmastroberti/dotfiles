@@ -631,7 +631,7 @@ autocmd FileType tex nnoremap ,swa 0"ldt&f=w"rd$"lp0"rP:s/\\\\//<Enter>
 " autocmd FileType tex inoremap ,ig \ingredient{}{<++>}<Enter><++><Esc>kf{a
 " autocmd FileType tex inoremap ,ing \begin{ingredients}<Enter><++><Enter>\end{ingredients}<Enter><++><Esc>2k$i
 " autocmd FileType tex inoremap ,r \begin{recipe}{}<Enter><Enter>\begin{ingredients}<Enter><++><Enter>\end{ingredients}<Enter><Enter>\begin{directions}<Enter><++><Enter>\end{directions}<Enter>\end{recipe}<Esc>9k$i
-autocmd FileType tex inoremap ,fd \feynmandiagram[horizontal' = a to b, baseline=(current bounding box.base)] {<Enter><Enter>};<Enter><++><Esc>2ki
+autocmd FileType tex inoremap ,fd \feynmandiagram[horizontal' = a to b, baseline=(current bounding box.center)] {<Enter><Enter>};<Enter><++><Esc>2ki
 autocmd FileType tex inoremap ,fed \begin{center}<Enter>\begin{tikzpicture}<Enter>\begin{feynman}<Enter>\vertex <Enter><Enter>\diagram* {<Enter><Enter>};<Enter>\end{feynman}<Enter>\end{tikzpicture}<Enter>\end{center}<Enter><++><Esc>8kA
 
 
