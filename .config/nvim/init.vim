@@ -43,6 +43,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 " Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/todo-comments.nvim'
+Plug 'tpope/vim-abolish'
 call plug#end()
 packadd vimball
 " }}}
