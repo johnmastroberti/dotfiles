@@ -1,55 +1,92 @@
 Xcursor.theme: neutral
 #include "Xresources.font"
 ! dmenu
-dmenu.background: #2a2926
-dmenu.foreground: #f7f7f7
-dmenu.selbackground: #ae95c7
-dmenu.selforeground: #f7f7f7
+dmenu.background: #262626
+dmenu.foreground: #ffffff
+dmenu.selbackground: #fac863
+dmenu.selforeground: #262626
 ! xmenu
-xmenu.background: #2a2926
-xmenu.foreground: #f7f7f7
-xmenu.selbackground: #ae95c7
-xmenu.selforeground: #f7f7f7
-xmenu.border: #ae95c7
+xmenu.background: #262626
+xmenu.foreground: #ffffff
+xmenu.selbackground: #fac863
+xmenu.selforeground: #262626
+xmenu.border: #fac863
 
 ! st
-st.alpha: 0.95
+st.alpha: 0.97
+
 ! special
-st.foreground:   #c7ccd1
-st.background:   #1c2023
-st.cursorColor:  #c7ccd1
+*.foreground:   #ffffff
+*.background:   #262626
+*.cursorColor:  #ffffff
 
 ! black
-st.color0:       #1c2023
-st.color8:       #747c84
+*.color0:       #262626
+*.color8:       #65737e
 
 ! red
-st.color1:       #c7ae95
-st.color9:       #c7ae95
+*.color1:       #ec5f67
+*.color9:       #ec5f67
 
 ! green
-st.color2:       #95c7ae
-st.color10:      #95c7ae
+*.color2:       #99c794
+*.color10:      #99c794
 
 ! yellow
-st.color3:       #aec795
-st.color11:      #aec795
+*.color3:       #fac863
+*.color11:      #fac863
 
 ! blue
-st.color4:       #ae95c7
-st.color12:      #ae95c7
+*.color4:       #6699cc
+*.color12:      #6699cc
 
 ! magenta
-st.color5:       #c795ae
-st.color13:      #c795ae
+*.color5:       #c594c5
+*.color13:      #c594c5
 
 ! cyan
-st.color6:       #95aec7
-st.color14:      #95aec7
+*.color6:       #62b3b2
+*.color14:      #62b3b2
 
 ! white
-st.color7:       #c7ccd1
-st.color15:      #f3f4f5
+*.color7:       #c0c5ce
+*.color15:      #c0c5ce
+! ! special
+! st.foreground:   #c7ccd1
+! st.background:   #1c2023
+! st.cursorColor:  #c7ccd1
+! 
+! ! black
+! st.color0:       #1c2023
+! st.color8:       #747c84
+! 
+! ! red
+! st.color1:       #c7ae95
+! st.color9:       #c7ae95
+! 
+! ! green
+! st.color2:       #95c7ae
+! st.color10:      #95c7ae
+! 
+! ! yellow
+! st.color3:       #aec795
+! st.color11:      #aec795
+! 
+! ! blue
+! st.color4:       #ae95c7
+! st.color12:      #ae95c7
+! 
+! ! magenta
+! st.color5:       #c795ae
+! st.color13:      #c795ae
+! 
+! ! cyan
+! st.color6:       #95aec7
+! st.color14:      #95aec7
+! 
+! ! white
+! st.color7:       #c7ccd1
+! st.color15:      #f3f4f5
 
 
 ! special
@@ -127,13 +164,11 @@ st.color15:      #f3f4f5
 ! dwm settings
 
 ! normal border color, and normal background/selected forground
-! dwm.color0:     #1b1918
-! ! selected border color
-! dwm.color8:     #d5911a
-! ! normal forground color
-! dwm.color6:     #f22c40
-! ! selected background color
-! dwm.color14:    #f22c40
+dwm.color0:     #262626
+! selected border color
+dwm.color8:     #fac863
+! normal forground color and selected background color
+dwm.color4:     #fac863
 
 
 
