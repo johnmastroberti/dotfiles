@@ -1,0 +1,5 @@
+#!/bin/sh
+while true; do
+  WM=$(echo -e 'dwm\nopenbox-session\nbspwm' | dmenu -p 'Choose WM')
+  $WM
+done
