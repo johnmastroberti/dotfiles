@@ -1,0 +1,3 @@
+#!/bin/sh
+SYMS=$HOME/.config/symbols
+echo -n "$(cat "$SYMS" | dmenu -p 'Select symbol' | grep -Eo '`.+`' | sed 's/`//g')" | xclip -in -selection clipboard

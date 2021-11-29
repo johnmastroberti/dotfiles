@@ -1,0 +1,85 @@
+`+`   | Conjugate/Add
+`-`   | Negate/Subtract
+`×`   | Sign/Multiply
+`÷`   | Reciprocal/Divide
+`⋆`   | Exponential/Power
+`√`   | Square/Root
+`⌊`   | Floor/Minimum
+`⌈`   | Ceiling/Maximum
+`∧`   | Sort Up/And
+`∨`   | Sort Down/Or
+`¬`   | Not/Span
+`|`   | Absolute/Modulus
+`≤`   | Less Than or Equal to
+`<`   | Enclose/Less Than
+`>`   | Merge/Greater Than
+`≥`   | Greater Than or Equal to
+`=`   | Rank/Equals
+`≠`   | Length/Not Equals
+`≡`   | Depth/Match
+`≢`   | Shape/Not Match
+`⊣`   | Identity/Left
+`⊢`   | Identity/Right
+`⥊`   | Deshape/Reshape
+`∾`   | Join/Join to
+`≍`   | Solo/Couple
+`⋈`   | Enlist/Pair
+`↑`   | Prefixes/Take
+`↓`   | Suffixes/Drop
+`↕`   | Range/Windows
+`»`   | Nudge/Shift Before
+`«`   | Nudge/Shift After
+`⌽`   | Reverse/Rotate
+`⍉`   | Transpose/Reorder axes
+`/`   | Indices/Replicate
+`⍋`   | Grade/Bins Up
+`⍒`   | Grade/Bins Down
+`⊏`   | First/Select
+`⊑`   | First/Pick
+`⊐`   | Classify/Index of
+`⊒`   | Occurrence/Progressive Index of
+`∊`   | Mark/Member of
+`⍷`   | Deduplicate/Find
+`⊔`   | Group/Group
+`!`   | Assert/Assert with Message
+`˙`   | Constant    
+`˜`   | Self/Swap   
+`∘`   | Atop        
+`○`   | Over        
+`⊸`   | Before/Bind 
+`⟜`   | After/Bind  
+`⌾`   | Under       
+`⊘`   | Valences    
+`◶`   | Choose      
+`˘`   | Cells                                 
+`⎉`   | Rank
+`¨`   | Each
+`⚇`   | Depth
+`⌜`   | Table
+`⁼`   | Undo
+`⍟`   | Repeat
+`´`   | Fold
+`˝`   | Insert
+```   | Scan
+`¯`   | Unary minus
+`∞`   | Infinity
+`π`   | Pi
+`←`   | Define
+`⇐`   | Export
+`↩`   | Change
+`→`   | Return
+`⋄`   | Separator
+`⟨`   | List start
+`⟩`   | List end
+`‿`   | Strand 
+`𝕨`   | Left argument
+`𝕎`   | Left argument
+`𝕩`   | Right argument
+`𝕏`   | Right argument
+`𝕤`   | Function self-reference
+`𝕊`   | Function self-reference
+`𝕗`   | Left operand of a modifier
+`𝔽`   | Left operand of a modifier
+`𝕘`   | Right operand of a modifier
+`𝔾`   | Right operand of a modifier
+`𝕣`   | Modifier self-reference
