@@ -45,6 +45,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'folke/todo-comments.nvim'
 Plug 'tpope/vim-abolish'
 Plug 'PyGamer0/vim-apl'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 packadd vimball
 " }}}
@@ -556,8 +557,8 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-command LspOn lua vim.lsp.diagnostic.enable()
-command LspOff lua vim.lsp.diagnostic.disable()
+command LspOn lua vim.diagnostic.enable()
+command LspOff lua vim.diagnostic.disable()
 
 nnoremap <leader>lo <cmd>LspOff<CR>
 autocmd Filetype cpp lua vim.diagnostic.disable()

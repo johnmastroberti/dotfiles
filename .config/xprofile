@@ -2,15 +2,16 @@
 
 #setbg &		# Set the background
 #sxhkd &	# Bind keys
-refreshkeys & # Set up keyboard
-sudo hwclock --systohc
+# refreshkeys & # Set up keyboard
+# sudo hwclock --systohc
 [ -f "/home/john/.config/Xresources" ] && xrdb /home/john/.config/Xresources
 [ -f "$HOME/.config/screens.sh" ] && source "$HOME/.config/screens.sh"
 #unclutter &		# Remove mouse when idle
 #dunst &			# dunst for notifications
 mpd &
-mpdupdate &
+refreshkeys &
+# mpdupdate &
 # GNOME keyring:
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-$HOME/.config/dwm/autostart.sh &
+# $HOME/.config/dwm/autostart.sh &

@@ -12,6 +12,6 @@ case $BLOCK_BUTTON in
 esac
 
 
-sudo pacman -Sy 1>/dev/null 2>/dev/null
+# sudo pacman -Sy 1>/dev/null 2>/dev/null
 num=$(pacman -Qu | grep -v "\[ignored\]" | wc -l)
 [ -z "$num" ] || echo "  $num"

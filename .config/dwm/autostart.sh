@@ -9,6 +9,7 @@ picom & disown
 #  setbg "/home/john/Pictures/space/$(ls /home/john/Pictures/space/ | shuf | head -n 1)"
 #  sleep 10m
 #done &
+refreshkeys &
 setbg &
 dunst & disown
 dwmblocks & disown

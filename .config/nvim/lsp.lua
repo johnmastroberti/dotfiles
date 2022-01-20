@@ -1,3 +1,3 @@
 require'lspconfig'.clangd.setup{
-  vim.lsp.diagnostic.disable()
+  vim.diagnostic.disable()
 }

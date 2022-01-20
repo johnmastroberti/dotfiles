@@ -7,7 +7,7 @@
 # Adds `~/.local/bin` and all subdirectories to $PATH
 export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/Documents/cenns10/daqman/bin:$HOME/.emacs.d/bin"
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export BROWSER="brave"
 export READER="zathura"
 export FILE="thunar"
@@ -45,6 +45,9 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 
 # LaTeX custom package directory
 export TEXINPUTS="$HOME/.config/nvim/TeX_snippets/pkg:"
+
+# Python startup imports
+export PYTHONSTARTUP="$HOME/.config/settings.py"
 
 # common SSH targets
 export LAPTOP="192.168.50.54"

@@ -3,4 +3,4 @@
 BOOKDIR="$HOME/Documents/books"
 cd $BOOKDIR
 BOOK="$(ls | dmenu)"
-$READER "$BOOK"
+[ -n "$BOOK" ] && $READER "$BOOK"
