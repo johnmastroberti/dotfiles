@@ -136,7 +136,6 @@ fi
 ## Fix for pyenv causing bsdtar not to be found
 #export PATH="/home/john/.pyenv-fixes:$PATH"
 
-source ~/.config/lsx/lsx.sh
 
 
 # Load zsh-syntax-highlighting; should be last.
