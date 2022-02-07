@@ -4,4 +4,4 @@
 [ -f "/home/john/.config/Xresources" ] && xrdb /home/john/.config/Xresources
 # autostart script:
 $HOME/.config/dwm/autostart.sh &
-exec dmenuwm
+exec dwm

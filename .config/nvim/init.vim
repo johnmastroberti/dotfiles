@@ -46,6 +46,7 @@ Plug 'folke/todo-comments.nvim'
 Plug 'tpope/vim-abolish'
 Plug 'PyGamer0/vim-apl'
 Plug 'plasticboy/vim-markdown'
+Plug 'mattn/emmet-vim'
 call plug#end()
 packadd vimball
 " }}}
@@ -169,6 +170,9 @@ lua require'todo-comments'.setup{}
 
 " Run GoImports after saving a go file
   autocmd BufWritePre *.go GoImports
+
+" No markdown folding
+  let g:vim_markdown_folding_disabled = 1
 
 " }}}
 

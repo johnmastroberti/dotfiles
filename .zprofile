@@ -1,11 +1,8 @@
 #!/bin/sh
 # Profile file. Runs on login.
 
-# use ~/.Xdefaults
-#xrdb ~/.Xdefaults
-
 # Adds `~/.local/bin` and all subdirectories to $PATH
-export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/Documents/cenns10/daqman/bin:$HOME/.emacs.d/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/Documents/cenns10/daqman/bin"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="brave"
@@ -21,8 +18,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export CPCODE="/home/john/Documents/school/p609/comp-phys-f21"
-
 export GOPATH="$HOME/.local/go"
 export GOBIN="$HOME/.local/go/bin"
 export PATH="$PATH:$GOBIN"
@@ -30,7 +25,6 @@ export GNUPLOT_LIB="$XDG_CONFIG_HOME/gnuplot"
 export LESSHISTFILE="-"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
-#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 
 # less/man colors
@@ -49,24 +43,16 @@ export TEXINPUTS="$HOME/.config/nvim/TeX_snippets/pkg:"
 # Python startup imports
 export PYTHONSTARTUP="$HOME/.config/settings.py"
 
-# common SSH targets
-export LAPTOP="192.168.50.54"
-export RASPI="192.168.50.175"
-
 #Geant4 configuration
-if [ -d $HOME/.local/lib/geant-build ]; then
-  cd "$HOME/.local/lib/geant-build" && source "$HOME/.local/lib/geant-build/geant4make.sh" && cd - >/dev/null
-  export G4INSTALL="$HOME/.local/lib/geant-install"
-  export PATH="$G4INSTALL/bin:${PATH}"
+if [ -f $HOME/.local/bin/geant4.sh ]; then
+  cd "$HOME/.local/bin" && source "$HOME/.local/bin/geant4.sh" && cd - >/dev/null
+  # export G4INSTALL="$HOME/.local/lib/geant-install"
+  # export PATH="$G4INSTALL/bin:${PATH}"
 fi
 
 [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
 
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
-## Start graphical server if bspwm/openbox not already running.
+## Start graphical server if not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
-#
-## Switch escape and caps if tty:
-#sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
-

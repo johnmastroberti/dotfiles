@@ -58,6 +58,7 @@ alias ka="killall" \
   gstf="git add -A; git status; git commit -m stuff; git push" \
   carb="TERM=xterm ssh -XY -o StrictHostKeyChecking=off jmastrob@carbonate.uits.iu.edu" \
   bigred="TERM=xterm ssh -XY -o StrictHostKeyChecking=off jmastrob@bigred3.uits.iu.edu" \
+  cohbr="TERM=xterm ssh -XY coherent@bigred3.uits.iu.edu" \
   hcdata="ssh -XY jmastrob@hcdata.phy.ornl.gov" \
   sns="ssh -XY jmastrob@coherent.sns.gov" \
   orphans="pacman -Qtdq | sudo pacman -Rns -" \

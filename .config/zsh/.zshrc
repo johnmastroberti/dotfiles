@@ -124,7 +124,7 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
 fi
 
 # Cenns 10
-CENNSMC="$HOME/Documents/cenns10/cenns10geant4"
+export CENNSMC="$HOME/Documents/research/cenns10geant4"
 CENNS_SETUP="$CENNSMC/setenv.sh"
 if [ -f $CENNS_SETUP ]; then
   export CENNSMC
