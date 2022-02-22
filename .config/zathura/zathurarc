@@ -9,3 +9,4 @@ map R rotate
 map i recolor
 map p print
 set font 'monospace 20'
+set selection-clipboard clipboard
