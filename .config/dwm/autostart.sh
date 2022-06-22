@@ -14,5 +14,5 @@ setbg &
 dunst & disown
 dwmblocks & disown
 nm-applet & disown
-blueman-applet & disown
+blueberry-tray & disown
 evolution & disown

@@ -9,7 +9,9 @@ cf	~/.config
 cft	~/.config/nvim/TeX_snippets
 sc	~/.local/src
 mn	/mnt
-c ~/Documents/cenns10/cenns10geant4
+c4 ~/Documents/research/cenns10geant4
+re ~/Documents/research
+xe ~/Documents/research/overleaf/xenon
 ## GUI development
 #g ~/bmad_dist/tao/python/pytao/gui
 #b ~/builds
